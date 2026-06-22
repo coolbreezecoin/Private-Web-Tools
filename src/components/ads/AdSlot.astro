@@ -1,0 +1,33 @@
+---
+interface Props {
+  slotId: string;
+  label?: string;
+  reservedHeight?: number;
+}
+
+const { slotId, label = "Advertisement", reservedHeight = 90 } = Astro.props;
+const enabled = import.meta.env.PUBLIC_ADS_ENABLED === "true";
+---
+
+{enabled && (
+  <aside class="ad-slot" data-slot-id={slotId} style={`--ad-height: ${reservedHeight}px`} aria-label={label}>
+    <span>{label}</span>
+  </aside>
+)}
+
+<style>
+  .ad-slot {
+    display: flex;
+    min-height: var(--ad-height);
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed var(--color-ad-border);
+    border-radius: 14px;
+    background: var(--color-ad-bg);
+    color: var(--color-ad-text);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+</style>

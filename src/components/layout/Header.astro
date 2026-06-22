@@ -1,0 +1,160 @@
+---
+import { siteName } from "@/utils/site";
+import { ui } from "@/i18n/strings";
+
+const t = ui.en;
+---
+
+<header class="site-header">
+  <div class="page-shell header-inner">
+    <a class="brand" href="/" aria-label={t.nav.homeLabel}>
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+          <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6a1.5 1.5 0 0 0 2.1 2.1l6-6a4 4 0 0 0 5.4-5.4l-2.4 2.4-2.1-2.1 2.4-2.4Z" fill="#fff"></path>
+        </svg>
+      </span>
+      <span>{siteName}</span>
+    </a>
+    <nav class="desktop-nav" aria-label={t.common.primaryNavigation}>
+      <a href="/fancy-text">{t.nav.text}</a>
+      <a href="/all-tools">{t.nav.allTools}</a>
+      <a href="/privacy">{t.nav.privacy}</a>
+      <a href="/about">{t.nav.about}</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label={t.nav.toggleTheme} aria-pressed="false">
+      <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>(".theme-toggle");
+  const setPressed = () => {
+    button?.setAttribute("aria-pressed", document.documentElement.dataset.theme === "dark" ? "true" : "false");
+  };
+  setPressed();
+  button?.addEventListener("click", () => {
+    const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem("theme", next);
+    setPressed();
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-bottom: 1px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-bg), transparent 22%);
+    backdrop-filter: saturate(160%) blur(12px);
+  }
+
+  .header-inner {
+    display: flex;
+    height: 68px;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-text);
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+
+  .brand-mark {
+    display: inline-flex;
+    width: 34px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: var(--color-accent);
+    box-shadow: 0 4px 12px var(--color-accent-glow);
+  }
+
+  .desktop-nav {
+    display: flex;
+    gap: 4px;
+    margin-left: 8px;
+  }
+
+  .desktop-nav a {
+    border-radius: 9px;
+    padding: 9px 13px;
+    color: var(--color-muted);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .desktop-nav a:hover {
+    background: var(--color-nav-hover);
+    color: var(--color-text);
+  }
+
+  .theme-toggle {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  .theme-icon-sun {
+    display: none;
+  }
+
+  :root[data-theme="dark"] .theme-icon-moon {
+    display: none;
+  }
+
+  :root[data-theme="dark"] .theme-icon-sun {
+    display: block;
+  }
+
+  @media (max-width: 680px) {
+    .header-inner {
+      gap: 12px;
+    }
+
+    .desktop-nav {
+      gap: 2px;
+      margin-left: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .desktop-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .desktop-nav a {
+      white-space: nowrap;
+      padding: 9px 10px;
+    }
+
+    .desktop-nav a[href="/about"] {
+      display: none;
+    }
+  }
+</style>

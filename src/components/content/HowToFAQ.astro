@@ -1,0 +1,81 @@
+---
+import type { FAQItem, HowToStep } from "@/data/tools";
+
+interface Props {
+  howTo: HowToStep[];
+  faq: FAQItem[];
+}
+
+const { howTo, faq } = Astro.props;
+---
+
+<section class="content-section" aria-labelledby="how-to-title">
+  <h2 id="how-to-title">How to use this tool</h2>
+  <ol class="howto-list">
+    {howTo.map((step) => (
+      <li>
+        <h3>{step.name}</h3>
+        <p>{step.text}</p>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<section class="content-section" aria-labelledby="faq-title">
+  <h2 id="faq-title">FAQ</h2>
+  <div class="faq-list">
+    {faq.map((item) => (
+      <article>
+        <h3>{item.question}</h3>
+        <p>{item.answer}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .content-section {
+    margin-top: 42px;
+  }
+
+  h2 {
+    margin: 0 0 16px;
+    color: var(--color-text);
+    font-size: clamp(26px, 4vw, 34px);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .howto-list,
+  .faq-list {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .howto-list {
+    list-style-position: inside;
+  }
+
+  li,
+  article {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+    padding: 18px;
+  }
+
+  h3 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 17px;
+  }
+
+  p {
+    margin: 8px 0 0;
+    color: var(--color-muted);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+</style>

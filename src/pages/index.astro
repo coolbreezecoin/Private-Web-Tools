@@ -1,0 +1,125 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import TrustStrip from "@/components/layout/TrustStrip.astro";
+import ToolDirectory from "@/components/tools/ToolDirectory.svelte";
+import { availableTools, comingSoonTools } from "@/data/tools";
+import { ui } from "@/i18n/strings";
+import { createWebsiteSchema } from "@/utils/schema";
+
+const t = ui.en;
+const directoryTools = availableTools
+  .filter((tool) => tool.visibility.home)
+  .map((tool) => ({
+    id: tool.id,
+    name: tool.name,
+    category: tool.category,
+    description: tool.description,
+    route: tool.route,
+    status: "available" as const,
+  }));
+
+const comingSoon = comingSoonTools.map((tool) => ({
+  ...tool,
+  status: "comingSoon" as const,
+}));
+---
+
+<BaseLayout
+  title="Private Online Tools That Just Work"
+  description="Free browser tools for everyday social and creative tasks. Use private text tools that run locally in your browser."
+  path="/"
+  schema={[createWebsiteSchema()]}
+>
+  <main>
+    <section class="hero page-shell">
+      <p class="eyebrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z" stroke="currentColor" stroke-width="1.6"></path>
+          <path d="m9 11.8 2 2 4-4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        {t.common.homePrivacyPill}
+      </p>
+      <h1>{t.common.homeHeroTitlePrefix} <span>{t.common.homeHeroTitleAccent}</span>.</h1>
+      <p class="hero-copy">
+        {t.common.homeHeroCopy}
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="/fancy-text">{t.common.openFancyText}</a>
+        <a class="button secondary" href="/all-tools">{t.common.browseTools}</a>
+      </div>
+    </section>
+
+    <section class="page-shell">
+      <ToolDirectory tools={directoryTools} comingSoon={comingSoon} client:load />
+      <TrustStrip />
+    </section>
+
+    <section class="page-shell section prose home-copy">
+      <h2>Tools built for quick, private tasks</h2>
+      <p>
+        Toolkit is designed for small everyday jobs: styling text, checking draft length, preparing social posts, and eventually handling images and files without sending them away. The first live tools focus on private text tasks that work instantly in your browser.
+      </p>
+      <p>
+        The site is intentionally small at launch. Each tool gets its own useful page, real instructions, and clear privacy notes instead of a thin page wrapped around a widget.
+      </p>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding-top: 72px;
+    padding-bottom: 30px;
+  }
+
+  .hero .eyebrow {
+    margin: 0 auto 26px;
+  }
+
+  h1 {
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--color-text);
+    font-size: clamp(42px, 8vw, 66px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  h1 span {
+    color: var(--color-accent);
+  }
+
+  .hero-copy {
+    max-width: 560px;
+    margin: 22px auto 0;
+    color: var(--color-muted);
+    font-size: 19px;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .home-copy {
+    padding-top: 8px;
+  }
+
+  @media (max-width: 560px) {
+    .hero {
+      padding-top: 48px;
+    }
+
+    .hero-actions .button {
+      width: 100%;
+    }
+  }
+</style>

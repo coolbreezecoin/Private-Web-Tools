@@ -1,0 +1,85 @@
+---
+import { ui } from "@/i18n/strings";
+
+const items = ui.en.trust;
+---
+
+<section class="trust-strip" aria-label="Privacy and usability promises">
+  {items.map((item) => (
+    <article class="trust-item">
+      <span class="trust-icon" aria-hidden="true">
+        {item.icon === "shield" && (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+          </svg>
+        )}
+        {item.icon === "bolt" && (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+          </svg>
+        )}
+        {item.icon === "check" && (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        )}
+      </span>
+      <div>
+        <h2>{item.title}</h2>
+        <p>{item.body}</p>
+      </div>
+    </article>
+  ))}
+</section>
+
+<style>
+  .trust-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 48px 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-panel);
+    background: var(--color-surface-muted);
+    padding: 34px;
+  }
+
+  .trust-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .trust-icon {
+    display: inline-flex;
+    flex: none;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: var(--color-accent-soft-bg);
+    color: var(--color-accent);
+  }
+
+  h2 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 15px;
+    line-height: 1.25;
+  }
+
+  p {
+    margin: 3px 0 0;
+    color: var(--color-muted);
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 760px) {
+    .trust-strip {
+      grid-template-columns: 1fr;
+      padding: 24px;
+    }
+  }
+</style>

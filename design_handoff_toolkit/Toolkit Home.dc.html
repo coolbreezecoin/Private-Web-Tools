@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  ::selection{background:#c7d2fe}
+</style>
+</helmet>
+
+<div style="{{ pageStyle }}">
+
+  <!-- ===== Header ===== -->
+  <header style="position:sticky;top:0;z-index:20;backdrop-filter:saturate(160%) blur(12px);background:{{ headerBg }};border-bottom:1px solid {{ border }}">
+    <div style="max-width:1200px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;gap:24px">
+      <a href="#" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+        <div style="width:34px;height:34px;border-radius:10px;background:{{ accent }};display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px {{ accentGlow }}">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6a1.5 1.5 0 0 0 2.1 2.1l6-6a4 4 0 0 0 5.4-5.4l-2.4 2.4-2.1-2.1 2.4-2.4Z" fill="#fff"/></svg>
+        </div>
+        <span style="font-weight:800;font-size:19px;letter-spacing:-.02em;color:{{ text }}">Toolkit</span>
+      </a>
+      <nav style="display:flex;gap:4px;margin-left:8px">
+        <a href="#" style="{{ navLink }}">Text</a>
+        <a href="#" style="{{ navLink }}">Image</a>
+        <a href="#" style="{{ navLink }}">Convert</a>
+        <a href="#" style="{{ navLink }}">All tools</a>
+      </nav>
+      <div style="flex:1"></div>
+      <button onClick="{{ toggleTheme }}" aria-label="Toggle theme" style="width:40px;height:40px;border-radius:10px;border:1px solid {{ border }};background:{{ surface }};color:{{ text }};cursor:pointer;display:flex;align-items:center;justify-content:center">
+        {{ themeIcon }}
+      </button>
+    </div>
+  </header>
+
+  <main style="max-width:1200px;margin:0 auto;padding:0 28px">
+
+    <!-- ===== Hero ===== -->
+    <section style="text-align:center;padding:72px 0 8px">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:7px 14px 7px 11px;border-radius:999px;background:{{ trustBg }};border:1px solid {{ trustBorder }};margin-bottom:26px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z" fill="{{ accent }}" opacity=".18"/><path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z" stroke="{{ accent }}" stroke-width="1.6"/><path d="m9 11.8 2 2 4-4.2" stroke="{{ accent }}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span style="font-size:13px;font-weight:600;color:{{ trustText }}">Runs 100% in your browser — nothing is ever uploaded</span>
+      </div>
+      <h1 style="font-size:58px;line-height:1.04;letter-spacing:-.035em;font-weight:800;color:{{ text }};max-width:760px;margin:0 auto;text-wrap:balance">
+        Tiny tools that<br>just <span style="color:{{ accent }}">work</span>.
+      </h1>
+      <p style="font-size:19px;line-height:1.55;color:{{ muted }};max-width:540px;margin:22px auto 0;text-wrap:pretty">
+        Style your text, shrink your images, convert your files — free, instant, and private. No sign-up, no waiting, no nonsense.
+      </p>
+
+      <!-- Search -->
+      <div style="max-width:560px;margin:34px auto 0;position:relative">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="position:absolute;left:20px;top:50%;transform:translateY(-50%)"><circle cx="11" cy="11" r="7" stroke="{{ muted }}" stroke-width="2"/><path d="m20 20-3-3" stroke="{{ muted }}" stroke-width="2" stroke-linecap="round"/></svg>
+        <input value="{{ query }}" onInput="{{ onSearch }}" placeholder="Search 40+ tools…" style="width:100%;height:58px;padding:0 20px 0 52px;border-radius:15px;border:1px solid {{ inputBorder }};background:{{ surface }};color:{{ text }};font-size:16px;font-family:inherit;outline:none;box-shadow:0 1px 2px rgba(0,0,0,.04)" />
+      </div>
+    </section>
+
+    <!-- ===== Ad slot: leaderboard ===== -->
+    <div style="margin:44px auto 8px;max-width:728px">
+      <div style="height:90px;border-radius:14px;border:1px dashed {{ adBorder }};background:{{ adBg }};display:flex;align-items:center;justify-content:center;gap:10px">
+        <span style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:{{ adText }}">Advertisement</span>
+        <span style="font-size:11px;color:{{ adText }};opacity:.7">728 × 90</span>
+      </div>
+    </div>
+
+    <!-- ===== Category filter ===== -->
+    <section style="padding:40px 0 0">
+      <div style="display:flex;gap:9px;flex-wrap:wrap;justify-content:center">
+        <sc-for list="{{ cats }}" as="c" hint-placeholder-count="6">
+          <button onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ===== Tools grid ===== -->
+    <section style="padding:28px 0 16px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(264px,1fr));gap:16px">
+        <sc-for list="{{ tools }}" as="t" hint-placeholder-count="9">
+          <a href="#" style="{{ t.cardStyle }}" onMouseEnter="{{ t.onEnter }}" onMouseLeave="{{ t.onLeave }}">
+            <div style="display:flex;align-items:center;gap:13px;margin-bottom:14px">
+              <div style="{{ t.iconWrap }}">{{ t.icon }}</div>
+              <span style="{{ t.badge }}">{{ t.cat }}</span>
+            </div>
+            <div style="font-weight:700;font-size:16.5px;color:{{ text }};letter-spacing:-.01em">{{ t.name }}</div>
+            <div style="font-size:13.5px;line-height:1.5;color:{{ muted }};margin-top:5px">{{ t.desc }}</div>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ===== Trust strip ===== -->
+    <section style="margin:48px 0;padding:34px;border-radius:20px;background:{{ stripBg }};border:1px solid {{ border }};display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+      <sc-for list="{{ trustItems }}" as="ti" hint-placeholder-count="3">
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <div style="flex:none;width:42px;height:42px;border-radius:12px;background:{{ trustBg }};display:flex;align-items:center;justify-content:center">{{ ti.icon }}</div>
+          <div>
+            <div style="font-weight:700;font-size:15px;color:{{ text }}">{{ ti.title }}</div>
+            <div style="font-size:13.5px;line-height:1.5;color:{{ muted }};margin-top:3px">{{ ti.body }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer style="border-top:1px solid {{ border }};margin-top:24px">
+    <div style="max-width:1200px;margin:0 auto;padding:40px 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+      <div style="display:flex;align-items:center;gap:9px">
+        <div style="width:26px;height:26px;border-radius:8px;background:{{ accent }};display:flex;align-items:center;justify-content:center">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6a1.5 1.5 0 0 0 2.1 2.1l6-6a4 4 0 0 0 5.4-5.4l-2.4 2.4-2.1-2.1 2.4-2.4Z" fill="#fff"/></svg>
+        </div>
+        <span style="font-weight:700;color:{{ text }}">Toolkit</span>
+        <span style="font-size:13px;color:{{ muted }};margin-left:6px">© 2026 · Private by design</span>
+      </div>
+      <div style="display:flex;gap:22px">
+        <a href="#" style="{{ footLink }}">Privacy</a>
+        <a href="#" style="{{ footLink }}">About</a>
+        <a href="#" style="{{ footLink }}">All tools</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { theme: 'light', query: '', activeCat: 'All', hover: null };
+
+  componentDidMount() {
+    const dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    this.setState({ theme: dark ? 'dark' : 'light' });
+  }
+
+  icon(name, c) {
+    const p = { fill: 'none', stroke: c, 'stroke-width': 1.8, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' };
+    const paths = {
+      text: React.createElement('path', { d: 'M4 6h16M4 6v-1M4 6v1M9 6v13M9 19h-2M9 19h2' }),
+      bold: React.createElement('path', { d: 'M7 5h6a3.5 3.5 0 0 1 0 7H7zM7 12h7a3.5 3.5 0 0 1 0 7H7z' }),
+      image: React.createElement('g', null, React.createElement('rect',{x:3,y:4,width:18,height:16,rx:3}), React.createElement('circle',{cx:9,cy:10,r:2}), React.createElement('path',{d:'m4 18 5-4 4 3 3-2 4 3'})),
+      convert: React.createElement('path', { d: 'M4 8h12l-3-3M20 16H8l3 3' }),
+      crop: React.createElement('path', { d: 'M6 2v14a2 2 0 0 0 2 2h14M2 6h14a2 2 0 0 1 2 2v14' }),
+      qr: React.createElement('g', null, React.createElement('rect',{x:3,y:3,width:7,height:7,rx:1}), React.createElement('rect',{x:14,y:3,width:7,height:7,rx:1}), React.createElement('rect',{x:3,y:14,width:7,height:7,rx:1}), React.createElement('path',{d:'M14 14h3v3M21 14v7h-7'})),
+      pdf: React.createElement('g', null, React.createElement('path',{d:'M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z'}), React.createElement('path',{d:'M14 3v5h5'})),
+      hash: React.createElement('path', { d: 'M9 4 7 20M17 4l-2 16M4 9h16M3 15h16' }),
+      palette: React.createElement('g', null, React.createElement('path',{d:'M12 3a9 9 0 1 0 0 18c1 0 1.5-.8 1.5-1.6 0-1 .8-1.4 1.6-1.4H18a3 3 0 0 0 3-3 9 9 0 0 0-9-9Z'}), React.createElement('circle',{cx:7.5,cy:11,r:1}), React.createElement('circle',{cx:12,cy:7.5,r:1}), React.createElement('circle',{cx:16.5,cy:11,r:1})),
+      counter: React.createElement('path', { d: 'M4 7h16M4 12h10M4 17h16' }),
+    };
+    return React.createElement('svg', { width: 20, height: 20, viewBox: '0 0 24 24', ...p }, paths[name]);
+  }
+
+  renderVals() {
+    const dark = this.state.theme === 'dark';
+    const C = dark ? {
+      pageBg:'#141318', surface:'#1d1c23', text:'#f5f4f1', muted:'#9d9aa8', border:'#2c2b34',
+      headerBg:'rgba(20,19,24,.78)', accent:'#7c83ff', accentGlow:'rgba(124,131,255,.35)',
+      trustBg:'#211f2e', trustBorder:'#34324a', trustText:'#c7c4d9', inputBorder:'#34323d',
+      adBg:'#1a191f', adBorder:'#34323d', adText:'#8b8896', stripBg:'#1a191f', navHover:'#26252e'
+    } : {
+      pageBg:'#faf9f7', surface:'#ffffff', text:'#1c1b1a', muted:'#6f6b64', border:'#ebe9e4',
+      headerBg:'rgba(250,249,247,.78)', accent:'#4f46e5', accentGlow:'rgba(79,70,229,.32)',
+      trustBg:'#eef0ff', trustBorder:'#dfe2ff', trustText:'#4338ca', inputBorder:'#e2e0db',
+      adBg:'#f4f3f0', adBorder:'#dedcd6', adText:'#9a958c', stripBg:'#f4f3f0', navHover:'#f0eeea'
+    };
+
+    const catList = ['All','Text','Image','Convert','PDF','Utilities'];
+    const cats = catList.map(label => {
+      const on = this.state.activeCat === label;
+      return { label, onClick: () => this.setState({ activeCat: label }),
+        style: `padding:9px 16px;border-radius:999px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:inherit;border:1px solid ${on?C.accent:C.border};background:${on?C.accent:C.surface};color:${on?'#fff':C.text};transition:all .15s` };
+    });
+
+    const raw = [
+      ['Fancy Text Generator','text','Text','Turn plain text into 80+ stylish fonts for your bio'],
+      ['Bold & Italic Text','bold','Text','Unicode bold, italic and monospace for any app'],
+      ['Image Compressor','image','Image','Shrink JPG & PNG without losing quality'],
+      ['Image Converter','convert','Convert','WebP, PNG, JPG, AVIF — convert in a click'],
+      ['Crop & Resize','crop','Image','Exact dimensions for any social platform'],
+      ['QR Code Generator','qr','Utilities','Make custom QR codes, instantly'],
+      ['PDF Compressor','pdf','PDF','Make PDFs smaller, keep them sharp'],
+      ['Color Picker','palette','Utilities','Grab hex, RGB & HSL from any color'],
+      ['Word & Character Counter','counter','Text','Live counts for posts, essays & captions'],
+    ];
+    const q = this.state.query.trim().toLowerCase();
+    const tools = raw
+      .filter(([n,,cat,d]) => (this.state.activeCat==='All'||cat===this.state.activeCat) && (!q || n.toLowerCase().includes(q)||d.toLowerCase().includes(q)))
+      .map(([name,ic,cat,desc],i) => {
+        const h = this.state.hover === name;
+        return {
+          name, desc, cat, icon: this.icon(ic, C.accent),
+          onEnter: () => this.setState({ hover: name }), onLeave: () => this.setState({ hover: null }),
+          cardStyle: `display:block;text-decoration:none;padding:20px;border-radius:18px;background:${C.surface};border:1px solid ${h?C.accent:C.border};box-shadow:${h?'0 12px 28px rgba(0,0,0,'+(dark?'.4':'.09')+')':'0 1px 2px rgba(0,0,0,.03)'};transform:translateY(${h?'-3px':'0'});transition:all .18s`,
+          iconWrap: `width:44px;height:44px;border-radius:12px;background:${C.trustBg};display:flex;align-items:center;justify-content:center;flex:none`,
+          badge: `font-size:11px;font-weight:600;padding:4px 9px;border-radius:999px;background:${C.trustBg};color:${C.trustText};margin-left:auto`,
+        };
+      });
+
+    const sIcon = (d) => React.createElement('svg',{width:20,height:20,viewBox:'0 0 24 24',fill:'none',stroke:C.accent,'stroke-width':1.8,'stroke-linecap':'round','stroke-linejoin':'round'}, React.createElement('path',{d}));
+    const trustItems = [
+      { icon: sIcon('M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z'), title:'Private by default', body:'Files never leave your device. All processing happens locally.' },
+      { icon: sIcon('M13 2 3 14h7l-1 8 10-12h-7l1-8Z'), title:'Instant results', body:'No queues, no uploads, no waiting. It works the moment you type.' },
+      { icon: sIcon('M20 6 9 17l-5-5'), title:'Free, no sign-up', body:'Every tool is free to use. No account, no paywall, no catch.' },
+    ];
+
+    return {
+      pageStyle: `min-height:100vh;background:${C.pageBg};color:${C.text};transition:background .2s`,
+      accent:C.accent, accentGlow:C.accentGlow, text:C.text, muted:C.muted, border:C.border,
+      surface:C.surface, headerBg:C.headerBg, inputBorder:C.inputBorder,
+      trustBg:C.trustBg, trustBorder:C.trustBorder, trustText:C.trustText, stripBg:C.stripBg,
+      adBg:C.adBg, adBorder:C.adBorder, adText:C.adText,
+      navLink:`padding:9px 13px;border-radius:9px;text-decoration:none;font-size:14px;font-weight:600;color:${C.muted}`,
+      footLink:`text-decoration:none;font-size:13.5px;font-weight:600;color:${C.muted}`,
+      query:this.state.query, onSearch:(e)=>this.setState({query:e.target.value}),
+      cats, tools, trustItems,
+      toggleTheme:()=>this.setState(s=>({theme:s.theme==='dark'?'light':'dark'})),
+      themeIcon: dark
+        ? React.createElement('svg',{width:18,height:18,viewBox:'0 0 24 24',fill:'none',stroke:C.text,'stroke-width':1.8,'stroke-linecap':'round','stroke-linejoin':'round'},React.createElement('circle',{cx:12,cy:12,r:4}),React.createElement('path',{d:'M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19'}))
+        : React.createElement('svg',{width:18,height:18,viewBox:'0 0 24 24',fill:'none',stroke:C.text,'stroke-width':1.8,'stroke-linecap':'round','stroke-linejoin':'round'},React.createElement('path',{d:'M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z'})),
+    };
+  }
+}
+</script>
+</body>
+</html>

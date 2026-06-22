@@ -1,0 +1,51 @@
+---
+import "@/styles/global.css";
+import Header from "@/components/layout/Header.astro";
+import Footer from "@/components/layout/Footer.astro";
+import Analytics from "@/components/layout/Analytics.astro";
+import { siteName, toAbsoluteUrl } from "@/utils/site";
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  ogImage?: string;
+  schema?: Record<string, unknown>[];
+}
+
+const { title, description, path = "/", ogImage = "/og-default.png", schema = [] } = Astro.props;
+const canonical = toAbsoluteUrl(path);
+const pageTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+const themeScript = `
+  const stored = localStorage.getItem("theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const theme = stored || (prefersDark ? "dark" : "light");
+  document.documentElement.dataset.theme = theme;
+`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline set:html={themeScript}></script>
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={toAbsoluteUrl(ogImage)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#4f46e5" />
+    {schema.map((entry) => <script is:inline type="application/ld+json" set:html={JSON.stringify(entry)} />)}
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+    <Analytics />
+  </body>
+</html>

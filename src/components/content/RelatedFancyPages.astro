@@ -1,0 +1,57 @@
+---
+import { getFancyTextTool } from "@/data/tools";
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = "" } = Astro.props;
+const tool = getFancyTextTool();
+const links = [
+  { path: tool.route, label: tool.name },
+  ...tool.landingPages.map((page) => ({ path: page.seo.path, label: page.h1 })),
+].filter((link) => link.path !== currentPath);
+---
+
+<aside class="related" aria-labelledby="related-title">
+  <h2 id="related-title">Related text tools</h2>
+  <div>
+    {links.map((link) => <a href={link.path}>{link.label}</a>)}
+  </div>
+</aside>
+
+<style>
+  .related {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+    padding: 18px;
+  }
+
+  h2 {
+    margin: 0 0 12px;
+    color: var(--color-text);
+    font-size: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  div {
+    display: grid;
+    gap: 8px;
+  }
+
+  a {
+    display: block;
+    border-radius: 10px;
+    color: var(--color-muted);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 8px 10px;
+    text-decoration: none;
+  }
+
+  a:hover {
+    background: var(--color-nav-hover);
+    color: var(--color-text);
+  }
+</style>

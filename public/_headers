@@ -1,0 +1,7 @@
+# Reserved for future SharedArrayBuffer/WASM tools, such as ffmpeg.wasm.
+# Re-enable only when a tool that needs SharedArrayBuffer ships, and scope
+# these headers to that tool's route(s) if third-party analytics or ads are active.
+# Example:
+# /audio/*
+#   Cross-Origin-Opener-Policy: same-origin
+#   Cross-Origin-Embedder-Policy: require-corp

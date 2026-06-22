@@ -1,0 +1,31 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ToolDirectory from "@/components/tools/ToolDirectory.svelte";
+import { availableTools, comingSoonTools } from "@/data/tools";
+
+const directoryTools = availableTools.map((tool) => ({
+  id: tool.id,
+  name: tool.name,
+  category: tool.category,
+  description: tool.description,
+  route: tool.route,
+  status: "available" as const,
+}));
+const comingSoon = comingSoonTools.map((tool) => ({ ...tool, status: "comingSoon" as const }));
+---
+
+<BaseLayout
+  title="All Tools"
+  description="Browse free private browser tools. Available tools run locally in your browser and do not upload your input."
+  path="/all-tools"
+>
+  <main class="page-shell section">
+    <section class="prose">
+      <h1>All tools</h1>
+      <p>
+        Every available tool is designed to work in your browser without accounts, uploads, or waiting. Coming soon tools are shown separately so you know what is planned without landing on unfinished pages.
+      </p>
+    </section>
+    <ToolDirectory tools={directoryTools} comingSoon={comingSoon} client:load />
+  </main>
+</BaseLayout>
