@@ -65,7 +65,25 @@ Notes:
    - `PUBLIC_ADS_ENABLED=false` until ad approval is complete
 5. Deploy.
 
-The `public/_headers` file includes COOP/COEP headers as a future-ready default for WASM-heavy tools. Test analytics and ad providers before enabling third-party scripts in production.
+The `public/_headers` file keeps COOP/COEP headers commented out (reserved for future WASM-heavy tools). On non-Cloudflare hosts this file is ignored; configure headers in the web server instead. Test analytics and ad providers before enabling third-party scripts in production.
+
+## Self-Hosted Deployment (宝塔 / Nginx)
+
+The site is static, so the server only needs to serve the built `dist/` directory.
+
+1. Create the site in 宝塔 via **Git 部署** (SSH repo URL, branch `main`); it clones into the site directory, e.g. `/www/wwwroot/tool.nobrisk.com`.
+2. Install Node **>= 22.12** (宝塔 Node 版本管理器) and set it as the command-line version.
+3. Set the site **运行目录 (run directory) to `/dist`** so only the build output is served (keeps `.git` and `src/` off the web root).
+4. First build: `cd /www/wwwroot/tool.nobrisk.com && SITE_URL=https://tool.nobrisk.com npm run build`.
+5. Issue SSL (Let's Encrypt) and force HTTPS.
+
+### Auto-deploy on push
+
+`deploy.sh` (repo root) is the 宝塔 Webhook target: it hard-resets to `origin/main`, runs `npm ci`, and rebuilds with the production `SITE_URL`. It auto-selects an installed Node >= 22 so the webhook shell does not fall back to system Node 18.
+
+- 宝塔 Webhook command: `bash /www/wwwroot/tool.nobrisk.com/deploy.sh`
+- Point a GitHub push webhook at the 宝塔 Webhook URL; open the webhook port in the firewall / security group.
+- Edit `APP_DIR` / `SITE_URL` in `deploy.sh` if the path or domain differs.
 
 ## Project Structure
 
