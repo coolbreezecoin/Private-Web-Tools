@@ -1,10 +1,17 @@
 ---
-import { ui } from "@/i18n/strings";
+import type { Locale } from "@/i18n/config";
+import { t as getStrings } from "@/i18n/strings";
 
-const items = ui.en.trust;
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const trust = getStrings(locale).trust;
+const items = trust.items;
 ---
 
-<section class="trust-strip" aria-label="Privacy and usability promises">
+<section class="trust-strip" aria-label={trust.label}>
   {items.map((item) => (
     <article class="trust-item">
       <span class="trust-icon" aria-hidden="true">

@@ -2,15 +2,15 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import AdSlot from "@/components/ads/AdSlot.astro";
 import HowToFAQ from "@/components/content/HowToFAQ.astro";
-import WordCounter from "@/components/tools/WordCounter.svelte";
-import { availableTools, getWordCounterTool } from "@/data/tools";
+import EncoderDecoder from "@/components/tools/EncoderDecoder.svelte";
+import { availableTools, getUrlEncoderTool } from "@/data/tools";
 import { defaultLocale, localizePath } from "@/i18n/config";
 import { getToolContent } from "@/i18n/content";
 import { t as getStrings } from "@/i18n/strings";
 import { createFAQSchema, createHowToSchema } from "@/utils/schema";
 
 const locale = defaultLocale;
-const tool = getWordCounterTool();
+const tool = getUrlEncoderTool();
 const content = getToolContent(tool.id, locale);
 const seo = { ...content.seo, path: localizePath(tool.route, locale) };
 const related = availableTools.filter((item) => item.id !== tool.id);
@@ -33,7 +33,7 @@ const t = getStrings(locale);
 
     <div class="content-grid">
       <div>
-        <WordCounter locale={locale} client:load />
+        <EncoderDecoder scheme="url" locale={locale} client:load />
         <section class="landing-copy">
           <h2>{content.bodyTitle ?? content.name}</h2>
           {(content.body ?? []).map((paragraph) => <p>{paragraph}</p>)}
@@ -47,7 +47,7 @@ const t = getStrings(locale);
             {related.map((item) => <a href={localizePath(item.route, locale)}>{getToolContent(item.id, locale).name}</a>)}
           </div>
         </aside>
-        <AdSlot slotId="word-counter-sidebar" reservedHeight={250} />
+        <AdSlot slotId="url-encoder-sidebar" reservedHeight={250} />
       </aside>
     </div>
   </main>

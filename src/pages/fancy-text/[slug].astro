@@ -5,44 +5,51 @@ import HowToFAQ from "@/components/content/HowToFAQ.astro";
 import RelatedFancyPages from "@/components/content/RelatedFancyPages.astro";
 import FancyTextGenerator from "@/components/tools/FancyTextGenerator.svelte";
 import { getFancyTextTool } from "@/data/tools";
+import { defaultLocale, localizePath, type Locale } from "@/i18n/config";
+import { getLandingContent, getToolContent } from "@/i18n/content";
 import { createFAQSchema, createHowToSchema } from "@/utils/schema";
 
 export function getStaticPaths() {
   const tool = getFancyTextTool();
   return tool.landingPages.map((page) => ({
     params: { slug: page.slug },
-    props: { page },
+    props: { page, locale: defaultLocale },
   }));
 }
 
 const tool = getFancyTextTool();
-const { page } = Astro.props;
+const { page, locale: rawLocale } = Astro.props;
+const locale = rawLocale as Locale;
+const toolContent = getToolContent(tool.id, locale);
+const content = getLandingContent(tool.id, page.slug, locale);
+const seo = { ...content.seo, path: localizePath(page.route, locale) };
 ---
 
 <BaseLayout
-  title={page.seo.title}
-  description={page.seo.description}
-  path={page.seo.path}
-  schema={[createHowToSchema(page.h1, page.seo, page.howTo), createFAQSchema(page.faq)]}
+  title={content.seo.title}
+  description={content.seo.description}
+  basePath={page.route}
+  locale={locale}
+  schema={[createHowToSchema(content.h1, seo, content.howTo), createFAQSchema(content.faq)]}
 >
   <main class="page-shell section">
     <section class="tool-hero">
-      <p class="eyebrow">{tool.privacyNote}</p>
-      <h1>{page.h1}</h1>
-      <p>{page.intro}</p>
+      <p class="eyebrow">{toolContent.privacyNote}</p>
+      <h1>{content.h1}</h1>
+      <p>{content.intro}</p>
     </section>
 
     <div class="content-grid">
       <div>
-        <FancyTextGenerator featuredStyles={page.featuredStyles} client:load />
+        <FancyTextGenerator featuredStyles={page.featuredStyles} locale={locale} client:load />
         <section class="landing-copy">
-          <h2>Copy and paste {page.keyword}</h2>
-          {page.body.map((paragraph) => <p>{paragraph}</p>)}
+          <h2>Copy and paste {content.keyword}</h2>
+          {content.body.map((paragraph) => <p>{paragraph}</p>)}
         </section>
-        <HowToFAQ howTo={page.howTo} faq={page.faq} />
+        <HowToFAQ howTo={content.howTo} faq={content.faq} />
       </div>
       <aside class="sidebar">
-        <RelatedFancyPages currentPath={page.seo.path} />
+        <RelatedFancyPages currentPath={page.route} locale={locale} />
         <AdSlot slotId={`tool-sidebar-${page.slug}`} reservedHeight={250} />
       </aside>
     </div>

@@ -3,12 +3,18 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import TrustStrip from "@/components/layout/TrustStrip.astro";
 import ToolDirectory from "@/components/tools/ToolDirectory.svelte";
 import { availableTools, comingSoonTools } from "@/data/tools";
-import { defaultLocale, localizePath } from "@/i18n/config";
+import { defaultLocale, isLocale, locales, localizePath, type Locale } from "@/i18n/config";
 import { getToolContent } from "@/i18n/content";
 import { t as getStrings } from "@/i18n/strings";
 import { createWebsiteSchema } from "@/utils/schema";
 
-const locale = defaultLocale;
+export function getStaticPaths() {
+  return locales
+    .filter((locale) => locale !== defaultLocale)
+    .map((locale) => ({ params: { locale }, props: { locale } }));
+}
+
+const locale = isLocale(Astro.props.locale) ? Astro.props.locale : defaultLocale;
 const basePath = "/";
 const t = getStrings(locale);
 const directoryTools = availableTools
@@ -20,24 +26,14 @@ const directoryTools = availableTools
       name: content.name,
       category: tool.category,
       description: content.description,
-      route: localizePath(tool.route, locale),
+      route: localizePath(tool.route, locale as Locale),
       status: "available" as const,
     };
   });
-
-const comingSoon = comingSoonTools.map((tool) => ({
-  ...tool,
-  status: "comingSoon" as const,
-}));
+const comingSoon = comingSoonTools.map((tool) => ({ ...tool, status: "comingSoon" as const }));
 ---
 
-<BaseLayout
-  title={t.pages.home.title}
-  description={t.pages.home.description}
-  basePath={basePath}
-  locale={locale}
-  schema={[createWebsiteSchema()]}
->
+<BaseLayout title={t.pages.home.title} description={t.pages.home.description} basePath={basePath} locale={locale} schema={[createWebsiteSchema()]}>
   <main>
     <section class="hero page-shell">
       <p class="eyebrow">
@@ -48,9 +44,7 @@ const comingSoon = comingSoonTools.map((tool) => ({
         {t.common.homePrivacyPill}
       </p>
       <h1>{t.common.homeHeroTitlePrefix}{t.common.homeHeroTitleAccent && " "}<span>{t.common.homeHeroTitleAccent}</span>{t.common.homeHeroTitleAccent ? "." : ""}</h1>
-      <p class="hero-copy">
-        {t.common.homeHeroCopy}
-      </p>
+      <p class="hero-copy">{t.common.homeHeroCopy}</p>
       <div class="hero-actions">
         <a class="button" href={localizePath("/fancy-text", locale)}>{t.common.openFancyText}</a>
         <a class="button secondary" href={localizePath("/all-tools", locale)}>{t.common.browseTools}</a>

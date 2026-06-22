@@ -1,22 +1,31 @@
 ---
 import { getFancyTextTool } from "@/data/tools";
+import { getLandingContent, getToolContent } from "@/i18n/content";
+import { localizePath, type Locale } from "@/i18n/config";
+import { t as getStrings } from "@/i18n/strings";
 
 interface Props {
   currentPath?: string;
+  locale: Locale;
 }
 
-const { currentPath = "" } = Astro.props;
+const { currentPath = "", locale } = Astro.props;
 const tool = getFancyTextTool();
+const toolContent = getToolContent(tool.id, locale);
 const links = [
-  { path: tool.route, label: tool.name },
-  ...tool.landingPages.map((page) => ({ path: page.seo.path, label: page.h1 })),
+  { path: tool.route, label: toolContent.name },
+  ...tool.landingPages.map((page) => ({
+    path: page.route,
+    label: getLandingContent(tool.id, page.slug, locale).h1,
+  })),
 ].filter((link) => link.path !== currentPath);
+const t = getStrings(locale);
 ---
 
 <aside class="related" aria-labelledby="related-title">
-  <h2 id="related-title">Related text tools</h2>
+  <h2 id="related-title">{t.common.relatedTextTools}</h2>
   <div>
-    {links.map((link) => <a href={link.path}>{link.label}</a>)}
+    {links.map((link) => <a href={localizePath(link.path, locale)}>{link.label}</a>)}
   </div>
 </aside>
 

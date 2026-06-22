@@ -1,10 +1,18 @@
 <script lang="ts">
-  import { ui } from "@/i18n/strings";
+  import type { Locale } from "@/i18n/config";
+  import { t as getStrings } from "@/i18n/strings";
 
-  const t = ui.en.wordCounter;
+  let {
+    locale = "en",
+  }: {
+    locale?: Locale;
+  } = $props();
 
-  let text = $state(t.initialText);
+  const t = $derived(getStrings(locale).wordCounter);
+
+  let text = $state("");
   let message = $state("");
+  let initialized = $state(false);
 
   const words = $derived(text.trim().match(/[A-Za-z0-9]+(?:'[A-Za-z0-9]+)?/g) ?? []);
   const sentences = $derived(text.match(/[^.!?\n]+[.!?]+|[^.!?\n]+$/g)?.filter((item) => item.trim()) ?? []);
@@ -39,6 +47,13 @@
       message = t.copyFailed;
     }
   }
+
+  $effect(() => {
+    if (!initialized) {
+      text = t.initialText;
+      initialized = true;
+    }
+  });
 </script>
 
 <section class="counter-tool panel" aria-labelledby="counter-tool-title">

@@ -5,33 +5,37 @@ import HowToFAQ from "@/components/content/HowToFAQ.astro";
 import RelatedFancyPages from "@/components/content/RelatedFancyPages.astro";
 import FancyTextGenerator from "@/components/tools/FancyTextGenerator.svelte";
 import { getFancyTextTool } from "@/data/tools";
+import { defaultLocale, localizePath } from "@/i18n/config";
+import { getToolContent } from "@/i18n/content";
 import { createFAQSchema, createHowToSchema } from "@/utils/schema";
 
+const locale = defaultLocale;
 const tool = getFancyTextTool();
+const content = getToolContent(tool.id, locale);
+const seo = { ...content.seo, path: localizePath(tool.route, locale) };
 ---
 
 <BaseLayout
-  title={tool.seo.title}
-  description={tool.seo.description}
-  path={tool.seo.path}
-  schema={[createHowToSchema(tool.name, tool.seo, tool.howTo), createFAQSchema(tool.faq)]}
+  title={content.seo.title}
+  description={content.seo.description}
+  basePath={tool.route}
+  locale={locale}
+  schema={[createHowToSchema(content.name, seo, content.howTo), createFAQSchema(content.faq)]}
 >
   <main class="page-shell section">
     <section class="tool-hero">
-      <p class="eyebrow">{tool.privacyNote}</p>
-      <h1>{tool.name}</h1>
-      <p>
-        Type plain text and instantly turn it into bold, italic, cursive, bubble, square, strikethrough, small caps, zalgo, and other copyable Unicode styles.
-      </p>
+      <p class="eyebrow">{content.privacyNote}</p>
+      <h1>{content.name}</h1>
+      <p>{content.hero}</p>
     </section>
 
     <div class="content-grid">
       <div>
-        <FancyTextGenerator client:load />
-        <HowToFAQ howTo={tool.howTo} faq={tool.faq} />
+        <FancyTextGenerator locale={locale} client:load />
+        <HowToFAQ howTo={content.howTo} faq={content.faq} />
       </div>
       <aside class="sidebar">
-        <RelatedFancyPages currentPath={tool.seo.path} />
+        <RelatedFancyPages currentPath={tool.route} locale={locale} />
         <AdSlot slotId="tool-sidebar" reservedHeight={250} />
       </aside>
     </div>

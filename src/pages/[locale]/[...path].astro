@@ -1,0 +1,304 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AdSlot from "@/components/ads/AdSlot.astro";
+import HowToFAQ from "@/components/content/HowToFAQ.astro";
+import RelatedFancyPages from "@/components/content/RelatedFancyPages.astro";
+import ToolDirectory from "@/components/tools/ToolDirectory.svelte";
+import FancyTextGenerator from "@/components/tools/FancyTextGenerator.svelte";
+import WordCounter from "@/components/tools/WordCounter.svelte";
+import CaseConverter from "@/components/tools/CaseConverter.svelte";
+import EncoderDecoder from "@/components/tools/EncoderDecoder.svelte";
+import PasswordGenerator from "@/components/tools/PasswordGenerator.svelte";
+import { availableTools, comingSoonTools, getFancyTextTool, requireTool, tools } from "@/data/tools";
+import { defaultLocale, isLocale, locales, localizePath, type Locale } from "@/i18n/config";
+import { getLandingContent, getToolContent } from "@/i18n/content";
+import { t as getStrings } from "@/i18n/strings";
+import { createFAQSchema, createHowToSchema } from "@/utils/schema";
+
+type PageKind = "all-tools" | "about" | "privacy" | "tool" | "fancy-landing";
+
+interface PageEntry {
+  basePath: string;
+  path: string;
+  kind: PageKind;
+  toolId?: string;
+  slug?: string;
+}
+
+export function getStaticPaths() {
+  const pageEntries: PageEntry[] = [
+    { basePath: "/all-tools", path: "all-tools", kind: "all-tools" },
+    { basePath: "/about", path: "about", kind: "about" },
+    { basePath: "/privacy", path: "privacy", kind: "privacy" },
+    ...tools.map((tool) => ({
+      basePath: tool.route,
+      path: tool.route.slice(1),
+      kind: "tool" as const,
+      toolId: tool.id,
+    })),
+    ...getFancyTextTool().landingPages.map((landing) => ({
+      basePath: landing.route,
+      path: landing.route.slice(1),
+      kind: "fancy-landing" as const,
+      toolId: "fancy-text",
+      slug: landing.slug,
+    })),
+  ];
+
+  return locales
+    .filter((locale) => locale !== defaultLocale)
+    .flatMap((locale) =>
+      pageEntries.map((entry) => ({
+        params: { locale, path: entry.path },
+        props: { locale, entry },
+      })),
+    );
+}
+
+const locale = isLocale(Astro.props.locale) ? Astro.props.locale : defaultLocale;
+const entry = Astro.props.entry as PageEntry;
+const basePath = entry.basePath;
+const t = getStrings(locale);
+
+const directoryTools = availableTools.map((tool) => {
+  const content = getToolContent(tool.id, locale);
+  return {
+    id: tool.id,
+    name: content.name,
+    category: tool.category,
+    description: content.description,
+    route: localizePath(tool.route, locale as Locale),
+    status: "available" as const,
+  };
+});
+const comingSoon = comingSoonTools.map((tool) => ({ ...tool, status: "comingSoon" as const }));
+
+const tool = entry.toolId ? requireTool(entry.toolId) : undefined;
+const toolContent = tool ? getToolContent(tool.id, locale) : undefined;
+const landing = tool && entry.slug ? tool.landingPages.find((item) => item.slug === entry.slug) : undefined;
+const landingContent = tool && entry.slug ? getLandingContent(tool.id, entry.slug, locale) : undefined;
+const related = tool ? availableTools.filter((item) => item.id !== tool.id) : [];
+
+const seoTitle =
+  entry.kind === "all-tools"
+    ? t.pages.allTools.title
+    : entry.kind === "about"
+      ? t.pages.about.title
+      : entry.kind === "privacy"
+        ? t.pages.privacy.title
+        : entry.kind === "fancy-landing" && landingContent
+          ? landingContent.seo.title
+          : toolContent?.seo.title ?? t.pages.home.title;
+
+const seoDescription =
+  entry.kind === "all-tools"
+    ? t.pages.allTools.description
+    : entry.kind === "about"
+      ? t.pages.about.description
+      : entry.kind === "privacy"
+        ? t.pages.privacy.description
+        : entry.kind === "fancy-landing" && landingContent
+          ? landingContent.seo.description
+          : toolContent?.seo.description ?? t.pages.home.description;
+
+const schema =
+  entry.kind === "fancy-landing" && landingContent
+    ? [
+        createHowToSchema(landingContent.h1, { ...landingContent.seo, path: localizePath(basePath, locale) }, landingContent.howTo),
+        createFAQSchema(landingContent.faq),
+      ]
+    : entry.kind === "tool" && toolContent
+      ? [
+          createHowToSchema(toolContent.name, { ...toolContent.seo, path: localizePath(basePath, locale) }, toolContent.howTo),
+          createFAQSchema(toolContent.faq),
+        ]
+      : [];
+---
+
+<BaseLayout title={seoTitle} description={seoDescription} basePath={basePath} locale={locale} schema={schema}>
+  {entry.kind === "all-tools" && (
+    <main class="page-shell section">
+      <section class="prose">
+        <h1>{t.pages.allTools.h1}</h1>
+        <p>{t.pages.allTools.intro}</p>
+      </section>
+      <ToolDirectory tools={directoryTools} comingSoon={comingSoon} locale={locale} client:load />
+    </main>
+  )}
+
+  {entry.kind === "about" && (
+    <main class="page-shell section prose">
+      <h1>{t.pages.about.h1}</h1>
+      <p>{t.pages.about.intro}</p>
+      <h2>{t.pages.about.privateTitle}</h2>
+      <p>{t.pages.about.privateBody}</p>
+      <h2>{t.pages.about.useTitle}</h2>
+      <p>{t.pages.about.useBody}</p>
+    </main>
+  )}
+
+  {entry.kind === "privacy" && (
+    <main class="page-shell section prose">
+      <h1>{t.pages.privacy.h1}</h1>
+      <p>{t.pages.privacy.intro}</p>
+      <h2>{t.pages.privacy.inputTitle}</h2>
+      <p>{t.pages.privacy.inputBody}</p>
+      <h2>{t.pages.privacy.analyticsTitle}</h2>
+      <p>{t.pages.privacy.analyticsBody}</p>
+      <h2>{t.pages.privacy.adsTitle}</h2>
+      <p>{t.pages.privacy.adsBody}</p>
+      <h2>{t.pages.privacy.contactTitle}</h2>
+      <p>{t.pages.privacy.contactBody}</p>
+    </main>
+  )}
+
+  {entry.kind === "tool" && tool && toolContent && (
+    <main class="page-shell section">
+      <section class="tool-hero">
+        <p class="eyebrow">{toolContent.privacyNote}</p>
+        <h1>{toolContent.name}</h1>
+        <p>{toolContent.hero}</p>
+      </section>
+
+      <div class="content-grid">
+        <div>
+          {tool.id === "fancy-text" && <FancyTextGenerator locale={locale} client:load />}
+          {tool.id === "word-counter" && <WordCounter locale={locale} client:load />}
+          {tool.id === "case-converter" && <CaseConverter locale={locale} client:load />}
+          {tool.id === "base64" && <EncoderDecoder scheme="base64" locale={locale} client:load />}
+          {tool.id === "url-encoder" && <EncoderDecoder scheme="url" locale={locale} client:load />}
+          {tool.id === "password-generator" && <PasswordGenerator locale={locale} client:load />}
+
+          {tool.id !== "fancy-text" && toolContent.bodyTitle && toolContent.body && (
+            <section class="landing-copy">
+              <h2>{toolContent.bodyTitle}</h2>
+              {toolContent.body.map((paragraph) => <p>{paragraph}</p>)}
+            </section>
+          )}
+          <HowToFAQ howTo={toolContent.howTo} faq={toolContent.faq} />
+        </div>
+        <aside class="sidebar">
+          {tool.id === "fancy-text" ? (
+            <RelatedFancyPages currentPath={tool.route} locale={locale} />
+          ) : (
+            <aside class="related" aria-labelledby="related-title">
+              <h2 id="related-title">{t.common.relatedTools}</h2>
+              <div>
+                {related.map((item) => <a href={localizePath(item.route, locale)}>{getToolContent(item.id, locale).name}</a>)}
+              </div>
+            </aside>
+          )}
+          <AdSlot slotId={`${tool.id}-sidebar-${locale}`} reservedHeight={250} />
+        </aside>
+      </div>
+    </main>
+  )}
+
+  {entry.kind === "fancy-landing" && tool && landing && landingContent && toolContent && (
+    <main class="page-shell section">
+      <section class="tool-hero">
+        <p class="eyebrow">{toolContent.privacyNote}</p>
+        <h1>{landingContent.h1}</h1>
+        <p>{landingContent.intro}</p>
+      </section>
+
+      <div class="content-grid">
+        <div>
+          <FancyTextGenerator featuredStyles={landing.featuredStyles} locale={locale} client:load />
+          <section class="landing-copy">
+            <h2>Copy and paste {landingContent.keyword}</h2>
+            {landingContent.body.map((paragraph) => <p>{paragraph}</p>)}
+          </section>
+          <HowToFAQ howTo={landingContent.howTo} faq={landingContent.faq} />
+        </div>
+        <aside class="sidebar">
+          <RelatedFancyPages currentPath={landing.route} locale={locale} />
+          <AdSlot slotId={`tool-sidebar-${landing.slug}-${locale}`} reservedHeight={250} />
+        </aside>
+      </div>
+    </main>
+  )}
+</BaseLayout>
+
+<style>
+  .tool-hero {
+    max-width: 820px;
+    margin-bottom: 28px;
+  }
+
+  .tool-hero h1 {
+    margin: 18px 0 0;
+    color: var(--color-text);
+    font-size: clamp(40px, 7vw, 62px);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+
+  .tool-hero p:last-child,
+  .landing-copy p {
+    max-width: 720px;
+    color: var(--color-muted);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .landing-copy {
+    margin-top: 40px;
+  }
+
+  .landing-copy h2 {
+    margin: 0 0 12px;
+    color: var(--color-text);
+    font-size: clamp(26px, 4vw, 34px);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .sidebar {
+    display: grid;
+    gap: 16px;
+    position: sticky;
+    top: 92px;
+  }
+
+  .related {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+    padding: 18px;
+  }
+
+  .related h2 {
+    margin: 0 0 12px;
+    color: var(--color-text);
+    font-size: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .related div {
+    display: grid;
+    gap: 8px;
+  }
+
+  .related a {
+    display: block;
+    border-radius: 10px;
+    color: var(--color-muted);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 8px 10px;
+    text-decoration: none;
+  }
+
+  .related a:hover {
+    background: var(--color-nav-hover);
+    color: var(--color-text);
+  }
+
+  @media (max-width: 760px) {
+    .sidebar {
+      position: static;
+    }
+  }
+</style>

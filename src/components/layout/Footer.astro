@@ -1,14 +1,20 @@
 ---
 import { siteName } from "@/utils/site";
-import { ui } from "@/i18n/strings";
+import { localizePath, type Locale } from "@/i18n/config";
+import { t as getStrings } from "@/i18n/strings";
+
+interface Props {
+  locale: Locale;
+}
 
 const year = new Date().getFullYear();
-const t = ui.en;
+const { locale } = Astro.props;
+const t = getStrings(locale);
 ---
 
 <footer class="site-footer">
   <div class="page-shell footer-inner">
-    <a class="footer-brand" href="/" aria-label={t.footer.homeLabel}>
+    <a class="footer-brand" href={localizePath("/", locale)} aria-label={t.footer.homeLabel}>
       <span class="footer-mark" aria-hidden="true">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
           <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6a1.5 1.5 0 0 0 2.1 2.1l6-6a4 4 0 0 0 5.4-5.4l-2.4 2.4-2.1-2.1 2.4-2.4Z" fill="#fff"></path>
@@ -18,9 +24,9 @@ const t = ui.en;
       <span class="footer-note">© {year} · {t.footer.privateByDesign}</span>
     </a>
     <nav class="footer-links" aria-label={t.footer.navigationLabel}>
-      <a href="/privacy">{t.footer.privacy}</a>
-      <a href="/about">{t.footer.about}</a>
-      <a href="/all-tools">{t.footer.allTools}</a>
+      <a href={localizePath("/privacy", locale)}>{t.footer.privacy}</a>
+      <a href={localizePath("/about", locale)}>{t.footer.about}</a>
+      <a href={localizePath("/all-tools", locale)}>{t.footer.allTools}</a>
     </nav>
   </div>
 </footer>

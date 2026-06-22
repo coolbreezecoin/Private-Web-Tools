@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { ui } from "@/i18n/strings";
+  import type { Locale } from "@/i18n/config";
+  import { t as getStrings } from "@/i18n/strings";
 
   type DirectoryTool = {
     id: string;
@@ -10,13 +11,17 @@
     status: "available" | "comingSoon";
   };
 
-  let { tools = [], comingSoon = [] }: { tools: DirectoryTool[]; comingSoon: DirectoryTool[] } = $props();
+  let {
+    tools = [],
+    comingSoon = [],
+    locale = "en",
+  }: { tools: DirectoryTool[]; comingSoon: DirectoryTool[]; locale?: Locale } = $props();
 
   let query = $state("");
   let activeCategory = $state("All");
 
-  const t = ui.en.directory;
-  const categories = t.categories;
+  const t = $derived(getStrings(locale).directory);
+  const categories = $derived(t.categories);
 
   let combined = $derived([...tools, ...comingSoon]);
   let filtered = $derived(
@@ -55,11 +60,11 @@
     {#each categories as category}
       <button
         type="button"
-        class:active={activeCategory === category}
-        aria-pressed={activeCategory === category}
-        onclick={() => (activeCategory = category)}
+        class:active={activeCategory === category.value}
+        aria-pressed={activeCategory === category.value}
+        onclick={() => (activeCategory = category.value)}
       >
-        {category}
+        {category.label}
       </button>
     {/each}
   </div>

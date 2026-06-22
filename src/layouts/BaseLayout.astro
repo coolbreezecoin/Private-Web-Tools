@@ -4,17 +4,24 @@ import Header from "@/components/layout/Header.astro";
 import Footer from "@/components/layout/Footer.astro";
 import Analytics from "@/components/layout/Analytics.astro";
 import { siteName, toAbsoluteUrl } from "@/utils/site";
+import { defaultLocale, locales, localizePath, type Locale } from "@/i18n/config";
 
 interface Props {
   title: string;
   description: string;
-  path?: string;
+  basePath?: string;
+  locale?: Locale;
   ogImage?: string;
   schema?: Record<string, unknown>[];
 }
 
-const { title, description, path = "/", ogImage = "/og-default.png", schema = [] } = Astro.props;
-const canonical = toAbsoluteUrl(path);
+const { title, description, basePath = "/", locale = defaultLocale, ogImage = "/og-default.png", schema = [] } = Astro.props;
+const localizedPath = localizePath(basePath, locale);
+const canonical = toAbsoluteUrl(localizedPath);
+const alternates = locales.map((item) => ({
+  locale: item,
+  href: toAbsoluteUrl(localizePath(basePath, item)),
+}));
 const pageTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 const themeScript = `
   const stored = localStorage.getItem("theme");
@@ -22,10 +29,24 @@ const themeScript = `
   const theme = stored || (prefersDark ? "dark" : "light");
   document.documentElement.dataset.theme = theme;
 `;
+const localeDetectScript =
+  locale === defaultLocale
+    ? `
+  (() => {
+    if (localStorage.getItem("lang")) return;
+    const supported = ${JSON.stringify(locales)};
+    const preferred = (navigator.language || "").slice(0, 2).toLowerCase();
+    if (!supported.includes(preferred) || preferred === "${defaultLocale}") return;
+    const basePath = ${JSON.stringify(basePath)};
+    const target = basePath === "/" ? "/" + preferred + "/" : "/" + preferred + basePath;
+    location.replace(target);
+  })();
+`
+    : "";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,6 +54,8 @@ const themeScript = `
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {alternates.map((alternate) => <link rel="alternate" hreflang={alternate.locale} href={alternate.href} />)}
+    <link rel="alternate" hreflang="x-default" href={toAbsoluteUrl(localizePath(basePath, defaultLocale))} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -40,12 +63,13 @@ const themeScript = `
     <meta property="og:image" content={toAbsoluteUrl(ogImage)} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#4f46e5" />
+    {localeDetectScript && <script is:inline set:html={localeDetectScript}></script>}
     {schema.map((entry) => <script is:inline type="application/ld+json" set:html={JSON.stringify(entry)} />)}
   </head>
   <body>
-    <Header />
+    <Header locale={locale} basePath={basePath} />
     <slot />
-    <Footer />
+    <Footer locale={locale} />
     <Analytics />
   </body>
 </html>
