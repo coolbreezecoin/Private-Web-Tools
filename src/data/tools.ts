@@ -162,6 +162,66 @@ export const tools: ToolConfig[] = [
     icon: "key",
     landingPages: [],
   },
+  {
+    id: "lorem-ipsum",
+    name: "Lorem Ipsum Generator",
+    shortName: "Lorem Ipsum",
+    category: "Text",
+    route: "/lorem-ipsum",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "text",
+    landingPages: [],
+  },
+  {
+    id: "json-formatter",
+    name: "JSON Formatter / Validator",
+    shortName: "JSON Formatter",
+    category: "Utilities",
+    route: "/json-formatter",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "code",
+    landingPages: [],
+  },
+  {
+    id: "hash-generator",
+    name: "Hash Generator",
+    shortName: "Hash Generator",
+    category: "Utilities",
+    route: "/hash-generator",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "key",
+    landingPages: [],
+  },
+  {
+    id: "qr-code-generator",
+    name: "QR Code Generator",
+    shortName: "QR Code",
+    category: "Utilities",
+    route: "/qr-code-generator",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "code",
+    landingPages: [],
+  },
 ];
 
 export const comingSoonTools = [
@@ -215,4 +275,20 @@ export function getUrlEncoderTool() {
 
 export function getPasswordGeneratorTool() {
   return requireTool("password-generator");
+}
+
+export function getLoremIpsumTool() {
+  return requireTool("lorem-ipsum");
+}
+
+export function getJsonFormatterTool() {
+  return requireTool("json-formatter");
+}
+
+export function getHashGeneratorTool() {
+  return requireTool("hash-generator");
+}
+
+export function getQrCodeTool() {
+  return requireTool("qr-code-generator");
 }

@@ -9,6 +9,10 @@ import WordCounter from "@/components/tools/WordCounter.svelte";
 import CaseConverter from "@/components/tools/CaseConverter.svelte";
 import EncoderDecoder from "@/components/tools/EncoderDecoder.svelte";
 import PasswordGenerator from "@/components/tools/PasswordGenerator.svelte";
+import LoremIpsumGenerator from "@/components/tools/LoremIpsumGenerator.svelte";
+import JsonFormatter from "@/components/tools/JsonFormatter.svelte";
+import HashGenerator from "@/components/tools/HashGenerator.svelte";
+import QrCodeGenerator from "@/components/tools/QrCodeGenerator.svelte";
 import { availableTools, comingSoonTools, getFancyTextTool, requireTool, tools } from "@/data/tools";
 import { defaultLocale, isLocale, locales, localizePath, type Locale } from "@/i18n/config";
 import { getLandingContent, getToolContent } from "@/i18n/content";
@@ -168,6 +172,10 @@ const schema =
           {tool.id === "base64" && <EncoderDecoder scheme="base64" locale={locale} client:load />}
           {tool.id === "url-encoder" && <EncoderDecoder scheme="url" locale={locale} client:load />}
           {tool.id === "password-generator" && <PasswordGenerator locale={locale} client:load />}
+          {tool.id === "lorem-ipsum" && <LoremIpsumGenerator locale={locale} client:load />}
+          {tool.id === "json-formatter" && <JsonFormatter locale={locale} client:load />}
+          {tool.id === "hash-generator" && <HashGenerator locale={locale} client:load />}
+          {tool.id === "qr-code-generator" && <QrCodeGenerator locale={locale} client:load />}
 
           {tool.id !== "fancy-text" && toolContent.bodyTitle && toolContent.body && (
             <section class="landing-copy">

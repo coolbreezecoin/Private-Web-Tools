@@ -301,6 +301,212 @@ export const en = {
         },
       ],
     },
+    "lorem-ipsum": {
+      name: "Lorem Ipsum Generator",
+      shortName: "Lorem Ipsum",
+      description: "Generate clean lorem ipsum placeholder text for drafts, mockups, layouts, and design reviews.",
+      privacyNote: "Your placeholder text is generated in your browser. Nothing is uploaded.",
+      hero:
+        "Create paragraphs, sentences, or words of classic lorem ipsum text instantly for wireframes, templates, and content placeholders.",
+      bodyTitle: "Placeholder copy for layouts and drafts",
+      body: [
+        "Use this lorem ipsum generator when you need neutral filler text for a mockup, landing page draft, app screen, newsletter layout, or design handoff. Pick words, sentences, or paragraphs and copy the result instantly.",
+        "Everything is generated locally in your browser from a fixed Latin text bank. There is no account, no upload, and no server-side processing involved.",
+      ],
+      seo: {
+        title: "Lorem Ipsum Generator - Create Placeholder Text Online",
+        description:
+          "Generate lorem ipsum paragraphs, sentences, or words instantly. Free, private, and processed locally in your browser.",
+      },
+      howTo: [
+        {
+          name: "Choose the amount",
+          text: "Enter how many paragraphs, sentences, or words of placeholder text you need.",
+        },
+        {
+          name: "Pick a unit",
+          text: "Switch between paragraphs, sentences, and words depending on the layout you are filling.",
+        },
+        {
+          name: "Copy the placeholder text",
+          text: "Use the copy button to paste the generated lorem ipsum into your mockup, draft, or design file.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this lorem ipsum generator upload anything?",
+          answer: "No. Placeholder text is generated locally in your browser and is not uploaded to a server.",
+        },
+        {
+          question: "Can I start with the classic Lorem ipsum phrase?",
+          answer:
+            "Yes. Keep the start option enabled to begin with \"Lorem ipsum dolor sit amet\" for familiar placeholder copy.",
+        },
+        {
+          question: "What can I use lorem ipsum for?",
+          answer:
+            "Lorem ipsum is useful for wireframes, website layouts, app screens, print designs, templates, and content drafts where final copy is not ready yet.",
+        },
+        {
+          question: "Can I generate words instead of full paragraphs?",
+          answer: "Yes. Choose Words, Sentences, or Paragraphs to generate exactly the type of placeholder text you need.",
+        },
+      ],
+    },
+    "json-formatter": {
+      name: "JSON Formatter / Validator",
+      shortName: "JSON Formatter",
+      description: "Format, minify, and validate JSON locally in your browser.",
+      privacyNote: "Your JSON stays in your browser. Nothing is uploaded.",
+      hero:
+        "Paste JSON to validate it, format it with 2 spaces, 4 spaces, or tabs, or minify it for compact use without sending data anywhere.",
+      bodyTitle: "Private JSON formatting for quick checks",
+      body: [
+        "Use this JSON formatter for API responses, configuration snippets, test payloads, copied logs, and small data samples that need to be easier to read or safely minified.",
+        "The tool uses the browser's built-in JSON parser and formatter. Invalid JSON shows a clear parser message so you can fix the input before copying the result.",
+      ],
+      seo: {
+        title: "JSON Formatter / Validator - Format and Minify JSON Online",
+        description:
+          "Format, minify, and validate JSON instantly in your browser. Free, private, and no upload required.",
+      },
+      howTo: [
+        {
+          name: "Paste JSON",
+          text: "Add the JSON object, array, API response, or configuration snippet you want to check.",
+        },
+        {
+          name: "Format or minify",
+          text: "Choose an indentation size and format for readability, or minify the JSON into a compact single line.",
+        },
+        {
+          name: "Copy valid output",
+          text: "Review the validation message, then copy the formatted or minified result when the JSON is valid.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this JSON formatter upload my data?",
+          answer: "No. JSON parsing and formatting happen locally in your browser, and your input is not uploaded.",
+        },
+        {
+          question: "What happens if the JSON is invalid?",
+          answer:
+            "The tool shows the browser parser message so you can find and fix syntax issues such as missing commas, quotes, or brackets.",
+        },
+        {
+          question: "Can I minify JSON?",
+          answer: "Yes. Use the Minify button to remove extra whitespace and produce compact JSON.",
+        },
+        {
+          question: "Which indentation options are supported?",
+          answer: "You can format JSON with 2 spaces, 4 spaces, or tabs.",
+        },
+      ],
+    },
+    "hash-generator": {
+      name: "Hash Generator",
+      shortName: "Hash Generator",
+      description: "Generate SHA-1, SHA-256, SHA-384, and SHA-512 hashes from text locally.",
+      privacyNote: "Hashes are generated locally in your browser. Nothing is uploaded.",
+      hero:
+        "Type or paste text and generate SHA hash values with Web Crypto directly in your browser, including SHA-1, SHA-256, SHA-384, and SHA-512.",
+      bodyTitle: "Local SHA hashes for text checks",
+      body: [
+        "Use this hash generator to create repeatable digests for text snippets, test values, examples, and integrity checks where you need a quick SHA output.",
+        "The tool uses the browser Web Crypto API and returns lowercase hexadecimal hashes. Your input stays on your device and is never sent to a server.",
+      ],
+      seo: {
+        title: "Hash Generator - Generate SHA Hashes Online",
+        description:
+          "Generate SHA-1, SHA-256, SHA-384, and SHA-512 hashes from text locally in your browser. Free and private.",
+      },
+      howTo: [
+        {
+          name: "Enter text",
+          text: "Paste or type the text you want to hash into the input area.",
+        },
+        {
+          name: "Review SHA outputs",
+          text: "The SHA-1, SHA-256, SHA-384, and SHA-512 hashes update automatically as the input changes.",
+        },
+        {
+          name: "Copy a hash",
+          text: "Use the copy button beside the algorithm you need and paste the hexadecimal hash wherever you need it.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this hash generator upload my text?",
+          answer: "No. Hashes are generated locally in your browser with Web Crypto, and your input is not uploaded.",
+        },
+        {
+          question: "Which hash algorithms are included?",
+          answer: "The tool includes SHA-1, SHA-256, SHA-384, and SHA-512.",
+        },
+        {
+          question: "Why is MD5 not included?",
+          answer:
+            "MD5 is intentionally not offered because the browser Web Crypto API does not support it and because modern secure workflows should prefer SHA algorithms.",
+        },
+        {
+          question: "Are these hashes encrypted text?",
+          answer:
+            "No. A hash is a one-way digest, not encryption. You cannot reliably recover the original text from a hash.",
+        },
+      ],
+    },
+    "qr-code-generator": {
+      name: "QR Code Generator",
+      shortName: "QR Code",
+      description: "Create downloadable QR codes from text or URLs locally in your browser.",
+      privacyNote: "Your QR code is generated in your browser. Nothing is uploaded.",
+      hero:
+        "Turn a URL, profile link, note, or short text into a QR code on your device, then download it as a PNG image.",
+      bodyTitle: "Browser-only QR codes for links and notes",
+      body: [
+        "Use this QR code generator for profile links, landing pages, menus, contact notes, event pages, short messages, and other text you want people to scan.",
+        "The QR code is rendered on a local canvas in your browser. Your text is not uploaded, and the PNG download is created from the canvas on your device.",
+      ],
+      seo: {
+        title: "QR Code Generator - Create QR Codes Online",
+        description:
+          "Generate a QR code from text or a URL in your browser and download it as PNG. Free, private, and no upload required.",
+      },
+      howTo: [
+        {
+          name: "Enter text or a URL",
+          text: "Paste the link, profile URL, note, or short text you want to encode.",
+        },
+        {
+          name: "Adjust QR settings",
+          text: "Choose a PNG size and error correction level before downloading.",
+        },
+        {
+          name: "Download the PNG",
+          text: "Preview the QR code and save it as a PNG image when it is ready.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this QR code generator upload my text?",
+          answer: "No. The QR code is rendered locally in your browser and your input is not uploaded.",
+        },
+        {
+          question: "Can I make a QR code for a URL?",
+          answer: "Yes. Paste any URL or short text and the tool will encode it into a QR code.",
+        },
+        {
+          question: "What size can I download?",
+          answer: "You can choose a PNG size from 128 to 512 pixels.",
+        },
+        {
+          question: "What does error correction mean?",
+          answer:
+            "Higher error correction can make a QR code more tolerant of damage or overlays, but it may look denser for the same input.",
+        },
+      ],
+    },
   },
   landings: {
     "fancy-text/cursive": {
