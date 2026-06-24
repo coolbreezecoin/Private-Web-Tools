@@ -505,6 +505,209 @@ export const zh = {
         },
       ],
     },
+    "uuid-generator": {
+      name: "UUID 生成器",
+      shortName: "UUID 生成器",
+      description: "在浏览器本地生成随机的第 4 版（v4）UUID。",
+      privacyNote: "UUID 在你的浏览器本地生成，不会上传。",
+      hero:
+        "为测试数据、数据库记录、API 示例、夹具和开发流程即时生成一个或多个随机 v4 UUID。",
+      bodyTitle: "在你设备上生成的随机 v4 UUID",
+      body: [
+        "当你需要为模拟数据、原型、API 请求、数据库种子文件、日志或文档示例准备看起来唯一的标识符时，都可以用这个 UUID 生成器。一次最多生成 50 个，可复制单个或整份列表。",
+        "工具使用浏览器的 crypto.randomUUID。UUID 在你的设备上本地生成，无需上传、无需账号，也没有服务器端生成步骤。",
+      ],
+      seo: {
+        title: "UUID 生成器 - 在线生成随机 v4 UUID",
+        description:
+          "在浏览器里即时生成随机第 4 版 UUID。免费、隐私，可选大写，无需上传。",
+      },
+      howTo: [
+        {
+          name: "选择生成数量",
+          text: "根据需要的标识符数量，输入 1 到 50 之间的数值。",
+        },
+        {
+          name: "选择小写或大写",
+          text: "保持默认小写，或开启大写输出以适配偏好大写字母的系统。",
+        },
+        {
+          name: "复制单个或全部",
+          text: "从列表复制单个 UUID，或用「复制全部」一次性复制所有生成的 UUID。",
+        },
+      ],
+      faq: [
+        {
+          question: "这个 UUID 生成器会上传内容吗？",
+          answer: "不会。UUID 在你的浏览器本地生成，不会上传到服务器。",
+        },
+        {
+          question: "这个工具生成哪个版本的 UUID？",
+          answer: "它使用浏览器的 crypto.randomUUID API 生成随机的第 4 版（v4）UUID。",
+        },
+        {
+          question: "可以一次生成多个吗？",
+          answer: "可以。一批最多可生成 1 到 50 个 UUID。",
+        },
+        {
+          question: "可以生成大写的 UUID 吗？",
+          answer: "可以。开启大写选项即可在复制前把生成的 UUID 转为大写。",
+        },
+      ],
+    },
+    "color-converter": {
+      name: "颜色转换器",
+      shortName: "颜色转换",
+      description: "在浏览器本地转换 HEX、RGB 和 HSL 颜色值。",
+      privacyNote: "颜色转换在你的浏览器中进行，不会上传。",
+      hero:
+        "粘贴 HEX、RGB 或 HSL 颜色，即时转换成干净的 HEX、RGB 和 HSL 值，并附带实时预览色块。",
+      bodyTitle: "面向设计与 CSS 的快速颜色格式转换",
+      body: [
+        "当你需要在设计工具、CSS 值、样式指南、品牌色板和快速原型之间切换时，都可以用这个颜色转换器。它支持常见的 HEX、RGB、RGBA、HSL 和 HSLA 输入格式。",
+        "转换在你的浏览器本地完成。最后一个有效颜色会保留在预览色块上，方便你在修正无效值时不丢失视觉参考。",
+      ],
+      seo: {
+        title: "颜色转换器 - 在线转换 HEX、RGB 和 HSL",
+        description:
+          "在浏览器里即时在 HEX、RGB 和 HSL 之间转换颜色。免费、隐私，含取色器与实时预览。",
+      },
+      howTo: [
+        {
+          name: "输入颜色",
+          text: "粘贴 HEX、RGB、RGBA、HSL 或 HSLA 颜色值，或从取色器选择颜色。",
+        },
+        {
+          name: "查看转换后的格式",
+          text: "查看实时的 HEX、RGB 和 HSL 输出以及预览色块。",
+        },
+        {
+          name: "复制需要的值",
+          text: "点击 HEX、RGB 或 HSL 旁的复制按钮，把值粘贴到你的 CSS、设计文件或文档中。",
+        },
+      ],
+      faq: [
+        {
+          question: "这个颜色转换器会上传我的颜色输入吗？",
+          answer: "不会。解析和转换都在你的浏览器本地完成。",
+        },
+        {
+          question: "支持哪些颜色格式？",
+          answer: "支持 #4f46e5 这类 HEX 值、RGB/RGBA 值和 HSL/HSLA 值。",
+        },
+        {
+          question: "透明度（alpha）值会怎样处理？",
+          answer:
+            "可以解析 RGBA 和 HSLA 输入，但转换后的输出会归一化为不含透明度的 HEX、RGB 和 HSL 值。",
+        },
+        {
+          question: "可以用系统取色器吗？",
+          answer: "可以。取色器会与当前有效颜色保持同步，并更新所有转换输出。",
+        },
+      ],
+    },
+    "jwt-decoder": {
+      name: "JWT 解码器",
+      shortName: "JWT 解码器",
+      description: "在本地解码 JWT 的 header 和 payload，不验证签名。",
+      privacyNote: "JWT 解码在你的浏览器本地进行，不会上传。",
+      hero:
+        "粘贴 JSON Web Token，在你的设备上把它的 header 和 payload 解码成格式化的 JSON。本工具仅解码，不验证签名。",
+      bodyTitle: "无需上传即可查看 JWT 内容",
+      body: [
+        "调试或编写文档时，可以用这个 JWT 解码器查看令牌的 header、声明、过期时间、签发者、受众等 payload 数据。",
+        "令牌通过 base64url 解码和 JSON 解析在你的浏览器本地处理。它不验证签名，因此在需要确认真实性时，请使用可信的服务器端验证器。",
+      ],
+      seo: {
+        title: "JWT 解码器 - 在线解码 JSON Web Token",
+        description:
+          "在浏览器本地解码 JWT 的 header 和 payload。仅解码、不验证签名、不上传任何内容。",
+      },
+      howTo: [
+        {
+          name: "粘贴 JWT",
+          text: "放入由点号分隔的 header、payload 和 signature 段组成的令牌。",
+        },
+        {
+          name: "查看解码后的 JSON",
+          text: "查看格式化的 header 和 payload，以及存在时的可读注册时间声明。",
+        },
+        {
+          name: "复制解码内容",
+          text: "复制解码后的 header 或 payload JSON，用于调试、文档或对比。",
+        },
+      ],
+      faq: [
+        {
+          question: "这个 JWT 解码器会验证签名吗？",
+          answer: "不会。这是一个仅解码的工具，不验证 JWT 签名，也不证明令牌可信。",
+        },
+        {
+          question: "这个 JWT 解码器会上传我的令牌吗？",
+          answer: "不会。令牌在你的浏览器本地解码，不会上传到服务器。",
+        },
+        {
+          question: "JWT 的哪些部分会被解码？",
+          answer: "工具会解码 header 和 payload 的 JSON，signature 段不做验证。",
+        },
+        {
+          question: "能显示过期时间吗？",
+          answer:
+            "能。如果 payload 中存在以 Unix 秒表示的 exp、iat 或 nbf 声明，工具会显示可读的日期。",
+        },
+      ],
+    },
+    "timestamp-converter": {
+      name: "时间戳转换器",
+      shortName: "时间戳",
+      description: "把 Unix 时间戳转换成日期，或把日期转回 Unix 秒或毫秒。",
+      privacyNote: "时间戳转换在你的浏览器本地进行，不会上传。",
+      hero:
+        "把以秒或毫秒表示的 Unix 时间戳转换成 ISO、UTC 和本地时间，或把日期字符串转回 Unix 时间。",
+      bodyTitle: "用于调试与排期的 Unix 时间转换",
+      body: [
+        "无论是日志、API 数据、数据库记录、分析事件、cron 排期还是调试场景，需要把 Unix 时间变得可读时，都可以用这个时间戳转换器。",
+        "工具会按数值大小自动判断是秒还是毫秒，并在你的浏览器本地解析日期字符串。你的输入不会被上传或存储。",
+      ],
+      seo: {
+        title: "时间戳转换器 - 在线转换 Unix 时间",
+        description:
+          "把 Unix 时间戳转换成 ISO、UTC 和本地日期，或把日期转换成 Unix 秒和毫秒。免费、隐私。",
+      },
+      howTo: [
+        {
+          name: "复制当前 Unix 时间",
+          text: "需要当前秒级时间戳时，使用实时的当前时间显示。",
+        },
+        {
+          name: "把时间戳转换成日期",
+          text: "输入 Unix 秒或毫秒，查看 ISO 8601、UTC 和本地时间输出。",
+        },
+        {
+          name: "把日期转换成 Unix 时间",
+          text: "输入日期或 ISO 字符串，得到 Unix 秒和毫秒。",
+        },
+      ],
+      faq: [
+        {
+          question: "这个时间戳转换器会上传我的输入吗？",
+          answer: "不会。所有时间戳和日期转换都在你的浏览器本地完成。",
+        },
+        {
+          question: "能区分秒和毫秒吗？",
+          answer: "能。工具会把较大的 Unix 值视为毫秒，较小的视为秒。",
+        },
+        {
+          question: "会显示哪些日期输出？",
+          answer: "时间戳输入会被转换成 ISO 8601、UTC 字符串和浏览器的本地时间字符串。",
+        },
+        {
+          question: "支持哪些日期输入格式？",
+          answer:
+            "大多数浏览器可识别的日期字符串都能解析，包括 2026-06-24T12:00:00Z 这类 ISO 字符串。",
+        },
+      ],
+    },
   },
   landings: {
     "fancy-text/cursive": {

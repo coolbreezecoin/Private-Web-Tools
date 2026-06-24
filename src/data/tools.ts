@@ -222,6 +222,66 @@ export const tools: ToolConfig[] = [
     icon: "code",
     landingPages: [],
   },
+  {
+    id: "uuid-generator",
+    name: "UUID Generator",
+    shortName: "UUID Generator",
+    category: "Utilities",
+    route: "/uuid-generator",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "key",
+    landingPages: [],
+  },
+  {
+    id: "color-converter",
+    name: "Color Converter",
+    shortName: "Color Converter",
+    category: "Convert",
+    route: "/color-converter",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "case",
+    landingPages: [],
+  },
+  {
+    id: "jwt-decoder",
+    name: "JWT Decoder",
+    shortName: "JWT Decoder",
+    category: "Utilities",
+    route: "/jwt-decoder",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "code",
+    landingPages: [],
+  },
+  {
+    id: "timestamp-converter",
+    name: "Timestamp Converter",
+    shortName: "Timestamp",
+    category: "Convert",
+    route: "/timestamp-converter",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "counter",
+    landingPages: [],
+  },
 ];
 
 export const comingSoonTools = [
@@ -291,4 +351,20 @@ export function getHashGeneratorTool() {
 
 export function getQrCodeTool() {
   return requireTool("qr-code-generator");
+}
+
+export function getUuidGeneratorTool() {
+  return requireTool("uuid-generator");
+}
+
+export function getColorConverterTool() {
+  return requireTool("color-converter");
+}
+
+export function getJwtDecoderTool() {
+  return requireTool("jwt-decoder");
+}
+
+export function getTimestampConverterTool() {
+  return requireTool("timestamp-converter");
 }

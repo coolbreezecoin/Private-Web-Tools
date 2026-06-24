@@ -13,6 +13,10 @@ import LoremIpsumGenerator from "@/components/tools/LoremIpsumGenerator.svelte";
 import JsonFormatter from "@/components/tools/JsonFormatter.svelte";
 import HashGenerator from "@/components/tools/HashGenerator.svelte";
 import QrCodeGenerator from "@/components/tools/QrCodeGenerator.svelte";
+import UuidGenerator from "@/components/tools/UuidGenerator.svelte";
+import ColorConverter from "@/components/tools/ColorConverter.svelte";
+import JwtDecoder from "@/components/tools/JwtDecoder.svelte";
+import TimestampConverter from "@/components/tools/TimestampConverter.svelte";
 import { availableTools, comingSoonTools, getFancyTextTool, requireTool, tools } from "@/data/tools";
 import { defaultLocale, isLocale, locales, localizePath, type Locale } from "@/i18n/config";
 import { getLandingContent, getToolContent } from "@/i18n/content";
@@ -176,6 +180,10 @@ const schema =
           {tool.id === "json-formatter" && <JsonFormatter locale={locale} client:load />}
           {tool.id === "hash-generator" && <HashGenerator locale={locale} client:load />}
           {tool.id === "qr-code-generator" && <QrCodeGenerator locale={locale} client:load />}
+          {tool.id === "uuid-generator" && <UuidGenerator locale={locale} client:load />}
+          {tool.id === "color-converter" && <ColorConverter locale={locale} client:load />}
+          {tool.id === "jwt-decoder" && <JwtDecoder locale={locale} client:load />}
+          {tool.id === "timestamp-converter" && <TimestampConverter locale={locale} client:load />}
 
           {tool.id !== "fancy-text" && toolContent.bodyTitle && toolContent.body && (
             <section class="landing-copy">

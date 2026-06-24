@@ -507,6 +507,210 @@ export const en = {
         },
       ],
     },
+    "uuid-generator": {
+      name: "UUID Generator",
+      shortName: "UUID Generator",
+      description: "Generate random version 4 UUIDs locally in your browser.",
+      privacyNote: "UUIDs are generated locally in your browser. Nothing is uploaded.",
+      hero:
+        "Create one or many random v4 UUIDs instantly for test data, database records, API examples, fixtures, and development workflows.",
+      bodyTitle: "Random v4 UUIDs generated on your device",
+      body: [
+        "Use this UUID generator when you need unique-looking identifiers for mock data, prototypes, API requests, database seed files, logs, or documentation examples. Generate up to 50 UUIDs at once and copy a single value or the full list.",
+        "The tool uses crypto.randomUUID in your browser. UUIDs are created locally on your device, so there is no upload, no account, and no server-side generation step.",
+      ],
+      seo: {
+        title: "UUID Generator - Generate Random v4 UUIDs Online",
+        description:
+          "Generate random version 4 UUIDs instantly in your browser. Free, private, uppercase optional, and no upload required.",
+      },
+      howTo: [
+        {
+          name: "Choose how many UUIDs",
+          text: "Enter a count from 1 to 50 depending on how many identifiers you need.",
+        },
+        {
+          name: "Pick lowercase or uppercase",
+          text: "Leave the default lowercase format or enable uppercase output for systems that prefer capital letters.",
+        },
+        {
+          name: "Copy one or all",
+          text: "Copy a single UUID from the list or use Copy all to move every generated UUID at once.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this UUID generator upload anything?",
+          answer: "No. UUIDs are generated locally in your browser and are not uploaded to a server.",
+        },
+        {
+          question: "Which UUID version does this tool generate?",
+          answer: "It generates random version 4 UUIDs using the browser crypto.randomUUID API.",
+        },
+        {
+          question: "Can I generate multiple UUIDs at once?",
+          answer: "Yes. You can generate from 1 to 50 UUIDs in one batch.",
+        },
+        {
+          question: "Can I make UUIDs uppercase?",
+          answer: "Yes. Turn on the uppercase option to convert the generated UUIDs to uppercase before copying.",
+        },
+      ],
+    },
+    "color-converter": {
+      name: "Color Converter",
+      shortName: "Color Converter",
+      description: "Convert HEX, RGB, and HSL color values locally in your browser.",
+      privacyNote: "Color conversion runs in your browser. Nothing is uploaded.",
+      hero:
+        "Paste a HEX, RGB, or HSL color and instantly convert it into clean HEX, RGB, and HSL values with a live preview swatch.",
+      bodyTitle: "Quick color format conversion for design and CSS",
+      body: [
+        "Use this color converter when you need to move between design tools, CSS values, style guides, brand palettes, and quick prototypes. It accepts common HEX, RGB, RGBA, HSL, and HSLA input formats.",
+        "Conversion happens locally in your browser. The last valid color stays visible in the swatch so you can correct an invalid value without losing your visual reference.",
+      ],
+      seo: {
+        title: "Color Converter - Convert HEX, RGB and HSL Online",
+        description:
+          "Convert colors between HEX, RGB, and HSL instantly in your browser. Free, private, includes a color picker and live preview.",
+      },
+      howTo: [
+        {
+          name: "Enter a color",
+          text: "Paste a HEX, RGB, RGBA, HSL, or HSLA color value, or choose a color from the picker.",
+        },
+        {
+          name: "Review converted formats",
+          text: "Check the live HEX, RGB, and HSL outputs plus the preview swatch.",
+        },
+        {
+          name: "Copy the value you need",
+          text: "Use the copy button next to HEX, RGB, or HSL and paste the value into your CSS, design file, or documentation.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this color converter upload my color input?",
+          answer: "No. Parsing and conversion happen locally in your browser.",
+        },
+        {
+          question: "Which color formats are supported?",
+          answer: "The tool supports HEX values such as #4f46e5, RGB/RGBA values, and HSL/HSLA values.",
+        },
+        {
+          question: "What happens with alpha values?",
+          answer:
+            "RGBA and HSLA inputs can be parsed, but the converted outputs are normalized to solid HEX, RGB, and HSL values.",
+        },
+        {
+          question: "Can I use the native color picker?",
+          answer: "Yes. The picker stays synced with the current valid color and updates all converted outputs.",
+        },
+      ],
+    },
+    "jwt-decoder": {
+      name: "JWT Decoder",
+      shortName: "JWT Decoder",
+      description: "Decode JWT header and payload JSON locally without verifying the signature.",
+      privacyNote: "JWT decoding runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Paste a JSON Web Token to decode its header and payload into formatted JSON on your device. This tool decodes only and does not verify signatures.",
+      bodyTitle: "Decode JWT contents without uploading tokens",
+      body: [
+        "Use this JWT decoder to inspect token headers, claims, expiration times, issuer fields, audience values, and payload data during debugging or documentation work.",
+        "The token is decoded locally in your browser with base64url decoding and JSON parsing. It does not verify the signature, so use a trusted server-side verifier when you need to confirm authenticity.",
+      ],
+      seo: {
+        title: "JWT Decoder - Decode JSON Web Tokens Online",
+        description:
+          "Decode JWT header and payload JSON locally in your browser. Decode-only, no signature verification, and nothing is uploaded.",
+      },
+      howTo: [
+        {
+          name: "Paste a JWT",
+          text: "Add a token with header, payload, and signature segments separated by dots.",
+        },
+        {
+          name: "Read the decoded JSON",
+          text: "Review the formatted header and payload plus human-readable registered time claims when present.",
+        },
+        {
+          name: "Copy decoded sections",
+          text: "Copy the decoded header or payload JSON for debugging, documentation, or comparison.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this JWT decoder verify the signature?",
+          answer: "No. This is a decode-only tool. It does not verify the JWT signature or prove the token is trusted.",
+        },
+        {
+          question: "Does this JWT decoder upload my token?",
+          answer: "No. The token is decoded locally in your browser and is not uploaded to a server.",
+        },
+        {
+          question: "What parts of the JWT are decoded?",
+          answer: "The tool decodes the header and payload JSON. The signature segment is not verified.",
+        },
+        {
+          question: "Can it show expiration dates?",
+          answer:
+            "Yes. If exp, iat, or nbf claims are present as Unix seconds, the tool displays human-readable date strings.",
+        },
+      ],
+    },
+    "timestamp-converter": {
+      name: "Timestamp Converter",
+      shortName: "Timestamp",
+      description: "Convert Unix timestamps to dates and dates back to Unix seconds or milliseconds.",
+      privacyNote: "Timestamp conversion runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Convert Unix timestamps in seconds or milliseconds into ISO, UTC, and local time, or turn a date string back into Unix time.",
+      bodyTitle: "Unix time conversion for debugging and scheduling",
+      body: [
+        "Use this timestamp converter for logs, API payloads, database records, analytics events, cron schedules, and debugging sessions where Unix time needs to become readable.",
+        "The tool auto-detects seconds versus milliseconds by magnitude and parses date strings locally in your browser. Your input is not uploaded or stored.",
+      ],
+      seo: {
+        title: "Timestamp Converter - Convert Unix Time Online",
+        description:
+          "Convert Unix timestamps to ISO, UTC, and local dates, or convert dates to Unix seconds and milliseconds. Free and private.",
+      },
+      howTo: [
+        {
+          name: "Copy the current Unix time",
+          text: "Use the live current time display when you need the current timestamp in seconds.",
+        },
+        {
+          name: "Convert a timestamp to a date",
+          text: "Enter Unix seconds or milliseconds to see ISO 8601, UTC, and local-time output.",
+        },
+        {
+          name: "Convert a date to Unix time",
+          text: "Enter a date or ISO string to get Unix seconds and milliseconds.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this timestamp converter upload my input?",
+          answer: "No. All timestamp and date conversions happen locally in your browser.",
+        },
+        {
+          question: "Can it detect seconds versus milliseconds?",
+          answer:
+            "Yes. The tool treats large Unix values as milliseconds and smaller Unix values as seconds.",
+        },
+        {
+          question: "Which date outputs are shown?",
+          answer: "Timestamp input is converted to ISO 8601, UTC string, and your browser's local time string.",
+        },
+        {
+          question: "What date input formats work?",
+          answer:
+            "Most date strings accepted by your browser can be parsed, including ISO strings such as 2026-06-24T12:00:00Z.",
+        },
+      ],
+    },
   },
   landings: {
     "fancy-text/cursive": {
