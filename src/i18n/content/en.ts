@@ -711,6 +711,209 @@ export const en = {
         },
       ],
     },
+    "csv-json": {
+      name: "CSV to JSON Converter",
+      shortName: "CSV to JSON",
+      description: "Convert CSV to JSON or JSON arrays back to CSV locally in your browser.",
+      privacyNote: "CSV and JSON conversion runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Paste CSV with a header row and convert it to pretty JSON, or turn a JSON array of objects back into copyable CSV.",
+      bodyTitle: "Private CSV and JSON conversion for small data tasks",
+      body: [
+        "Use this CSV to JSON converter for sample data, spreadsheet exports, API test payloads, documentation examples, and quick cleanup work when you need structured data in a different format.",
+        "The converter handles quoted CSV fields, escaped quotes, and delimiters or newlines inside quotes. Everything runs locally in your browser, so your data is not uploaded.",
+      ],
+      seo: {
+        title: "CSV to JSON Converter - Convert CSV and JSON Online",
+        description:
+          "Convert CSV to pretty JSON or JSON arrays back to CSV locally in your browser. Handles quoted fields, custom delimiters, and no uploads.",
+      },
+      howTo: [
+        {
+          name: "Choose a direction",
+          text: "Select CSV to JSON or JSON to CSV depending on the format you want to create.",
+        },
+        {
+          name: "Pick the delimiter",
+          text: "Use comma, semicolon, or tab delimiters to match your CSV source or export target.",
+        },
+        {
+          name: "Paste and copy",
+          text: "Paste your data, review the live converted output, and copy it when it looks right.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this CSV to JSON converter upload my data?",
+          answer: "No. CSV and JSON conversion happens locally in your browser, and your input is not uploaded.",
+        },
+        {
+          question: "Does it support quoted CSV fields?",
+          answer:
+            "Yes. The parser supports quoted fields, escaped double quotes, and delimiters or newlines inside quoted fields.",
+        },
+        {
+          question: "What JSON shape is supported for JSON to CSV?",
+          answer:
+            "JSON to CSV expects an array of objects. The tool builds a header from the union of object keys.",
+        },
+        {
+          question: "Can I use semicolon or tab separated files?",
+          answer: "Yes. Choose comma, semicolon, or tab as the delimiter before converting.",
+        },
+      ],
+    },
+    "number-base-converter": {
+      name: "Number Base Converter",
+      shortName: "Base Converter",
+      description: "Convert integers between binary, octal, decimal, and hexadecimal with BigInt precision.",
+      privacyNote: "Number conversion runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Enter an integer in binary, octal, decimal, or hexadecimal and instantly see the equivalent values in every supported base.",
+      bodyTitle: "Base conversion without precision loss",
+      body: [
+        "Use this number base converter for programming, debugging, computer science homework, bitmask checks, color or memory values, and quick integer format comparisons.",
+        "The converter uses BigInt so large integers do not lose precision. It validates digits for the selected source base and supports optional negative signs.",
+      ],
+      seo: {
+        title: "Number Base Converter - Binary, Decimal, Octal, Hex",
+        description:
+          "Convert integers between binary, octal, decimal, and hexadecimal using BigInt precision. Free, private, and local in your browser.",
+      },
+      howTo: [
+        {
+          name: "Enter a number",
+          text: "Type the integer you want to convert, with an optional leading minus sign.",
+        },
+        {
+          name: "Select the input base",
+          text: "Choose whether your input is binary, octal, decimal, or hexadecimal.",
+        },
+        {
+          name: "Copy a converted value",
+          text: "Review the binary, octal, decimal, and hex outputs and copy the format you need.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this number base converter upload my input?",
+          answer: "No. All base conversion runs locally in your browser.",
+        },
+        {
+          question: "Can it handle large integers?",
+          answer: "Yes. The tool uses BigInt to avoid JavaScript number precision loss for large integers.",
+        },
+        {
+          question: "Which bases are supported?",
+          answer: "The converter supports binary, octal, decimal, and hexadecimal integer input and output.",
+        },
+        {
+          question: "Can I convert negative numbers?",
+          answer: "Yes. Add a leading minus sign before the digits and choose the correct source base.",
+        },
+      ],
+    },
+    "html-entity": {
+      name: "HTML Entity Encoder / Decoder",
+      shortName: "HTML Entity",
+      description: "Encode text as HTML entities or decode HTML entities back to readable text.",
+      privacyNote: "HTML entity conversion runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Escape HTML-sensitive characters, optionally encode non-ASCII characters, or decode named and numeric HTML entities back to text.",
+      bodyTitle: "HTML entity conversion for snippets and content",
+      body: [
+        "Use this HTML entity encoder and decoder when preparing snippets, CMS content, documentation examples, comments, escaped markup, or text copied from web pages.",
+        "The tool always escapes ampersands, angle brackets, quotes, and apostrophes when encoding. Decoding supports common named entities plus decimal and hexadecimal numeric entities.",
+      ],
+      seo: {
+        title: "HTML Entity Encoder / Decoder - Escape and Decode HTML",
+        description:
+          "Encode text as HTML entities or decode named and numeric entities locally in your browser. Free, private, and instant.",
+      },
+      howTo: [
+        {
+          name: "Choose encode or decode",
+          text: "Select Encode to escape text for HTML, or Decode to turn entities back into readable characters.",
+        },
+        {
+          name: "Adjust non-ASCII encoding",
+          text: "In encode mode, turn on non-ASCII encoding when you want characters outside basic ASCII as numeric entities.",
+        },
+        {
+          name: "Copy the output",
+          text: "Review the live result and copy the encoded or decoded text.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this HTML entity tool upload my text?",
+          answer: "No. Encoding and decoding happen locally in your browser.",
+        },
+        {
+          question: "Which characters are always encoded?",
+          answer: "Ampersand, less-than, greater-than, double quote, and apostrophe are always escaped in encode mode.",
+        },
+        {
+          question: "Can it decode numeric entities?",
+          answer: "Yes. It decodes decimal entities like &#169; and hexadecimal entities like &#xA9;.",
+        },
+        {
+          question: "What does the non-ASCII option do?",
+          answer:
+            "It converts characters outside basic ASCII into numeric entities, which can be useful for highly escaped HTML snippets.",
+        },
+      ],
+    },
+    "css-gradient": {
+      name: "CSS Gradient Generator",
+      shortName: "CSS Gradient",
+      description: "Create linear and radial CSS gradients with editable color stops and copyable background CSS.",
+      privacyNote: "Gradient CSS is generated locally in your browser. Nothing is uploaded.",
+      hero:
+        "Build a linear or radial CSS gradient, adjust color stops and positions, preview it live, and copy the ready background declaration.",
+      bodyTitle: "Quick CSS gradients for interfaces and mockups",
+      body: [
+        "Use this CSS gradient generator for buttons, cards, hero backgrounds, social graphics, prototypes, and UI experiments when you need a clean gradient without writing syntax by hand.",
+        "All gradient state stays in your browser. Add, remove, and tune color stops locally, then copy the CSS background declaration into your stylesheet.",
+      ],
+      seo: {
+        title: "CSS Gradient Generator - Create Linear and Radial Gradients",
+        description:
+          "Generate CSS linear and radial gradients with color stops, positions, live preview, and copyable background CSS. Private and free.",
+      },
+      howTo: [
+        {
+          name: "Choose a gradient type",
+          text: "Select linear or radial. For linear gradients, adjust the angle slider.",
+        },
+        {
+          name: "Edit color stops",
+          text: "Pick colors, set positions from 0 to 100 percent, and add or remove stops as needed.",
+        },
+        {
+          name: "Copy the CSS",
+          text: "Preview the gradient and copy the background declaration into your CSS.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this CSS gradient generator upload anything?",
+          answer: "No. The gradient is generated locally in your browser.",
+        },
+        {
+          question: "Can I create radial gradients?",
+          answer: "Yes. Switch the type from Linear to Radial to generate a radial-gradient background.",
+        },
+        {
+          question: "How many color stops can I add?",
+          answer: "You can add multiple color stops and set each position from 0 to 100 percent.",
+        },
+        {
+          question: "What CSS does it output?",
+          answer: "The output is a background declaration you can paste into a stylesheet or style attribute.",
+        },
+      ],
+    },
   },
   landings: {
     "fancy-text/cursive": {

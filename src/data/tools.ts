@@ -282,6 +282,66 @@ export const tools: ToolConfig[] = [
     icon: "counter",
     landingPages: [],
   },
+  {
+    id: "csv-json",
+    name: "CSV to JSON Converter",
+    shortName: "CSV to JSON",
+    category: "Convert",
+    route: "/csv-to-json",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "code",
+    landingPages: [],
+  },
+  {
+    id: "number-base-converter",
+    name: "Number Base Converter",
+    shortName: "Base Converter",
+    category: "Convert",
+    route: "/number-base-converter",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "counter",
+    landingPages: [],
+  },
+  {
+    id: "html-entity",
+    name: "HTML Entity Encoder / Decoder",
+    shortName: "HTML Entity",
+    category: "Utilities",
+    route: "/html-entity-encoder",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "code",
+    landingPages: [],
+  },
+  {
+    id: "css-gradient",
+    name: "CSS Gradient Generator",
+    shortName: "CSS Gradient",
+    category: "Utilities",
+    route: "/css-gradient-generator",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "case",
+    landingPages: [],
+  },
 ];
 
 export const comingSoonTools = [
@@ -367,4 +427,20 @@ export function getJwtDecoderTool() {
 
 export function getTimestampConverterTool() {
   return requireTool("timestamp-converter");
+}
+
+export function getCsvJsonTool() {
+  return requireTool("csv-json");
+}
+
+export function getNumberBaseConverterTool() {
+  return requireTool("number-base-converter");
+}
+
+export function getHtmlEntityTool() {
+  return requireTool("html-entity");
+}
+
+export function getCssGradientTool() {
+  return requireTool("css-gradient");
 }
