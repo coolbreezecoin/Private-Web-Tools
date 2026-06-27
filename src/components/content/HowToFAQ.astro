@@ -1,16 +1,20 @@
 ---
 import type { FAQItem, HowToStep } from "@/data/tools";
+import { defaultLocale, type Locale } from "@/i18n/config";
+import { t as getStrings } from "@/i18n/strings";
 
 interface Props {
   howTo: HowToStep[];
   faq: FAQItem[];
+  locale?: Locale;
 }
 
-const { howTo, faq } = Astro.props;
+const { howTo, faq, locale = defaultLocale } = Astro.props;
+const t = getStrings(locale);
 ---
 
 <section class="content-section" aria-labelledby="how-to-title">
-  <h2 id="how-to-title">How to use this tool</h2>
+  <h2 id="how-to-title">{t.common.howToTitle}</h2>
   <ol class="howto-list">
     {howTo.map((step) => (
       <li>
@@ -22,7 +26,7 @@ const { howTo, faq } = Astro.props;
 </section>
 
 <section class="content-section" aria-labelledby="faq-title">
-  <h2 id="faq-title">FAQ</h2>
+  <h2 id="faq-title">{t.common.faqTitle}</h2>
   <div class="faq-list">
     {faq.map((item) => (
       <article>

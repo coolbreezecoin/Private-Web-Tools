@@ -1,14 +1,17 @@
 import type { Locale } from "./config";
 import { en } from "./content/en";
 import { zh } from "./content/zh";
+import { es } from "./content/es";
+import { fr } from "./content/fr";
+import { de } from "./content/de";
 import type { FAQItem, HowToStep } from "@/data/tools";
 
 const localizedContent = {
   en,
   zh,
-  es: { tools: {}, landings: {} },
-  fr: { tools: {}, landings: {} },
-  de: { tools: {}, landings: {} },
+  es,
+  fr,
+  de,
 } as const;
 
 export interface ToolContent {

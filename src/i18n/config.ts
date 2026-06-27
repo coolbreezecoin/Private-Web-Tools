@@ -1,6 +1,6 @@
-// Phase 1 ships en + zh. Re-add "es", "fr", "de" here (and their localeNames
-// entry) once their content in src/i18n/content/*.ts is translated.
-export const locales = ["en", "zh"] as const;
+// Enabled locales. Astro i18n, hreflang alternates, sitemap entries, and the
+// language switcher all derive from this list.
+export const locales = ["en", "zh", "es", "fr", "de"] as const;
 export const defaultLocale = "en";
 
 export type Locale = (typeof locales)[number];
@@ -8,6 +8,9 @@ export type Locale = (typeof locales)[number];
 export const localeNames: Record<Locale, string> = {
   en: "English",
   zh: "中文",
+  es: "Español",
+  fr: "Français",
+  de: "Deutsch",
 };
 
 export function isLocale(value: string | undefined): value is Locale {

@@ -7,6 +7,7 @@ import FancyTextGenerator from "@/components/tools/FancyTextGenerator.svelte";
 import { getFancyTextTool } from "@/data/tools";
 import { defaultLocale, localizePath, type Locale } from "@/i18n/config";
 import { getLandingContent, getToolContent } from "@/i18n/content";
+import { t as getStrings } from "@/i18n/strings";
 import { createFAQSchema, createHowToSchema } from "@/utils/schema";
 
 export function getStaticPaths() {
@@ -23,6 +24,7 @@ const locale = rawLocale as Locale;
 const toolContent = getToolContent(tool.id, locale);
 const content = getLandingContent(tool.id, page.slug, locale);
 const seo = { ...content.seo, path: localizePath(page.route, locale) };
+const t = getStrings(locale);
 ---
 
 <BaseLayout
@@ -43,10 +45,10 @@ const seo = { ...content.seo, path: localizePath(page.route, locale) };
       <div>
         <FancyTextGenerator featuredStyles={page.featuredStyles} locale={locale} client:load />
         <section class="landing-copy">
-          <h2>Copy and paste {content.keyword}</h2>
+          <h2>{t.common.copyAndPaste} {content.keyword}</h2>
           {content.body.map((paragraph) => <p>{paragraph}</p>)}
         </section>
-        <HowToFAQ howTo={content.howTo} faq={content.faq} />
+        <HowToFAQ howTo={content.howTo} faq={content.faq} locale={locale} />
       </div>
       <aside class="sidebar">
         <RelatedFancyPages currentPath={page.route} locale={locale} />

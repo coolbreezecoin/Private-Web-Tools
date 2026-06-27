@@ -30,7 +30,11 @@ const directoryTools = availableTools
       status: "available" as const,
     };
   });
-const comingSoon = comingSoonTools.map((tool) => ({ ...tool, status: "comingSoon" as const }));
+const comingSoon = comingSoonTools.map((tool) => ({
+  ...tool,
+  ...(t.directory.comingSoonTools[tool.id as keyof typeof t.directory.comingSoonTools] ?? {}),
+  status: "comingSoon" as const,
+}));
 ---
 
 <BaseLayout title={t.pages.home.title} description={t.pages.home.description} basePath={basePath} locale={locale} schema={[createWebsiteSchema()]}>

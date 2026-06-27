@@ -90,7 +90,11 @@ const directoryTools = availableTools.map((tool) => {
     status: "available" as const,
   };
 });
-const comingSoon = comingSoonTools.map((tool) => ({ ...tool, status: "comingSoon" as const }));
+const comingSoon = comingSoonTools.map((tool) => ({
+  ...tool,
+  ...(t.directory.comingSoonTools[tool.id as keyof typeof t.directory.comingSoonTools] ?? {}),
+  status: "comingSoon" as const,
+}));
 
 const tool = entry.toolId ? requireTool(entry.toolId) : undefined;
 const toolContent = tool ? getToolContent(tool.id, locale) : undefined;
@@ -213,7 +217,7 @@ const schema =
               {toolContent.body.map((paragraph) => <p>{paragraph}</p>)}
             </section>
           )}
-          <HowToFAQ howTo={toolContent.howTo} faq={toolContent.faq} />
+          <HowToFAQ howTo={toolContent.howTo} faq={toolContent.faq} locale={locale} />
         </div>
         <aside class="sidebar">
           {tool.id === "fancy-text" ? (
@@ -244,10 +248,10 @@ const schema =
         <div>
           <FancyTextGenerator featuredStyles={landing.featuredStyles} locale={locale} client:load />
           <section class="landing-copy">
-            <h2>Copy and paste {landingContent.keyword}</h2>
+            <h2>{t.common.copyAndPaste} {landingContent.keyword}</h2>
             {landingContent.body.map((paragraph) => <p>{paragraph}</p>)}
           </section>
-          <HowToFAQ howTo={landingContent.howTo} faq={landingContent.faq} />
+          <HowToFAQ howTo={landingContent.howTo} faq={landingContent.faq} locale={locale} />
         </div>
         <aside class="sidebar">
           <RelatedFancyPages currentPath={landing.route} locale={locale} />

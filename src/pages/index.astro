@@ -27,6 +27,7 @@ const directoryTools = availableTools
 
 const comingSoon = comingSoonTools.map((tool) => ({
   ...tool,
+  ...(t.directory.comingSoonTools[tool.id as keyof typeof t.directory.comingSoonTools] ?? {}),
   status: "comingSoon" as const,
 }));
 ---

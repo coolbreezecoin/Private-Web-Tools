@@ -1,5 +1,6 @@
 import { defaultLocale, type Locale } from "./config";
 import { deepMerge } from "./content";
+import { translateUi } from "./localizedCopy";
 
 const en = {
   nav: {
@@ -56,6 +57,16 @@ const en = {
       { value: "PDF", label: "PDF" },
       { value: "Utilities", label: "Utilities" },
     ],
+    comingSoonTools: {
+      "image-compressor": {
+        name: "Image Compressor",
+        description: "Shrink images locally in your browser.",
+      },
+      "image-converter": {
+        name: "Image Converter",
+        description: "Convert JPG, PNG, WebP, and AVIF without uploads.",
+      },
+    },
   },
   fancyText: {
     privacy: "Your text stays in your browser. Nothing is uploaded.",
@@ -651,6 +662,9 @@ const en = {
     browseTools: "Browse tools",
     relatedTools: "Related tools",
     relatedTextTools: "Related text tools",
+    howToTitle: "How to use this tool",
+    faqTitle: "FAQ",
+    copyAndPaste: "Copy and paste",
   },
   pages: {
     home: {
@@ -764,6 +778,16 @@ export const ui = {
         { value: "PDF", label: "PDF" },
         { value: "Utilities", label: "实用工具" },
       ],
+      comingSoonTools: {
+        "image-compressor": {
+          name: "图片压缩器",
+          description: "在浏览器本地压缩图片。",
+        },
+        "image-converter": {
+          name: "图片格式转换器",
+          description: "无需上传即可转换 JPG、PNG、WebP 和 AVIF。",
+        },
+      },
     },
     fancyText: {
       privacy: "你的文字只留在浏览器中，不会上传。",
@@ -1359,6 +1383,9 @@ export const ui = {
       browseTools: "浏览工具",
       relatedTools: "相关工具",
       relatedTextTools: "相关文本工具",
+      howToTitle: "如何使用这个工具",
+      faqTitle: "常见问题",
+      copyAndPaste: "复制粘贴",
     },
     pages: {
       home: {
@@ -1404,9 +1431,9 @@ export const ui = {
       },
     },
   },
-  es: {},
-  fr: {},
-  de: {},
+  es: translateUi(en, "es"),
+  fr: translateUi(en, "fr"),
+  de: translateUi(en, "de"),
 } as const;
 
 export { defaultLocale };
