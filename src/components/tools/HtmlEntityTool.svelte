@@ -17,7 +17,7 @@
   let nonAscii = $state(false);
   let input = $state('Tom & Jerry <strong>"Hello"</strong>');
   let copied = $state(false);
-  let message = $state(t.readyStatus);
+  let message = $state("");
 
   const result = $derived(direction === "encode" ? encode(input, { nonAscii }) : decode(input));
   const placeholder = $derived(direction === "encode" ? t.inputPlaceholderEncode : t.inputPlaceholderDecode);
@@ -41,6 +41,10 @@
       message = t.copyFailed;
     }
   }
+
+  $effect(() => {
+    if (!message) message = t.readyStatus;
+  });
 </script>
 
 <section class="entity-tool panel" aria-labelledby="entity-tool-title">

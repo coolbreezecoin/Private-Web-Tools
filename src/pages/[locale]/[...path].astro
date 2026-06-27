@@ -25,6 +25,9 @@ import DiffChecker from "@/components/tools/DiffChecker.svelte";
 import RegexTester from "@/components/tools/RegexTester.svelte";
 import BoxShadowGenerator from "@/components/tools/BoxShadowGenerator.svelte";
 import UrlParser from "@/components/tools/UrlParser.svelte";
+import UnitConverter from "@/components/tools/UnitConverter.svelte";
+import TextLineTools from "@/components/tools/TextLineTools.svelte";
+import SlugifyTool from "@/components/tools/SlugifyTool.svelte";
 import { availableTools, comingSoonTools, getFancyTextTool, requireTool, tools } from "@/data/tools";
 import { defaultLocale, isLocale, locales, localizePath, type Locale } from "@/i18n/config";
 import { getLandingContent, getToolContent } from "@/i18n/content";
@@ -200,6 +203,9 @@ const schema =
           {tool.id === "regex-tester" && <RegexTester locale={locale} client:load />}
           {tool.id === "box-shadow-generator" && <BoxShadowGenerator locale={locale} client:load />}
           {tool.id === "url-parser" && <UrlParser locale={locale} client:load />}
+          {tool.id === "unit-converter" && <UnitConverter locale={locale} client:load />}
+          {tool.id === "text-line-tools" && <TextLineTools locale={locale} client:load />}
+          {tool.id === "slugify" && <SlugifyTool locale={locale} client:load />}
 
           {tool.id !== "fancy-text" && toolContent.bodyTitle && toolContent.body && (
             <section class="landing-copy">

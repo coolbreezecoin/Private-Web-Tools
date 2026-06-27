@@ -22,6 +22,7 @@
 
   const t = $derived(getStrings(locale).directory);
   const categories = $derived(t.categories);
+  const categoryLabels = $derived(Object.fromEntries(categories.map((category) => [category.value, category.label])));
 
   let combined = $derived([...tools, ...comingSoon]);
   let filtered = $derived(
@@ -30,6 +31,16 @@
       const haystack = `${tool.name} ${tool.description}`.toLowerCase();
       return matchesCategory && (!query.trim() || haystack.includes(query.trim().toLowerCase()));
     }),
+  );
+  let grouped = $derived(
+    categories
+      .filter((category) => category.value !== "All")
+      .map((category) => ({
+        value: category.value,
+        label: category.label,
+        tools: filtered.filter((tool) => tool.category === category.value),
+      }))
+      .filter((group) => group.tools.length > 0),
   );
 
   function iconLabel(name: string) {
@@ -69,24 +80,31 @@
     {/each}
   </div>
 
-  {#if filtered.length > 0}
-    <div class="grid">
-      {#each filtered as tool}
-        {#if tool.status === "available" && tool.route}
-          <a class="tool-card" href={tool.route}>
-            <span class="icon-tile" aria-hidden="true">{iconLabel(tool.name)}</span>
-            <span class="badge">{tool.category}</span>
-            <strong>{tool.name}</strong>
-            <span>{tool.description}</span>
-          </a>
-        {:else}
-          <article class="tool-card disabled">
-            <span class="icon-tile" aria-hidden="true">{iconLabel(tool.name)}</span>
-            <span class="badge">{t.comingSoon}</span>
-            <strong>{tool.name}</strong>
-            <span>{tool.description}</span>
-          </article>
-        {/if}
+  {#if grouped.length > 0}
+    <div class="grouped-grid">
+      {#each grouped as group}
+        <section class="tool-group" aria-labelledby={`tool-group-${group.value}`}>
+          <h3 id={`tool-group-${group.value}`}>{group.label}</h3>
+          <div class="grid">
+            {#each group.tools as tool}
+              {#if tool.status === "available" && tool.route}
+                <a class="tool-card" href={tool.route}>
+                  <span class="icon-tile" aria-hidden="true">{iconLabel(tool.name)}</span>
+                  <span class="badge">{categoryLabels[tool.category] ?? tool.category}</span>
+                  <strong>{tool.name}</strong>
+                  <span>{tool.description}</span>
+                </a>
+              {:else}
+                <article class="tool-card disabled">
+                  <span class="icon-tile" aria-hidden="true">{iconLabel(tool.name)}</span>
+                  <span class="badge">{t.comingSoon}</span>
+                  <strong>{tool.name}</strong>
+                  <span>{tool.description}</span>
+                </article>
+              {/if}
+            {/each}
+          </div>
+        </section>
       {/each}
     </div>
   {:else}
@@ -172,6 +190,20 @@
     border-color: var(--color-accent);
     background: var(--color-accent);
     color: #fff;
+  }
+
+  .grouped-grid,
+  .tool-group {
+    display: grid;
+    gap: 22px;
+  }
+
+  .tool-group h3 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 20px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
   }
 
   .grid {

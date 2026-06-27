@@ -1118,6 +1118,161 @@ export const en = {
         },
       ],
     },
+    "unit-converter": {
+      name: "Unit Converter",
+      shortName: "Unit Converter",
+      description: "Convert length, mass, temperature, and data units instantly in your browser.",
+      privacyNote: "Unit conversion runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Convert metric, imperial, temperature, and digital storage units with live results and accurate temperature formulas.",
+      bodyTitle: "Private unit conversion for everyday calculations",
+      body: [
+        "Use this unit converter for length, mass, temperature, and data storage calculations while writing specs, checking recipes, planning travel, comparing device storage, or debugging measurements.",
+        "The converter uses factor-based formulas for length, mass, and data units, plus affine Celsius, Fahrenheit, and Kelvin formulas for temperature. Everything updates locally as you type.",
+      ],
+      seo: {
+        title: "Unit Converter - Length, Mass, Temperature, and Data",
+        description:
+          "Convert length, mass, temperature, and data units online with instant local results. Includes metric, imperial, Celsius, Fahrenheit, Kelvin, SI, and binary units.",
+      },
+      howTo: [
+        {
+          name: "Choose a measurement type",
+          text: "Select length, mass, temperature, or data storage from the measurement menu.",
+        },
+        {
+          name: "Enter the value and units",
+          text: "Type a number, then choose the source unit and target unit you want to convert between.",
+        },
+        {
+          name: "Copy the result",
+          text: "Review the live converted value, swap units if needed, and copy the result.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this unit converter upload my values?",
+          answer: "No. Unit conversion happens locally in your browser.",
+        },
+        {
+          question: "Does it handle Fahrenheit correctly?",
+          answer:
+            "Yes. Temperature conversion uses Celsius as a pivot, so Fahrenheit and Kelvin offsets are handled correctly.",
+        },
+        {
+          question: "Which data units are supported?",
+          answer:
+            "It supports bits, bytes, SI units like KB and MB, and binary units like KiB, MiB, and GiB.",
+        },
+        {
+          question: "Can I convert metric and imperial length units?",
+          answer: "Yes. Millimeters, centimeters, meters, kilometers, inches, feet, yards, and miles are included.",
+        },
+      ],
+    },
+    "text-line-tools": {
+      name: "Text Line Tools",
+      shortName: "Line Tools",
+      description: "Sort, reverse, deduplicate, trim, and clean text lines locally.",
+      privacyNote: "Line cleanup runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Paste a list or multiline text, then sort, deduplicate, reverse, trim whitespace, and remove empty lines with live output.",
+      bodyTitle: "Private line sorting and cleanup",
+      body: [
+        "Use these text line tools for keyword lists, CSV columns, logs, task lists, redirects, product names, email fragments, or any text where one item belongs on each line.",
+        "Operations run in a predictable pipeline: trim, remove empty lines, remove duplicates, sort, then reverse. Your text never leaves the browser.",
+      ],
+      seo: {
+        title: "Text Line Tools - Sort, Deduplicate, Reverse, and Trim Lines",
+        description:
+          "Clean text lines online with local sort, deduplicate, reverse, trim, and remove-empty-line tools. Fast private line processing in your browser.",
+      },
+      howTo: [
+        {
+          name: "Paste your lines",
+          text: "Add one item per line, or paste any multiline text you want to organize.",
+        },
+        {
+          name: "Choose operations",
+          text: "Turn on sorting, duplicate removal, trimming, empty-line removal, case-insensitive matching, or reversing.",
+        },
+        {
+          name: "Copy the output",
+          text: "Check the before and after line counts, then copy the processed text.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this line tool upload my text?",
+          answer: "No. Sorting and cleanup run locally in your browser.",
+        },
+        {
+          question: "Can it remove duplicate lines?",
+          answer:
+            "Yes. Duplicate removal can ignore case and can compare trimmed line values when trimming is enabled.",
+        },
+        {
+          question: "Can I sort lines alphabetically?",
+          answer: "Yes. Choose A to Z or Z to A sorting, with optional case-insensitive comparison.",
+        },
+        {
+          question: "What order are operations applied in?",
+          answer:
+            "The tool trims lines, removes empty lines, removes duplicates, sorts, and then reverses when those options are enabled.",
+        },
+      ],
+    },
+    slugify: {
+      name: "Slugify Tool",
+      shortName: "Slugify",
+      description: "Turn titles and phrases into clean URL slugs with hyphens or underscores.",
+      privacyNote: "Slug generation runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Create clean, lowercase URL slugs from titles, headings, product names, and campaign labels while removing accents and extra punctuation.",
+      bodyTitle: "Private slug generation for URLs and filenames",
+      body: [
+        "Use the slugify tool to turn blog titles, documentation headings, product names, landing page ideas, and filenames into readable URL-safe text.",
+        "The converter normalizes accented characters, removes diacritics, replaces punctuation with a chosen separator, collapses repeated separators, and trims the ends locally.",
+      ],
+      seo: {
+        title: "Slugify Tool - Generate Clean URL Slugs Online",
+        description:
+          "Generate URL slugs from titles and phrases locally. Remove accents, clean punctuation, choose hyphens or underscores, and copy the result.",
+      },
+      howTo: [
+        {
+          name: "Enter a title or phrase",
+          text: "Paste the text you want to turn into a URL slug.",
+        },
+        {
+          name: "Choose separator options",
+          text: "Pick hyphens or underscores and decide whether the output should be lowercase.",
+        },
+        {
+          name: "Copy the slug",
+          text: "Review the live slug and copy it for a URL path, filename, or identifier.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this slug generator upload my text?",
+          answer: "No. Slug generation happens locally in your browser.",
+        },
+        {
+          question: "Does it remove accents from letters?",
+          answer:
+            "Yes. Text is normalized so words like Crème Brûlée become clean ASCII slugs like creme-brulee.",
+        },
+        {
+          question: "Can I use underscores instead of hyphens?",
+          answer: "Yes. You can switch the separator between hyphens and underscores.",
+        },
+        {
+          question: "Can I keep uppercase letters?",
+          answer: "Yes. Turn off lowercase output if you want uppercase ASCII letters preserved.",
+        },
+      ],
+    },
   },
   landings: {
     "fancy-text/cursive": {

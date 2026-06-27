@@ -402,6 +402,51 @@ export const tools: ToolConfig[] = [
     icon: "link",
     landingPages: [],
   },
+  {
+    id: "unit-converter",
+    name: "Unit Converter",
+    shortName: "Unit Converter",
+    category: "Convert",
+    route: "/unit-converter",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "counter",
+    landingPages: [],
+  },
+  {
+    id: "text-line-tools",
+    name: "Text Line Tools",
+    shortName: "Line Tools",
+    category: "Text",
+    route: "/text-line-tools",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "text",
+    landingPages: [],
+  },
+  {
+    id: "slugify",
+    name: "Slugify Tool",
+    shortName: "Slugify",
+    category: "Text",
+    route: "/slugify",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "link",
+    landingPages: [],
+  },
 ];
 
 export const comingSoonTools = [
@@ -519,4 +564,16 @@ export function getBoxShadowGeneratorTool() {
 
 export function getUrlParserTool() {
   return requireTool("url-parser");
+}
+
+export function getUnitConverterTool() {
+  return requireTool("unit-converter");
+}
+
+export function getTextLineToolsTool() {
+  return requireTool("text-line-tools");
+}
+
+export function getSlugifyTool() {
+  return requireTool("slugify");
 }

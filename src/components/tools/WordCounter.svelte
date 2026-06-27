@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Locale } from "@/i18n/config";
   import { t as getStrings } from "@/i18n/strings";
+  import { getTextStats } from "@/utils/textStats";
 
   let {
     locale = "en",
@@ -14,22 +15,19 @@
   let message = $state("");
   let initialized = $state(false);
 
-  const words = $derived(text.trim().match(/[A-Za-z0-9]+(?:'[A-Za-z0-9]+)?/g) ?? []);
-  const sentences = $derived(text.match(/[^.!?\n]+[.!?]+|[^.!?\n]+$/g)?.filter((item) => item.trim()) ?? []);
-  const paragraphs = $derived(text.split(/\n{2,}/).filter((item) => item.trim()));
-  const lines = $derived(text ? text.split(/\n/).length : 0);
-  const characters = $derived([...text].length);
-  const charactersNoSpaces = $derived([...text.replace(/\s/g, "")].length);
-  const readingMinutes = $derived(words.length === 0 ? 0 : Math.max(1, Math.ceil(words.length / 200)));
+  const textStats = $derived(getTextStats(text));
 
   const stats = $derived([
-    { label: t.stats.words, value: words.length },
-    { label: t.stats.characters, value: characters },
-    { label: t.stats.noSpaces, value: charactersNoSpaces },
-    { label: t.stats.sentences, value: sentences.length },
-    { label: t.stats.paragraphs, value: paragraphs.length },
-    { label: t.stats.lines, value: lines },
-    { label: t.stats.readingTime, value: readingMinutes === 0 ? `0 ${t.minutesSuffix}` : `${readingMinutes} ${t.minutesSuffix}` },
+    { label: t.stats.words, value: textStats.words },
+    { label: t.stats.characters, value: textStats.characters },
+    { label: t.stats.noSpaces, value: textStats.charactersNoSpaces },
+    { label: t.stats.sentences, value: textStats.sentences },
+    { label: t.stats.paragraphs, value: textStats.paragraphs },
+    { label: t.stats.lines, value: textStats.lines },
+    {
+      label: t.stats.readingTime,
+      value: textStats.readingMinutes === 0 ? `0 ${t.minutesSuffix}` : `${textStats.readingMinutes} ${t.minutesSuffix}`,
+    },
   ]);
 
   function clearText() {
