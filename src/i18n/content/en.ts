@@ -914,6 +914,210 @@ export const en = {
         },
       ],
     },
+    "diff-checker": {
+      name: "Diff Checker",
+      shortName: "Diff Checker",
+      description: "Compare two blocks of text with a private line-level diff checker in your browser.",
+      privacyNote: "Text comparison runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Paste original and changed text to see added, removed, and unchanged lines with simple line-level diff results.",
+      bodyTitle: "Private line-by-line text comparison",
+      body: [
+        "Use this diff checker online for drafts, notes, configuration snippets, release notes, plain-text files, and documentation changes when you need a fast visual comparison.",
+        "The comparison runs entirely in your browser with line-level LCS matching. You can ignore case, trim surrounding whitespace, and normalize line endings without uploading either side.",
+      ],
+      seo: {
+        title: "Diff Checker Online - Compare Text Line by Line",
+        description:
+          "Compare two texts with a private line-level diff checker. See added, removed, and unchanged lines instantly in your browser.",
+      },
+      howTo: [
+        {
+          name: "Paste both versions",
+          text: "Add the original text on the left and the changed text on the right.",
+        },
+        {
+          name: "Choose comparison options",
+          text: "Optionally ignore case, trim whitespace, or normalize line endings before comparing.",
+        },
+        {
+          name: "Review the diff",
+          text: "Check added, removed, and unchanged line counts, then copy the diff or either side if needed.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this diff checker upload my text?",
+          answer: "No. The comparison runs locally in your browser, and neither side is uploaded.",
+        },
+        {
+          question: "Is this a line-level or character-level diff?",
+          answer: "This version is line-level. It shows added, removed, and unchanged lines, not character-by-character edits.",
+        },
+        {
+          question: "Can it ignore whitespace?",
+          answer:
+            "Yes. Turn on the whitespace option to compare lines after trimming surrounding whitespace.",
+        },
+        {
+          question: "What happens with different line endings?",
+          answer:
+            "The normalize option converts CRLF and CR line endings to LF before comparing, which helps with cross-platform text.",
+        },
+      ],
+    },
+    "regex-tester": {
+      name: "Regex Tester",
+      shortName: "Regex Tester",
+      description: "Test JavaScript regular expressions, inspect matches, and preview replacements locally.",
+      privacyNote: "Regex testing runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Enter a pattern, choose JavaScript regex flags, highlight matches, inspect capture groups, and preview replacement output.",
+      bodyTitle: "A local regex tester for quick debugging",
+      body: [
+        "Use this regex tester for log snippets, validation patterns, search expressions, extraction rules, named groups, and replacement templates while you iterate on JavaScript regular expressions.",
+        "Patterns are compiled and tested in your browser with native RegExp behavior. Invalid patterns show inline errors, and your test string is never sent to a server.",
+      ],
+      seo: {
+        title: "Regex Tester - Test JavaScript Regular Expressions Online",
+        description:
+          "Test JavaScript regex patterns with flags, highlighted matches, capture groups, and replacement preview. Private and local in your browser.",
+      },
+      howTo: [
+        {
+          name: "Enter a regex pattern",
+          text: "Type the pattern without surrounding slashes, then select any JavaScript flags you need.",
+        },
+        {
+          name: "Paste test text",
+          text: "Add the text you want to search and review highlighted matches plus capture groups.",
+        },
+        {
+          name: "Preview replacements",
+          text: "Optionally enter a replacement template using $1 or named group syntax to see the output live.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this regex tester upload my text?",
+          answer: "No. Regex testing runs locally in your browser.",
+        },
+        {
+          question: "Which regex engine does it use?",
+          answer: "It uses the JavaScript RegExp engine built into your browser.",
+        },
+        {
+          question: "Does it support capture groups?",
+          answer: "Yes. The match list shows indexed groups and named groups when your browser reports them.",
+        },
+        {
+          question: "Can a bad regex freeze the page?",
+          answer:
+            "Pathological regular expressions can make the current browser tab slow, but they do not affect a server because everything runs locally.",
+        },
+      ],
+    },
+    "box-shadow-generator": {
+      name: "Box Shadow Generator",
+      shortName: "Box Shadow",
+      description: "Create stacked CSS box-shadow values with live preview and copyable CSS.",
+      privacyNote: "Box-shadow CSS is generated locally in your browser. Nothing is uploaded.",
+      hero:
+        "Build one or more CSS box shadows, adjust offsets, blur, spread, inset, color, and alpha, then copy the generated CSS.",
+      bodyTitle: "CSS shadows for cards, buttons, and interface depth",
+      body: [
+        "Use this CSS box shadow generator for cards, panels, buttons, modals, product mockups, and interface experiments when you want a polished shadow without hand-writing every value.",
+        "All controls run locally in your browser. Stack multiple shadows, reorder them, tune the preview background, and copy a valid box-shadow declaration when it is ready.",
+      ],
+      seo: {
+        title: "CSS Box Shadow Generator - Create Stacked Shadows Online",
+        description:
+          "Generate CSS box-shadow values with multiple stacked shadows, inset controls, color alpha, live preview, and copyable CSS.",
+      },
+      howTo: [
+        {
+          name: "Adjust the first shadow",
+          text: "Set the x offset, y offset, blur, spread, color, alpha, and inset option.",
+        },
+        {
+          name: "Stack more shadows",
+          text: "Add additional shadows and reorder them to create layered depth.",
+        },
+        {
+          name: "Copy the CSS",
+          text: "Preview the result and copy the generated box-shadow declaration into your stylesheet.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this box shadow generator upload anything?",
+          answer: "No. The CSS is generated locally in your browser.",
+        },
+        {
+          question: "Can I create multiple shadows?",
+          answer: "Yes. Add stacked shadows and reorder them before copying the final CSS.",
+        },
+        {
+          question: "Does it support inset shadows?",
+          answer: "Yes. Each shadow has its own inset toggle.",
+        },
+        {
+          question: "What CSS does it output?",
+          answer: "The output is a box-shadow declaration that can be pasted into CSS.",
+        },
+      ],
+    },
+    "url-parser": {
+      name: "URL Parser",
+      shortName: "URL Parser",
+      description: "Parse URLs and query strings, edit parameters, and rebuild the URL locally.",
+      privacyNote: "URL parsing runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Paste a URL to inspect protocol, host, path, hash, and query parameters, then edit params and rebuild the URL live.",
+      bodyTitle: "Private URL and query-string parsing",
+      body: [
+        "Use this URL parser for debugging redirects, campaign links, API URLs, search parameters, encoded query strings, anchors, and relative paths with a base URL.",
+        "Parsing and rebuilding use the browser's native URL and URLSearchParams APIs. Your links stay in your browser and are not sent to any external service.",
+      ],
+      seo: {
+        title: "URL Parser - Parse and Edit Query Strings Online",
+        description:
+          "Parse URLs and query strings, inspect URL parts, edit parameters, and rebuild links locally in your browser.",
+      },
+      howTo: [
+        {
+          name: "Paste a URL",
+          text: "Enter an absolute URL, or add a base URL when parsing a relative path.",
+        },
+        {
+          name: "Review the parts",
+          text: "Inspect protocol, host, hostname, port, pathname, search, hash, origin, and query parameters.",
+        },
+        {
+          name: "Edit and rebuild",
+          text: "Add, change, or remove query parameters and copy the rebuilt URL.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this URL parser upload my URL?",
+          answer: "No. URL parsing and rebuilding happen locally in your browser.",
+        },
+        {
+          question: "Can it parse query strings?",
+          answer: "Yes. Query parameters are shown in an editable table and rebuilt live.",
+        },
+        {
+          question: "Can I parse relative URLs?",
+          answer: "Yes. Provide a base URL and the browser URL parser can resolve relative paths.",
+        },
+        {
+          question: "Does it decode parameter values?",
+          answer:
+            "Yes. URLSearchParams exposes decoded key and value pairs while the rebuilt URL is encoded as needed.",
+        },
+      ],
+    },
   },
   landings: {
     "fancy-text/cursive": {

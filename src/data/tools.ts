@@ -342,6 +342,66 @@ export const tools: ToolConfig[] = [
     icon: "case",
     landingPages: [],
   },
+  {
+    id: "diff-checker",
+    name: "Diff Checker",
+    shortName: "Diff Checker",
+    category: "Convert",
+    route: "/diff-checker",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "code",
+    landingPages: [],
+  },
+  {
+    id: "regex-tester",
+    name: "Regex Tester",
+    shortName: "Regex Tester",
+    category: "Convert",
+    route: "/regex-tester",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "code",
+    landingPages: [],
+  },
+  {
+    id: "box-shadow-generator",
+    name: "Box Shadow Generator",
+    shortName: "Box Shadow",
+    category: "Utilities",
+    route: "/box-shadow-generator",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "case",
+    landingPages: [],
+  },
+  {
+    id: "url-parser",
+    name: "URL Parser",
+    shortName: "URL Parser",
+    category: "Convert",
+    route: "/url-parser",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "link",
+    landingPages: [],
+  },
 ];
 
 export const comingSoonTools = [
@@ -443,4 +503,20 @@ export function getHtmlEntityTool() {
 
 export function getCssGradientTool() {
   return requireTool("css-gradient");
+}
+
+export function getDiffCheckerTool() {
+  return requireTool("diff-checker");
+}
+
+export function getRegexTesterTool() {
+  return requireTool("regex-tester");
+}
+
+export function getBoxShadowGeneratorTool() {
+  return requireTool("box-shadow-generator");
+}
+
+export function getUrlParserTool() {
+  return requireTool("url-parser");
 }

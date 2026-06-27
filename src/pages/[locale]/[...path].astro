@@ -21,6 +21,10 @@ import CsvJsonConverter from "@/components/tools/CsvJsonConverter.svelte";
 import NumberBaseConverter from "@/components/tools/NumberBaseConverter.svelte";
 import HtmlEntityTool from "@/components/tools/HtmlEntityTool.svelte";
 import CssGradientGenerator from "@/components/tools/CssGradientGenerator.svelte";
+import DiffChecker from "@/components/tools/DiffChecker.svelte";
+import RegexTester from "@/components/tools/RegexTester.svelte";
+import BoxShadowGenerator from "@/components/tools/BoxShadowGenerator.svelte";
+import UrlParser from "@/components/tools/UrlParser.svelte";
 import { availableTools, comingSoonTools, getFancyTextTool, requireTool, tools } from "@/data/tools";
 import { defaultLocale, isLocale, locales, localizePath, type Locale } from "@/i18n/config";
 import { getLandingContent, getToolContent } from "@/i18n/content";
@@ -192,6 +196,10 @@ const schema =
           {tool.id === "number-base-converter" && <NumberBaseConverter locale={locale} client:load />}
           {tool.id === "html-entity" && <HtmlEntityTool locale={locale} client:load />}
           {tool.id === "css-gradient" && <CssGradientGenerator locale={locale} client:load />}
+          {tool.id === "diff-checker" && <DiffChecker locale={locale} client:load />}
+          {tool.id === "regex-tester" && <RegexTester locale={locale} client:load />}
+          {tool.id === "box-shadow-generator" && <BoxShadowGenerator locale={locale} client:load />}
+          {tool.id === "url-parser" && <UrlParser locale={locale} client:load />}
 
           {tool.id !== "fancy-text" && toolContent.bodyTitle && toolContent.body && (
             <section class="landing-copy">
