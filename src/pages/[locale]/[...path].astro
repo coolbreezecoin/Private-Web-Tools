@@ -31,6 +31,10 @@ import FindReplaceTool from "@/components/tools/FindReplaceTool.svelte";
 import WhitespaceCleaner from "@/components/tools/WhitespaceCleaner.svelte";
 import WordFrequencyTool from "@/components/tools/WordFrequencyTool.svelte";
 import TextRepeater from "@/components/tools/TextRepeater.svelte";
+import ImageConverter from "@/components/tools/ImageConverter.svelte";
+import ImageCompressor from "@/components/tools/ImageCompressor.svelte";
+import ImageResizer from "@/components/tools/ImageResizer.svelte";
+import ImageCropper from "@/components/tools/ImageCropper.svelte";
 import SlugifyTool from "@/components/tools/SlugifyTool.svelte";
 import { availableTools, comingSoonTools, getFancyTextTool, requireTool, tools } from "@/data/tools";
 import { defaultLocale, isLocale, locales, localizePath, type Locale } from "@/i18n/config";
@@ -217,6 +221,10 @@ const schema =
           {tool.id === "whitespace-cleaner" && <WhitespaceCleaner locale={locale} client:load />}
           {tool.id === "word-frequency" && <WordFrequencyTool locale={locale} client:load />}
           {tool.id === "text-repeater" && <TextRepeater locale={locale} client:load />}
+          {tool.id === "image-converter" && <ImageConverter locale={locale} client:load />}
+          {tool.id === "image-compressor" && <ImageCompressor locale={locale} client:load />}
+          {tool.id === "image-resizer" && <ImageResizer locale={locale} client:load />}
+          {tool.id === "image-cropper" && <ImageCropper locale={locale} client:load />}
           {tool.id === "slugify" && <SlugifyTool locale={locale} client:load />}
 
           {tool.id !== "fancy-text" && toolContent.bodyTitle && toolContent.body && (

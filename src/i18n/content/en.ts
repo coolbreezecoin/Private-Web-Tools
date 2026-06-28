@@ -1422,6 +1422,206 @@ export const en = {
         },
       ],
     },
+    "image-converter": {
+      name: "Image Converter",
+      shortName: "Image Converter",
+      description: "Convert images to PNG, JPEG, or WebP locally in your browser.",
+      privacyNote: "Image conversion runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Convert a browser-supported image to PNG, JPEG, or WebP with a live preview, quality control, and a downloadable result created on your device.",
+      bodyTitle: "Private image format conversion with Canvas",
+      body: [
+        "Use this image converter when you need a PNG, JPEG, or WebP version of a screenshot, product image, social graphic, profile picture, or downloaded asset without uploading it to a server.",
+        "The tool decodes the file in your browser, draws it to a local Canvas, and exports a new image. Re-encoding may remove metadata, and output is limited to PNG, JPEG, and WebP.",
+      ],
+      seo: {
+        title: "Image Converter - Convert PNG, JPEG and WebP Online",
+        description:
+          "Convert images to PNG, JPEG, or WebP locally in your browser. Free private image converter with quality control and no upload.",
+      },
+      howTo: [
+        {
+          name: "Choose an image",
+          text: "Select, drag, or paste a browser-supported image file into the upload area.",
+        },
+        {
+          name: "Pick the output format",
+          text: "Choose PNG, JPEG, or WebP and adjust quality when the chosen format supports it.",
+        },
+        {
+          name: "Download the converted file",
+          text: "Review the preview and output size, then download the converted image from your browser.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this image converter upload my file?",
+          answer: "No. The image is decoded, converted, and downloaded locally in your browser.",
+        },
+        {
+          question: "Which output formats are supported?",
+          answer: "You can export PNG, JPEG, or WebP from this local Canvas tool.",
+        },
+        {
+          question: "Will image metadata be preserved?",
+          answer: "Usually no. Canvas re-encoding creates a fresh image and may strip EXIF and other metadata.",
+        },
+        {
+          question: "Why does JPEG quality not affect PNG output?",
+          answer: "PNG is lossless in the browser Canvas export path, so the quality slider only affects JPEG and WebP output.",
+        },
+      ],
+    },
+    "image-compressor": {
+      name: "Image Compressor",
+      shortName: "Image Compressor",
+      description: "Compress JPEG and WebP images locally with adjustable quality.",
+      privacyNote: "Image compression runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Compress an image in your browser by re-encoding it as JPEG or WebP, compare the before and after sizes, and download the smaller file.",
+      bodyTitle: "Local image compression for faster sharing",
+      body: [
+        "Use this image compressor for photos, screenshots, blog images, social posts, and attachments when you need a smaller JPEG or WebP without sending the original image away.",
+        "Compression happens through Canvas on your device. Lower quality usually means smaller files, and the exported image may not keep the original file metadata.",
+      ],
+      seo: {
+        title: "Image Compressor - Compress Images Online Without Upload",
+        description:
+          "Compress images locally as JPEG or WebP with adjustable quality. Free private image compressor that runs in your browser.",
+      },
+      howTo: [
+        {
+          name: "Add an image",
+          text: "Choose, drag, or paste the image you want to shrink.",
+        },
+        {
+          name: "Adjust quality and format",
+          text: "Select JPEG or WebP and move the quality slider until the preview and file size look right.",
+        },
+        {
+          name: "Download the compressed image",
+          text: "Check the reduction percentage and save the compressed image locally.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this compressor upload my image?",
+          answer: "No. The image stays in your browser and is compressed with local Canvas APIs.",
+        },
+        {
+          question: "Which formats can I export?",
+          answer: "The compressor exports JPEG or WebP. PNG input can be compressed by re-encoding it as one of those formats.",
+        },
+        {
+          question: "Can compression make a file larger?",
+          answer: "Yes, especially with tiny files or simple graphics. Compare the output size before downloading.",
+        },
+        {
+          question: "Is EXIF metadata kept?",
+          answer: "Canvas export usually strips metadata such as EXIF, orientation tags, and camera details.",
+        },
+      ],
+    },
+    "image-resizer": {
+      name: "Image Resizer",
+      shortName: "Image Resizer",
+      description: "Resize images by exact dimensions or percentage locally in your browser.",
+      privacyNote: "Image resizing runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Resize an image by width and height or by percentage, keep the aspect ratio when needed, and export PNG, JPEG, or WebP from your browser.",
+      bodyTitle: "Resize images without uploading them",
+      body: [
+        "Use this image resizer for profile pictures, thumbnails, blog graphics, listing photos, emails, and images that need a specific pixel size before sharing.",
+        "The resize is created on a browser Canvas. You can keep the original aspect ratio, scale by percent, choose an output format, and download the result directly.",
+      ],
+      seo: {
+        title: "Image Resizer - Resize Images Online by Pixels or Percent",
+        description:
+          "Resize images by dimensions or percentage in your browser. Export PNG, JPEG, or WebP with no upload required.",
+      },
+      howTo: [
+        {
+          name: "Choose your image",
+          text: "Add the image file you want to resize by selecting, dragging, or pasting it.",
+        },
+        {
+          name: "Set dimensions or percent",
+          text: "Enter the target width and height, or switch to percent scaling for a proportional resize.",
+        },
+        {
+          name: "Export the resized image",
+          text: "Choose PNG, JPEG, or WebP, review the preview, and download the resized file.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does the image resizer upload my image?",
+          answer: "No. Resizing runs locally in your browser and the source image is not sent to a server.",
+        },
+        {
+          question: "Can I keep the aspect ratio?",
+          answer: "Yes. Keep aspect ratio enabled while changing width or height to avoid stretching the image.",
+        },
+        {
+          question: "Which output formats are available?",
+          answer: "You can export PNG, JPEG, or WebP from the Canvas result.",
+        },
+        {
+          question: "Will resizing preserve metadata?",
+          answer: "Usually no. Re-encoding through Canvas creates a new image file and may remove metadata.",
+        },
+      ],
+    },
+    "image-cropper": {
+      name: "Image Cropper",
+      shortName: "Image Cropper",
+      description: "Crop images locally with a draggable selection and export PNG, JPEG, or WebP.",
+      privacyNote: "Image cropping runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Crop an image with a draggable browser preview, choose a free, square, 4:3, or 16:9 selection, and export the cropped image locally.",
+      bodyTitle: "Crop images privately in the browser",
+      body: [
+        "Use this image cropper for avatars, banners, thumbnails, product details, screenshots, and social images that need a tighter frame before publishing.",
+        "The original image is decoded on your device and the selected region is drawn to Canvas. Exported files are newly encoded, so metadata may be removed.",
+      ],
+      seo: {
+        title: "Image Cropper - Crop Images Online Without Upload",
+        description:
+          "Crop images locally in your browser with a draggable selection. Export PNG, JPEG, or WebP with no upload required.",
+      },
+      howTo: [
+        {
+          name: "Load an image",
+          text: "Choose, drag, or paste the image you want to crop.",
+        },
+        {
+          name: "Adjust the crop area",
+          text: "Drag the selection, resize it, and choose a free or fixed aspect ratio.",
+        },
+        {
+          name: "Export the crop",
+          text: "Create the cropped preview, then download it as PNG, JPEG, or WebP.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this image cropper upload my file?",
+          answer: "No. The crop is calculated and exported locally in your browser.",
+        },
+        {
+          question: "Can I use a square crop?",
+          answer: "Yes. The cropper includes free, square, 4:3, and 16:9 aspect presets.",
+        },
+        {
+          question: "Which output formats are supported?",
+          answer: "The cropped image can be exported as PNG, JPEG, or WebP.",
+        },
+        {
+          question: "Will the crop keep EXIF metadata?",
+          answer: "Usually no. Canvas export creates a new image and may remove EXIF and other metadata.",
+        },
+      ],
+    },
     slugify: {
       name: "Slugify Tool",
       shortName: "Slugify",

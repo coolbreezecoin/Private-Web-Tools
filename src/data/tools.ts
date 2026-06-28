@@ -493,6 +493,66 @@ export const tools: ToolConfig[] = [
     landingPages: [],
   },
   {
+    id: "image-converter",
+    name: "Image Converter",
+    shortName: "Image Converter",
+    category: "Image",
+    route: "/image-converter",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "image",
+    landingPages: [],
+  },
+  {
+    id: "image-compressor",
+    name: "Image Compressor",
+    shortName: "Image Compressor",
+    category: "Image",
+    route: "/image-compressor",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "image",
+    landingPages: [],
+  },
+  {
+    id: "image-resizer",
+    name: "Image Resizer",
+    shortName: "Image Resizer",
+    category: "Image",
+    route: "/image-resizer",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "image",
+    landingPages: [],
+  },
+  {
+    id: "image-cropper",
+    name: "Image Cropper",
+    shortName: "Image Cropper",
+    category: "Image",
+    route: "/image-cropper",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "image",
+    landingPages: [],
+  },
+  {
     id: "slugify",
     name: "Slugify Tool",
     shortName: "Slugify",
@@ -509,20 +569,7 @@ export const tools: ToolConfig[] = [
   },
 ];
 
-export const comingSoonTools = [
-  {
-    id: "image-compressor",
-    name: "Image Compressor",
-    category: "Image" as const,
-    description: "Shrink images locally in your browser.",
-  },
-  {
-    id: "image-converter",
-    name: "Image Converter",
-    category: "Convert" as const,
-    description: "Convert JPG, PNG, WebP, and AVIF without uploads.",
-  },
-];
+export const comingSoonTools: { id: string; name: string; category: ToolCategory; description: string }[] = [];
 
 export const availableTools = tools.filter((tool) => tool.status === "available");
 
@@ -648,6 +695,22 @@ export function getWordFrequencyTool() {
 
 export function getTextRepeaterTool() {
   return requireTool("text-repeater");
+}
+
+export function getImageConverterTool() {
+  return requireTool("image-converter");
+}
+
+export function getImageCompressorTool() {
+  return requireTool("image-compressor");
+}
+
+export function getImageResizerTool() {
+  return requireTool("image-resizer");
+}
+
+export function getImageCropperTool() {
+  return requireTool("image-cropper");
 }
 
 export function getSlugifyTool() {
