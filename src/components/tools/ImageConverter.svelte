@@ -2,6 +2,7 @@
   import ImageDropzone from "@/components/tools/ImageDropzone.svelte";
   import type { Locale } from "@/i18n/config";
   import { t as getStrings } from "@/i18n/strings";
+  import { encodeImageWithWasm } from "@/utils/imageCodecs";
   import { formatBytes, getOutputMime, type ImageOutputFormat } from "@/utils/image";
 
   const maxImageBytes = 25 * 1024 * 1024;
@@ -90,6 +91,8 @@
     busy = true;
     status = t.processing;
 
+    let codecMode: "canvas" | "wasm" = "canvas";
+
     try {
       const loaded = await loadDrawable(sourceFile);
       try {
@@ -100,8 +103,16 @@
         if (!context) throw new Error(t.canvasError);
 
         context.drawImage(loaded.drawable, 0, 0);
-        const mime = getOutputMime(outputFormat);
-        const blob = await canvasToBlob(canvas, mime, outputFormat === "png" ? undefined : quality / 100);
+        let blob: Blob;
+        if (outputFormat === "avif") {
+          codecMode = "wasm";
+          status = t.preparingEncoder;
+          const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+          blob = await encodeImageWithWasm(imageData, "avif", quality);
+        } else {
+          const mime = getOutputMime(outputFormat);
+          blob = await canvasToBlob(canvas, mime, outputFormat === "png" ? undefined : quality / 100);
+        }
 
         if (currentJob !== job) return;
         revokeOutput();
@@ -115,7 +126,7 @@
     } catch (error) {
       if (currentJob === job) {
         revokeOutput();
-        status = error instanceof Error ? error.message : t.loadError;
+        status = codecMode === "wasm" ? t.codecError : error instanceof Error ? error.message : t.loadError;
       }
     } finally {
       if (currentJob === job) busy = false;
@@ -195,9 +206,10 @@
     <label for="converter-format">
       <span>{t.outputFormat}</span>
       <select id="converter-format" bind:value={outputFormat} onchange={() => void processImage()}>
-        <option value="png">PNG</option>
-        <option value="jpeg">JPEG</option>
-        <option value="webp">WebP</option>
+        <option value="png">{t.png}</option>
+        <option value="jpeg">{t.jpeg}</option>
+        <option value="webp">{t.webp}</option>
+        <option value="avif">{t.avif}</option>
       </select>
     </label>
     <label for="converter-quality" class:muted={outputFormat === "png"}>

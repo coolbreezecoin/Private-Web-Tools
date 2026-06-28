@@ -1,4 +1,5 @@
-export type ImageOutputFormat = "png" | "jpeg" | "webp";
+export type ImageOutputFormat = "png" | "jpeg" | "webp" | "avif";
+export type WasmImageOutputFormat = "png" | "jpeg" | "avif";
 
 export interface ResizeOptions {
   targetW?: number;
@@ -82,6 +83,7 @@ export function clampCropRect(rect: CropRect, bounds: CropBounds): CropRect {
 }
 
 export function getOutputMime(format: ImageOutputFormat): string {
+  if (format === "avif") return "image/avif";
   if (format === "jpeg") return "image/jpeg";
   if (format === "webp") return "image/webp";
   return "image/png";

@@ -2,9 +2,16 @@
   import ImageDropzone from "@/components/tools/ImageDropzone.svelte";
   import type { Locale } from "@/i18n/config";
   import { t as getStrings } from "@/i18n/strings";
-  import { formatBytes, getOutputMime, type ImageOutputFormat } from "@/utils/image";
+  import { encodeImageWithWasm } from "@/utils/imageCodecs";
+  import {
+    formatBytes,
+    getOutputMime,
+    type ImageOutputFormat,
+    type WasmImageOutputFormat,
+  } from "@/utils/image";
 
   const maxImageBytes = 25 * 1024 * 1024;
+  type CompressionEngine = "canvas" | "max";
 
   let {
     locale = "en",
@@ -18,6 +25,7 @@
   let sourceSizeBytes = $state(0);
   let sourceSize = $state("");
   let sourceDimensions = $state("");
+  let compressionEngine = $state<CompressionEngine>("canvas");
   let outputFormat = $state<ImageOutputFormat>("webp");
   let quality = $state(72);
   let outputBlob = $state<Blob | null>(null);
@@ -27,6 +35,8 @@
   let status = $state(t.emptyStatus);
   let busy = $state(false);
   let job = 0;
+
+  const isQualityDisabled = $derived(outputFormat === "png");
 
   function revokeOutput() {
     if (outputUrl) URL.revokeObjectURL(outputUrl);
@@ -84,6 +94,8 @@
     const currentJob = ++job;
     busy = true;
     status = t.processing;
+    let codecMode: "canvas" | "wasm" = "canvas";
+    let usedFallback = false;
 
     try {
       const loaded = await loadDrawable(sourceFile);
@@ -95,7 +107,25 @@
         if (!context) throw new Error(t.canvasError);
 
         context.drawImage(loaded.drawable, 0, 0);
-        const blob = await canvasToBlob(canvas, getOutputMime(outputFormat), quality / 100);
+        let blob: Blob;
+
+        if (compressionEngine === "max") {
+          codecMode = "wasm";
+          status = t.preparingEncoder;
+          const wasmFormat = (outputFormat === "webp" ? "avif" : outputFormat) as WasmImageOutputFormat;
+          const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+          try {
+            blob = await encodeImageWithWasm(imageData, wasmFormat, quality);
+          } catch (error) {
+            if (wasmFormat === "avif") throw error;
+            codecMode = "canvas";
+            usedFallback = true;
+            blob = await canvasToBlob(canvas, getOutputMime(wasmFormat), wasmFormat === "png" ? undefined : quality / 100);
+          }
+        } else {
+          blob = await canvasToBlob(canvas, getOutputMime(outputFormat), outputFormat === "png" ? undefined : quality / 100);
+        }
 
         if (currentJob !== job) return;
         revokeOutput();
@@ -104,14 +134,14 @@
         outputSize = formatBytes(blob.size);
         const percent = sourceSizeBytes > 0 ? Math.max(-999, ((sourceSizeBytes - blob.size) / sourceSizeBytes) * 100) : 0;
         reduction = `${percent.toFixed(1)}%`;
-        status = t.readyStatus.replace("{size}", outputSize);
+        status = usedFallback ? t.fallbackStatus.replace("{size}", outputSize) : t.readyStatus.replace("{size}", outputSize);
       } finally {
         loaded.close();
       }
     } catch (error) {
       if (currentJob === job) {
         revokeOutput();
-        status = error instanceof Error ? error.message : t.loadError;
+        status = codecMode === "wasm" ? t.codecError : error instanceof Error ? error.message : t.loadError;
       }
     } finally {
       if (currentJob === job) busy = false;
@@ -132,7 +162,7 @@
     sourceFile = file;
     sourceSizeBytes = file.size;
     sourceSize = formatBytes(file.size);
-    outputFormat = file.type === "image/jpeg" ? "jpeg" : "webp";
+    outputFormat = compressionEngine === "max" ? (file.type === "image/png" ? "png" : "avif") : file.type === "image/jpeg" ? "jpeg" : "webp";
 
     try {
       const loaded = await loadDrawable(file);
@@ -143,6 +173,17 @@
     }
 
     await processImage();
+  }
+
+  function handleEngineChange() {
+    if (compressionEngine === "max" && outputFormat === "webp") outputFormat = "avif";
+    if (compressionEngine === "canvas" && outputFormat === "avif") outputFormat = "webp";
+    void processImage();
+  }
+
+  function handleFormatChange() {
+    if (outputFormat === "avif") compressionEngine = "max";
+    void processImage();
   }
 
   function downloadOutput() {
@@ -170,16 +211,25 @@
   <ImageDropzone locale={locale} onFile={handleFile} />
 
   <div class="controls">
-    <label for="compressor-format">
-      <span>{t.outputFormat}</span>
-      <select id="compressor-format" bind:value={outputFormat} onchange={() => void processImage()}>
-        <option value="webp">WebP</option>
-        <option value="jpeg">JPEG</option>
+    <label for="compressor-engine">
+      <span>{t.compressionEngine}</span>
+      <select id="compressor-engine" bind:value={compressionEngine} onchange={handleEngineChange}>
+        <option value="canvas">{t.engineCanvas}</option>
+        <option value="max">{t.engineMax}</option>
       </select>
     </label>
-    <label for="compressor-quality">
+    <label for="compressor-format">
+      <span>{t.outputFormat}</span>
+      <select id="compressor-format" bind:value={outputFormat} onchange={handleFormatChange}>
+        <option value="webp" disabled={compressionEngine === "max"}>{t.webp}</option>
+        <option value="jpeg">{t.jpeg}</option>
+        <option value="png">{t.png}</option>
+        <option value="avif" disabled={compressionEngine === "canvas"}>{t.avif}</option>
+      </select>
+    </label>
+    <label for="compressor-quality" class:muted={isQualityDisabled}>
       <span>{t.quality}: {quality}%</span>
-      <input id="compressor-quality" type="range" min="10" max="100" step="1" bind:value={quality} oninput={() => void processImage()} />
+      <input id="compressor-quality" type="range" min="10" max="100" step="1" bind:value={quality} disabled={isQualityDisabled} oninput={() => void processImage()} />
     </label>
   </div>
 
@@ -257,7 +307,7 @@
   }
 
   .controls {
-    grid-template-columns: minmax(160px, 0.6fr) minmax(220px, 1fr);
+    grid-template-columns: minmax(180px, 0.75fr) minmax(160px, 0.6fr) minmax(220px, 1fr);
   }
 
   .meta-grid {
@@ -298,6 +348,10 @@
     background: var(--color-bg);
     color: var(--color-text);
     padding: 10px 12px;
+  }
+
+  .muted {
+    opacity: 0.62;
   }
 
   .preview {
