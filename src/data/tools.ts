@@ -433,6 +433,66 @@ export const tools: ToolConfig[] = [
     landingPages: [],
   },
   {
+    id: "find-replace",
+    name: "Find & Replace",
+    shortName: "Find Replace",
+    category: "Text",
+    route: "/find-replace",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "text",
+    landingPages: [],
+  },
+  {
+    id: "whitespace-cleaner",
+    name: "Whitespace Cleaner",
+    shortName: "Whitespace",
+    category: "Text",
+    route: "/whitespace-cleaner",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "text",
+    landingPages: [],
+  },
+  {
+    id: "word-frequency",
+    name: "Word Frequency Counter",
+    shortName: "Word Frequency",
+    category: "Text",
+    route: "/word-frequency",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "counter",
+    landingPages: [],
+  },
+  {
+    id: "text-repeater",
+    name: "Text Repeater",
+    shortName: "Repeater",
+    category: "Text",
+    route: "/text-repeater",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "text",
+    landingPages: [],
+  },
+  {
     id: "slugify",
     name: "Slugify Tool",
     shortName: "Slugify",
@@ -572,6 +632,22 @@ export function getUnitConverterTool() {
 
 export function getTextLineToolsTool() {
   return requireTool("text-line-tools");
+}
+
+export function getFindReplaceTool() {
+  return requireTool("find-replace");
+}
+
+export function getWhitespaceCleanerTool() {
+  return requireTool("whitespace-cleaner");
+}
+
+export function getWordFrequencyTool() {
+  return requireTool("word-frequency");
+}
+
+export function getTextRepeaterTool() {
+  return requireTool("text-repeater");
 }
 
 export function getSlugifyTool() {

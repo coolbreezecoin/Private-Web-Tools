@@ -27,6 +27,10 @@ import BoxShadowGenerator from "@/components/tools/BoxShadowGenerator.svelte";
 import UrlParser from "@/components/tools/UrlParser.svelte";
 import UnitConverter from "@/components/tools/UnitConverter.svelte";
 import TextLineTools from "@/components/tools/TextLineTools.svelte";
+import FindReplaceTool from "@/components/tools/FindReplaceTool.svelte";
+import WhitespaceCleaner from "@/components/tools/WhitespaceCleaner.svelte";
+import WordFrequencyTool from "@/components/tools/WordFrequencyTool.svelte";
+import TextRepeater from "@/components/tools/TextRepeater.svelte";
 import SlugifyTool from "@/components/tools/SlugifyTool.svelte";
 import { availableTools, comingSoonTools, getFancyTextTool, requireTool, tools } from "@/data/tools";
 import { defaultLocale, isLocale, locales, localizePath, type Locale } from "@/i18n/config";
@@ -209,6 +213,10 @@ const schema =
           {tool.id === "url-parser" && <UrlParser locale={locale} client:load />}
           {tool.id === "unit-converter" && <UnitConverter locale={locale} client:load />}
           {tool.id === "text-line-tools" && <TextLineTools locale={locale} client:load />}
+          {tool.id === "find-replace" && <FindReplaceTool locale={locale} client:load />}
+          {tool.id === "whitespace-cleaner" && <WhitespaceCleaner locale={locale} client:load />}
+          {tool.id === "word-frequency" && <WordFrequencyTool locale={locale} client:load />}
+          {tool.id === "text-repeater" && <TextRepeater locale={locale} client:load />}
           {tool.id === "slugify" && <SlugifyTool locale={locale} client:load />}
 
           {tool.id !== "fancy-text" && toolContent.bodyTitle && toolContent.body && (

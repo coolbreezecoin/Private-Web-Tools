@@ -1222,6 +1222,206 @@ export const en = {
         },
       ],
     },
+    "find-replace": {
+      name: "Find & Replace",
+      shortName: "Find Replace",
+      description: "Find and replace plain text or regex matches locally in your browser.",
+      privacyNote: "Find and replace runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Replace words, phrases, or regular expression matches with live output, optional case-insensitive matching, and whole-word matching for plain text searches.",
+      bodyTitle: "Fast private find and replace for drafts",
+      body: [
+        "Use this find and replace tool to edit notes, captions, lists, snippets, templates, and short documents without sending your text to a server.",
+        "Plain mode escapes your search automatically. Regex mode lets you test a pattern and shows a friendly error when the expression is not valid.",
+      ],
+      seo: {
+        title: "Find & Replace Tool - Plain Text and Regex Replacement",
+        description:
+          "Find and replace text online with plain text or regex matching. Free, private, and processed locally in your browser.",
+      },
+      howTo: [
+        {
+          name: "Paste your text",
+          text: "Add the draft, list, code snippet, or message you want to update.",
+        },
+        {
+          name: "Choose a search mode",
+          text: "Use plain text for literal matching or regex mode for pattern-based replacement.",
+        },
+        {
+          name: "Copy the replaced output",
+          text: "Review the replacement count, check the live output, and copy the result when it looks right.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does find and replace upload my text?",
+          answer: "No. The replacement is calculated locally in your browser, and your text is not uploaded.",
+        },
+        {
+          question: "Can I use regular expressions?",
+          answer: "Yes. Regex mode treats the find field as a JavaScript regular expression and reports invalid patterns inline.",
+        },
+        {
+          question: "What does whole-word matching do?",
+          answer: "In plain mode, whole-word matching wraps the escaped search text in word boundaries so partial words are not replaced.",
+        },
+        {
+          question: "Is replacement text treated literally?",
+          answer: "Yes. The replacement field is inserted as written so dollar signs and backslashes are not interpreted as replacement tokens.",
+        },
+      ],
+    },
+    "whitespace-cleaner": {
+      name: "Whitespace Cleaner",
+      shortName: "Whitespace",
+      description: "Clean spaces, tabs, blank lines, line breaks, and surrounding whitespace locally.",
+      privacyNote: "Whitespace cleanup runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Clean messy pasted text by collapsing extra spaces, removing tabs, trimming lines, deleting blank lines, joining line breaks, and trimming the final result.",
+      bodyTitle: "Clean pasted text without uploading it",
+      body: [
+        "Use this whitespace cleaner for copied spreadsheet cells, AI drafts, CMS text, emails, notes, and pasted lists that need consistent spacing.",
+        "Each cleanup option is independent, so you can remove tabs without changing line breaks, trim each line without deleting blank lines, or combine everything for a compact result.",
+      ],
+      seo: {
+        title: "Whitespace Cleaner - Remove Extra Spaces, Tabs and Blank Lines",
+        description:
+          "Clean whitespace online by removing extra spaces, tabs, blank lines, line breaks, and surrounding spaces locally in your browser.",
+      },
+      howTo: [
+        {
+          name: "Paste messy text",
+          text: "Add the text that has extra spaces, tabs, blank lines, or unwanted line breaks.",
+        },
+        {
+          name: "Select cleanup options",
+          text: "Turn on only the whitespace fixes you want, such as trimming lines or joining line breaks.",
+        },
+        {
+          name: "Copy the cleaned text",
+          text: "Compare before and after character counts, then copy the cleaned output.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does the whitespace cleaner upload my text?",
+          answer: "No. Cleanup happens locally in your browser and your text is not sent to a server.",
+        },
+        {
+          question: "Can I keep line breaks?",
+          answer: "Yes. Leave the remove line breaks option off if you only want to trim or clean spacing inside each line.",
+        },
+        {
+          question: "Can it remove blank lines only?",
+          answer: "Yes. Enable remove blank lines without enabling the other cleanup options.",
+        },
+        {
+          question: "What is the difference between trim lines and trim text?",
+          answer: "Trim lines removes whitespace around each line. Trim text only removes whitespace around the complete output.",
+        },
+      ],
+    },
+    "word-frequency": {
+      name: "Word Frequency Counter",
+      shortName: "Word Frequency",
+      description: "Count repeated words, percentages, and unique terms in a private browser table.",
+      privacyNote: "Word frequency analysis runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Paste text and instantly see each word sorted by frequency, with counts, percentages, case-insensitive matching, minimum length, and English stopword filtering.",
+      bodyTitle: "Word frequency analysis for drafts and research",
+      body: [
+        "Use this word frequency counter to spot repeated terms in articles, essays, captions, keyword drafts, transcripts, and research notes.",
+        "The table updates live in your browser. You can copy a plain text report or CSV-style output without sending the original text anywhere.",
+      ],
+      seo: {
+        title: "Word Frequency Counter - Count Repeated Words Online",
+        description:
+          "Count word frequency, repeated terms, percentages, and unique words online. Free, private, and processed locally in your browser.",
+      },
+      howTo: [
+        {
+          name: "Paste your text",
+          text: "Add the document, article, notes, caption, or transcript you want to analyze.",
+        },
+        {
+          name: "Tune the filters",
+          text: "Choose case-insensitive matching, a minimum word length, and whether to ignore common English stopwords.",
+        },
+        {
+          name: "Copy the frequency table",
+          text: "Review words sorted by count, then copy the table as text or CSV.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does the word frequency counter upload my text?",
+          answer: "No. Words are counted locally in your browser, and your input is not uploaded.",
+        },
+        {
+          question: "How are words detected?",
+          answer: "The tokenizer looks for letter-led words with letters, numbers, and apostrophes, including Unicode letters.",
+        },
+        {
+          question: "What does ignore stopwords remove?",
+          answer: "It removes a small built-in list of common English words such as the, and, of, to, and in.",
+        },
+        {
+          question: "How is the percentage calculated?",
+          answer: "Percent is calculated from the filtered word total after minimum length and stopword settings are applied.",
+        },
+      ],
+    },
+    "text-repeater": {
+      name: "Text Repeater",
+      shortName: "Repeater",
+      description: "Repeat text with newline, space, comma, or custom separators in your browser.",
+      privacyNote: "Text repeating runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Repeat a word, phrase, line, emoji, or template a chosen number of times with optional numbering and newline, space, comma, or custom separators.",
+      bodyTitle: "Repeat text safely without freezing your tab",
+      body: [
+        "Use this text repeater for testing layouts, making placeholder lists, preparing repeated labels, or quickly generating simple repeated patterns.",
+        "The repeat count is clamped to a safe limit so very large values do not hang the browser. Everything is generated locally on your device.",
+      ],
+      seo: {
+        title: "Text Repeater - Repeat Text Online With Separators",
+        description:
+          "Repeat text online with newline, space, comma, or custom separators. Add numbering, copy the result, and keep processing local.",
+      },
+      howTo: [
+        {
+          name: "Enter the text",
+          text: "Type the word, sentence, line, emoji, or template you want to repeat.",
+        },
+        {
+          name: "Choose count and separator",
+          text: "Set how many copies to generate and choose newline, space, comma, or a custom separator.",
+        },
+        {
+          name: "Copy the repeated output",
+          text: "Turn numbering on if needed, review the result, and copy the generated text.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does the text repeater upload my input?",
+          answer: "No. Repeated output is generated locally in your browser.",
+        },
+        {
+          question: "What is the maximum repeat count?",
+          answer: "The tool clamps repeat counts to a safe maximum of 10,000 copies to avoid freezing the page.",
+        },
+        {
+          question: "Can I add numbers to each copy?",
+          answer: "Yes. Enable numbering to prefix each repeated item with its index.",
+        },
+        {
+          question: "Can I use my own separator?",
+          answer: "Yes. Choose the custom separator option and enter any separator text you want.",
+        },
+      ],
+    },
     slugify: {
       name: "Slugify Tool",
       shortName: "Slugify",
