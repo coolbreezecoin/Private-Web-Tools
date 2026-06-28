@@ -31,6 +31,11 @@ import FindReplaceTool from "@/components/tools/FindReplaceTool.svelte";
 import WhitespaceCleaner from "@/components/tools/WhitespaceCleaner.svelte";
 import WordFrequencyTool from "@/components/tools/WordFrequencyTool.svelte";
 import TextRepeater from "@/components/tools/TextRepeater.svelte";
+import PercentageCalculator from "@/components/tools/PercentageCalculator.svelte";
+import BmiCalculator from "@/components/tools/BmiCalculator.svelte";
+import AgeCalculator from "@/components/tools/AgeCalculator.svelte";
+import LoanCalculator from "@/components/tools/LoanCalculator.svelte";
+import DateDifferenceCalculator from "@/components/tools/DateDifferenceCalculator.svelte";
 import ImageConverter from "@/components/tools/ImageConverter.svelte";
 import ImageCompressor from "@/components/tools/ImageCompressor.svelte";
 import ImageResizer from "@/components/tools/ImageResizer.svelte";
@@ -221,6 +226,11 @@ const schema =
           {tool.id === "whitespace-cleaner" && <WhitespaceCleaner locale={locale} client:load />}
           {tool.id === "word-frequency" && <WordFrequencyTool locale={locale} client:load />}
           {tool.id === "text-repeater" && <TextRepeater locale={locale} client:load />}
+          {tool.id === "percentage-calculator" && <PercentageCalculator locale={locale} client:load />}
+          {tool.id === "bmi-calculator" && <BmiCalculator locale={locale} client:load />}
+          {tool.id === "age-calculator" && <AgeCalculator locale={locale} client:load />}
+          {tool.id === "loan-calculator" && <LoanCalculator locale={locale} client:load />}
+          {tool.id === "date-difference" && <DateDifferenceCalculator locale={locale} client:load />}
           {tool.id === "image-converter" && <ImageConverter locale={locale} client:load />}
           {tool.id === "image-compressor" && <ImageCompressor locale={locale} client:load />}
           {tool.id === "image-resizer" && <ImageResizer locale={locale} client:load />}

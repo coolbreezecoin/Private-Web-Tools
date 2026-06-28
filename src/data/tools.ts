@@ -493,6 +493,81 @@ export const tools: ToolConfig[] = [
     landingPages: [],
   },
   {
+    id: "percentage-calculator",
+    name: "Percentage Calculator",
+    shortName: "Percentage",
+    category: "Utilities",
+    route: "/percentage-calculator",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "counter",
+    landingPages: [],
+  },
+  {
+    id: "bmi-calculator",
+    name: "BMI Calculator",
+    shortName: "BMI",
+    category: "Utilities",
+    route: "/bmi-calculator",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "counter",
+    landingPages: [],
+  },
+  {
+    id: "age-calculator",
+    name: "Age Calculator",
+    shortName: "Age",
+    category: "Utilities",
+    route: "/age-calculator",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "counter",
+    landingPages: [],
+  },
+  {
+    id: "loan-calculator",
+    name: "Loan Calculator",
+    shortName: "Loan",
+    category: "Utilities",
+    route: "/loan-calculator",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "counter",
+    landingPages: [],
+  },
+  {
+    id: "date-difference",
+    name: "Date Difference Calculator",
+    shortName: "Date Difference",
+    category: "Utilities",
+    route: "/date-difference",
+    status: "available",
+    visibility: {
+      home: true,
+      directory: true,
+      sitemap: true,
+    },
+    icon: "counter",
+    landingPages: [],
+  },
+  {
     id: "image-converter",
     name: "Image Converter",
     shortName: "Image Converter",
@@ -695,6 +770,26 @@ export function getWordFrequencyTool() {
 
 export function getTextRepeaterTool() {
   return requireTool("text-repeater");
+}
+
+export function getPercentageCalculatorTool() {
+  return requireTool("percentage-calculator");
+}
+
+export function getBmiCalculatorTool() {
+  return requireTool("bmi-calculator");
+}
+
+export function getAgeCalculatorTool() {
+  return requireTool("age-calculator");
+}
+
+export function getLoanCalculatorTool() {
+  return requireTool("loan-calculator");
+}
+
+export function getDateDifferenceTool() {
+  return requireTool("date-difference");
 }
 
 export function getImageConverterTool() {

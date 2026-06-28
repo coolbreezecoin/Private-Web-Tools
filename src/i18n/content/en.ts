@@ -1422,6 +1422,257 @@ export const en = {
         },
       ],
     },
+    "percentage-calculator": {
+      name: "Percentage Calculator",
+      shortName: "Percentage",
+      description: "Calculate percent of a number, what percent one value is of another, and percent change.",
+      privacyNote: "Percentage calculations run locally in your browser. Nothing is uploaded.",
+      hero:
+        "Run common percentage math instantly: find a percent of a number, calculate what percent one value is of another, or measure percentage increase and decrease.",
+      bodyTitle: "Fast percentage math for everyday numbers",
+      body: [
+        "Use this percentage calculator for discounts, taxes, grades, ratios, growth rates, price changes, and quick checks before copying the result. The related loan calculator uses percentage rates for payment math.",
+        "The formulas are simple and transparent: P% of N, X divided by Y as a percent, and percentage change from one value to another. Inputs stay in your browser.",
+      ],
+      seo: {
+        title: "Percentage Calculator - Percent Of, Percent Change and Ratios",
+        description:
+          "Calculate percentages online: percent of a number, what percent one number is of another, and percentage change. Private browser math.",
+      },
+      howTo: [
+        {
+          name: "Choose a percentage mode",
+          text: "Select percent of a number, what percent one value is of another, or percentage change.",
+        },
+        {
+          name: "Enter the numbers",
+          text: "Fill in the labelled fields for the selected calculation. Divide-by-zero cases are shown clearly.",
+        },
+        {
+          name: "Copy the result",
+          text: "Review the live percentage result and copy it when it is ready.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this percentage calculator upload my numbers?",
+          answer: "No. The calculation runs locally in your browser and the inputs are not uploaded.",
+        },
+        {
+          question: "How is percentage change calculated?",
+          answer: "Percentage change is calculated as (new value minus old value) divided by old value, multiplied by 100.",
+        },
+        {
+          question: "Why does the tool reject zero in some modes?",
+          answer: "What-percent and percent-change formulas divide by a total or starting value, so zero would create an undefined result.",
+        },
+        {
+          question: "Can I use this with negative numbers?",
+          answer: "Yes. Negative values are accepted where the formula is defined, such as calculating a change from a non-zero starting value.",
+        },
+      ],
+    },
+    "bmi-calculator": {
+      name: "BMI Calculator",
+      shortName: "BMI",
+      description: "Calculate Body Mass Index with metric or imperial units and see the BMI category.",
+      privacyNote: "BMI calculation runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Enter height and weight in metric or imperial units to calculate Body Mass Index and see the matching BMI category instantly.",
+      bodyTitle: "Private BMI calculation with clear units",
+      body: [
+        "Use this BMI calculator for a quick Body Mass Index estimate from kilograms and centimeters or pounds and inches. The age calculator is nearby when you also need a date-based age result.",
+        "BMI is a simple population-level measure and does not capture body composition, pregnancy, athletic build, or medical context. Treat the result as a math estimate, not a diagnosis.",
+      ],
+      seo: {
+        title: "BMI Calculator - Calculate Body Mass Index Online",
+        description:
+          "Calculate BMI with metric or imperial units and see underweight, normal, overweight, or obese category. Private browser calculator.",
+      },
+      howTo: [
+        {
+          name: "Choose units",
+          text: "Select metric for kilograms and centimeters, or imperial for pounds and inches.",
+        },
+        {
+          name: "Enter height and weight",
+          text: "Add positive values for your chosen unit system. The BMI result updates live.",
+        },
+        {
+          name: "Review BMI category",
+          text: "Check the BMI value and category, then copy the result if you need to save it.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this BMI calculator upload my data?",
+          answer: "No. Height and weight are processed locally in your browser.",
+        },
+        {
+          question: "What BMI formula is used?",
+          answer: "BMI is weight in kilograms divided by height in meters squared. Imperial input is converted to kilograms and meters first.",
+        },
+        {
+          question: "What are the BMI categories?",
+          answer: "The calculator uses common cutoffs: under 18.5, 18.5 to 24.9, 25 to 29.9, and 30 or above.",
+        },
+        {
+          question: "Is BMI medical advice?",
+          answer: "No. BMI is a general math estimate and should not replace guidance from a qualified health professional.",
+        },
+      ],
+    },
+    "age-calculator": {
+      name: "Age Calculator",
+      shortName: "Age",
+      description: "Calculate age in years, months, days, total days, total weeks, and total months.",
+      privacyNote: "Age calculation runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Choose a birth date and an optional as-of date to calculate calendar-correct age with years, months, days, total days, weeks, and months.",
+      bodyTitle: "Calendar-correct age from two dates",
+      body: [
+        "Use this age calculator for birthdays, eligibility checks, records, forms, milestones, and date-based planning. It pairs naturally with the date difference calculator for general intervals.",
+        "The calculation borrows days and months from the calendar instead of using rough month lengths, so leap years and month boundaries are handled cleanly.",
+      ],
+      seo: {
+        title: "Age Calculator - Calculate Age From Birth Date",
+        description:
+          "Calculate age from a birth date to today or any as-of date. Get years, months, days, total days, weeks, and months locally.",
+      },
+      howTo: [
+        {
+          name: "Enter a birth date",
+          text: "Choose the date of birth in the first date field.",
+        },
+        {
+          name: "Set the as-of date",
+          text: "Use today's date or choose a different date for the age calculation.",
+        },
+        {
+          name: "Copy the breakdown",
+          text: "Review years, months, days, total days, total weeks, and total months, then copy the result.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this age calculator upload dates?",
+          answer: "No. The date calculation runs locally in your browser.",
+        },
+        {
+          question: "Can I calculate age on a past or future date?",
+          answer: "Yes. Change the as-of date to calculate age on any valid date after the birth date.",
+        },
+        {
+          question: "How are leap years handled?",
+          answer: "The calculator uses actual calendar dates and month lengths, including leap-year February dates.",
+        },
+        {
+          question: "Why can total months differ from years times twelve plus days?",
+          answer: "Total months counts complete calendar months in the age breakdown, while extra days remain separate.",
+        },
+      ],
+    },
+    "loan-calculator": {
+      name: "Loan Calculator",
+      shortName: "Loan",
+      description: "Estimate monthly loan payment, total interest, and total payment from principal, rate, and term.",
+      privacyNote: "Loan math runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Enter principal, annual interest rate, and loan term to estimate monthly payment, total interest, and total repayment with the standard EMI formula.",
+      bodyTitle: "Transparent loan payment math",
+      body: [
+        "Use this loan calculator for quick payment estimates on fixed-rate loans. The percentage calculator is useful when you need to check rate changes or compare percentages before entering a rate.",
+        "The calculator uses the standard amortizing payment formula and handles a zero interest rate by dividing principal evenly across the term. It is a math estimate, not financial advice.",
+      ],
+      seo: {
+        title: "Loan Calculator - Monthly Payment and Interest Estimate",
+        description:
+          "Calculate monthly loan payment, total interest, and total payment from principal, annual rate, and term. Private browser math.",
+      },
+      howTo: [
+        {
+          name: "Enter principal and rate",
+          text: "Add the loan principal and annual interest rate percentage.",
+        },
+        {
+          name: "Choose the term",
+          text: "Enter the loan term and switch between years or months.",
+        },
+        {
+          name: "Review the payment estimate",
+          text: "Check monthly payment, total interest, and total payment, then copy the result if needed.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this loan calculator upload my numbers?",
+          answer: "No. The calculation runs locally in your browser.",
+        },
+        {
+          question: "What formula is used?",
+          answer:
+            "The calculator uses the standard EMI formula: P times monthly rate times growth factor divided by growth factor minus one.",
+        },
+        {
+          question: "What happens when the interest rate is zero?",
+          answer: "The monthly payment is principal divided by the number of months, with total interest equal to zero.",
+        },
+        {
+          question: "Is this financial advice?",
+          answer: "No. It is a math calculator for estimates only. Actual loan terms can include fees, taxes, insurance, or lender-specific rules.",
+        },
+      ],
+    },
+    "date-difference": {
+      name: "Date Difference Calculator",
+      shortName: "Date Difference",
+      description: "Calculate the difference between two dates in total days, weeks, years, months, and days.",
+      privacyNote: "Date difference calculation runs locally in your browser. Nothing is uploaded.",
+      hero:
+        "Choose two dates and calculate the absolute difference in total days, total weeks, and a calendar years-months-days breakdown.",
+      bodyTitle: "Date intervals without rough month guesses",
+      body: [
+        "Use this date difference calculator for schedules, deadlines, travel, anniversaries, project intervals, and time spans between any two dates. For birth-date calculations, use the age calculator.",
+        "The result is order-independent, so the earlier and later dates can be entered in either field. Calendar borrowing handles real month lengths and leap years.",
+      ],
+      seo: {
+        title: "Date Difference Calculator - Days, Weeks, Years and Months",
+        description:
+          "Calculate the difference between two dates in total days, total weeks, and calendar years, months, and days. Private browser tool.",
+      },
+      howTo: [
+        {
+          name: "Choose two dates",
+          text: "Enter the start and end dates in the date fields.",
+        },
+        {
+          name: "Review total and calendar results",
+          text: "Check total days and weeks alongside the years, months, and days breakdown.",
+        },
+        {
+          name: "Copy the difference",
+          text: "Copy the date difference result for notes, schedules, or records.",
+        },
+      ],
+      faq: [
+        {
+          question: "Does this date difference calculator upload dates?",
+          answer: "No. The date math runs locally in your browser.",
+        },
+        {
+          question: "Does date order matter?",
+          answer: "No. The calculator returns the absolute difference, so either date can come first.",
+        },
+        {
+          question: "Are leap years handled?",
+          answer: "Yes. The calculator uses real calendar dates and month lengths, including leap years.",
+        },
+        {
+          question: "What is total weeks?",
+          answer: "Total weeks is the number of complete seven-day weeks inside the total day difference.",
+        },
+      ],
+    },
     "image-converter": {
       name: "Image Converter",
       shortName: "Image Converter",
