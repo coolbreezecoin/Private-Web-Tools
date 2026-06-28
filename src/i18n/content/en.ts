@@ -1925,6 +1925,68 @@ export const en = {
       ],
     },
   },
+  categoryHubs: {
+    Text: {
+      h1: "Text Tools",
+      intro: [
+        "Use private text tools for writing, cleanup, formatting, counting, and social copy tasks that should stay in your browser.",
+        "Every text utility runs locally and links to a focused tool page with clear instructions, examples, and copy-ready results.",
+      ],
+      seo: {
+        title: "Text Tools - Private Browser Text Utilities",
+        description:
+          "Browse private text tools for counting, formatting, cleaning, repeating, finding, replacing, and creating copyable Unicode text.",
+      },
+    },
+    Image: {
+      h1: "Image Tools",
+      intro: [
+        "Edit image files in your browser with tools for conversion, compression, resizing, and cropping without uploading the source file.",
+        "These image utilities use local browser APIs so you can prepare quick assets while keeping the original file on your device.",
+      ],
+      seo: {
+        title: "Image Tools - Private Browser Image Utilities",
+        description:
+          "Browse browser-based image tools to convert, compress, resize, and crop images locally without uploading files.",
+      },
+    },
+    Convert: {
+      h1: "Converter Tools",
+      intro: [
+        "Convert text, data, dates, numbers, colors, URLs, and units with focused utilities that run locally in the browser.",
+        "Use this hub when you need to change a format, decode a value, compare text, or translate a measurement without sending data away.",
+      ],
+      seo: {
+        title: "Converter Tools - Private Online Format Converters",
+        description:
+          "Browse private converter tools for Base64, URLs, CSV, JSON, numbers, timestamps, colors, units, regex, and diffs.",
+      },
+    },
+    Utilities: {
+      h1: "Utility Tools",
+      intro: [
+        "Find practical browser utilities for passwords, hashes, QR codes, UUIDs, CSS, HTML entities, JWTs, and other everyday technical tasks.",
+        "Each utility is built for quick local work, so you can generate, inspect, or clean values without creating an account.",
+      ],
+      seo: {
+        title: "Utility Tools - Private Browser Generators and Helpers",
+        description:
+          "Browse private utility tools for passwords, hashes, QR codes, UUIDs, CSS, HTML entities, JWTs, and browser-based helpers.",
+      },
+    },
+    Calculators: {
+      h1: "Calculators",
+      intro: [
+        "Run everyday calculations for percentages, BMI, age, loans, and date differences with instant results in your browser.",
+        "Calculator inputs stay local, and each tool explains the formula or assumptions before you copy the result.",
+      ],
+      seo: {
+        title: "Calculators - Private Browser Math Tools",
+        description:
+          "Browse private calculators for percentages, BMI, age, loans, and date differences with instant local browser results.",
+      },
+    },
+  },
   landings: {
     "fancy-text/cursive": {
       keyword: "cursive text generator",

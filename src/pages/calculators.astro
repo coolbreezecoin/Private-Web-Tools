@@ -1,0 +1,18 @@
+---
+import CategoryHub from "@/components/content/CategoryHub.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCategoryHubByCategory } from "@/data/tools";
+import { defaultLocale } from "@/i18n/config";
+import { getCategoryHubContent } from "@/i18n/content";
+
+const locale = defaultLocale;
+const category = "Calculators";
+const hub = getCategoryHubByCategory(category);
+const content = getCategoryHubContent(category, locale);
+---
+
+<BaseLayout title={content.seo.title} description={content.seo.description} basePath={hub?.route} locale={locale}>
+  <main class="page-shell section">
+    <CategoryHub category={category} locale={locale} />
+  </main>
+</BaseLayout>

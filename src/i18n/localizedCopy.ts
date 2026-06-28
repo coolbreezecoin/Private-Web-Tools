@@ -13,6 +13,13 @@ interface LandingCopy {
   style: string;
 }
 
+interface CategoryHubCopy {
+  h1: string;
+  intro: string[];
+  seoTitle: string;
+  seoDescription: string;
+}
+
 interface LocalePack {
   browserPrivacy: string;
   nothingUploaded: string;
@@ -24,6 +31,7 @@ interface LocalePack {
   howTo: Array<{ name: string; text: string }>;
   faq: Array<{ question: string; answer: string }>;
   toolCopy: Record<string, ToolCopy>;
+  categoryHubCopy: Record<string, CategoryHubCopy>;
   landingCopy: Record<string, LandingCopy>;
   landingIntro: (style: string) => string;
   landingBody: (style: string, count: number) => string[];
@@ -286,6 +294,58 @@ const es: LocalePack = {
       seo: "generar slugs para URL",
     },
   },
+  categoryHubCopy: {
+    Text: {
+      h1: "Herramientas de texto",
+      intro: [
+        "Usa herramientas de texto privadas para escribir, limpiar, formatear, contar y preparar copias sociales dentro del navegador.",
+        "Cada utilidad de texto se ejecuta localmente y enlaza a una página enfocada con instrucciones claras, ejemplos y resultados listos para copiar.",
+      ],
+      seoTitle: "Herramientas de texto - utilidades privadas en el navegador",
+      seoDescription:
+        "Explora herramientas privadas de texto para contar, formatear, limpiar, repetir, buscar, reemplazar y crear texto Unicode copiable.",
+    },
+    Image: {
+      h1: "Herramientas de imagen",
+      intro: [
+        "Edita imágenes en el navegador con herramientas para convertir, comprimir, redimensionar y recortar sin subir el archivo original.",
+        "Estas utilidades usan APIs locales del navegador para preparar recursos rápidos mientras el archivo permanece en tu dispositivo.",
+      ],
+      seoTitle: "Herramientas de imagen - utilidades privadas en el navegador",
+      seoDescription:
+        "Explora herramientas de imagen en el navegador para convertir, comprimir, redimensionar y recortar imágenes localmente sin subir archivos.",
+    },
+    Convert: {
+      h1: "Herramientas de conversión",
+      intro: [
+        "Convierte texto, datos, fechas, números, colores, URL y unidades con utilidades enfocadas que se ejecutan localmente.",
+        "Empieza aquí cuando necesites cambiar un formato, decodificar un valor, comparar texto o convertir una medida sin enviar datos.",
+      ],
+      seoTitle: "Herramientas de conversión - convertidores privados online",
+      seoDescription:
+        "Explora convertidores privados para Base64, URL, CSV, JSON, números, marcas de tiempo, colores, unidades, regex y diferencias.",
+    },
+    Utilities: {
+      h1: "Utilidades",
+      intro: [
+        "Encuentra utilidades para contraseñas, hashes, códigos QR, UUID, CSS, entidades HTML, JWT y tareas técnicas cotidianas.",
+        "Cada utilidad está pensada para trabajo local rápido, sin cuenta, para generar, inspeccionar o limpiar valores comunes.",
+      ],
+      seoTitle: "Utilidades - generadores y ayudas privadas en el navegador",
+      seoDescription:
+        "Explora utilidades privadas para contraseñas, hashes, códigos QR, UUID, CSS, entidades HTML, JWT y ayudas en el navegador.",
+    },
+    Calculators: {
+      h1: "Calculadoras",
+      intro: [
+        "Haz cálculos cotidianos de porcentajes, IMC, edad, préstamos y diferencias de fechas con resultados instantáneos.",
+        "Las entradas permanecen locales, y cada calculadora explica la fórmula o los supuestos antes de copiar el resultado.",
+      ],
+      seoTitle: "Calculadoras - herramientas matemáticas privadas en el navegador",
+      seoDescription:
+        "Explora calculadoras privadas para porcentajes, IMC, edad, préstamos y diferencias de fechas con resultados locales instantáneos.",
+    },
+  },
   landingCopy: {
     "fancy-text/cursive": { keyword: "generador de texto cursivo", h1: "Generador de texto cursivo", style: "cursivo" },
     "fancy-text/bold-for-instagram": {
@@ -386,9 +446,14 @@ const es: LocalePack = {
     "Filter tools by category": "Filtrar herramientas por categoría",
     "Coming soon": "Próximamente",
     "No tools match that search yet.": "Aún no hay herramientas que coincidan con esa búsqueda.",
+    "View all": "Ver todo",
+    "{count} tools": "{count} herramientas",
+    Breadcrumb: "Miga de pan",
+    Home: "Inicio",
     All: "Todas",
     Image: "Imagen",
     Convert: "Convertir",
+    Calculators: "Calculadoras",
     PDF: "PDF",
     Utilities: "Utilidades",
     "Calculate percentages": "Calcular porcentajes",
@@ -1028,6 +1093,58 @@ const fr: LocalePack = {
     "image-cropper": { name: "Recadreur d'images", shortName: "Recadrer", task: "recadrer des images avec une sélection interactive", seo: "recadrer des images en ligne" },
     slugify: { name: "Générateur de slugs", shortName: "Slugs", task: "transformer titres et phrases en slugs propres pour URL", seo: "générer des slugs pour URL" },
   },
+  categoryHubCopy: {
+    Text: {
+      h1: "Outils de texte",
+      intro: [
+        "Utilisez des outils de texte privés pour écrire, nettoyer, formater, compter et préparer du contenu social dans le navigateur.",
+        "Chaque utilitaire de texte s'exécute localement et mène à une page ciblée avec instructions claires, exemples et résultats copiables.",
+      ],
+      seoTitle: "Outils de texte - utilitaires privés dans le navigateur",
+      seoDescription:
+        "Explorez des outils de texte privés pour compter, formater, nettoyer, répéter, rechercher, remplacer et créer du texte Unicode copiable.",
+    },
+    Image: {
+      h1: "Outils d'image",
+      intro: [
+        "Modifiez des images dans le navigateur avec des outils pour convertir, compresser, redimensionner et recadrer sans envoyer le fichier source.",
+        "Ces utilitaires utilisent les API locales du navigateur pour préparer rapidement des images tout en gardant le fichier sur votre appareil.",
+      ],
+      seoTitle: "Outils d'image - utilitaires privés dans le navigateur",
+      seoDescription:
+        "Explorez des outils d'image dans le navigateur pour convertir, compresser, redimensionner et recadrer localement sans envoyer de fichiers.",
+    },
+    Convert: {
+      h1: "Outils de conversion",
+      intro: [
+        "Convertissez textes, données, dates, nombres, couleurs, URL et unités avec des utilitaires ciblés exécutés localement.",
+        "Commencez ici pour changer un format, décoder une valeur, comparer du texte ou convertir une mesure sans envoyer de données.",
+      ],
+      seoTitle: "Outils de conversion - convertisseurs privés en ligne",
+      seoDescription:
+        "Explorez des convertisseurs privés pour Base64, URL, CSV, JSON, nombres, horodatages, couleurs, unités, regex et différences.",
+    },
+    Utilities: {
+      h1: "Utilitaires",
+      intro: [
+        "Trouvez des utilitaires pour mots de passe, hash, QR codes, UUID, CSS, entités HTML, JWT et autres tâches techniques courantes.",
+        "Chaque utilitaire est conçu pour un travail local rapide, sans compte, afin de générer, inspecter ou nettoyer des valeurs fréquentes.",
+      ],
+      seoTitle: "Utilitaires - générateurs et aides privés dans le navigateur",
+      seoDescription:
+        "Explorez des utilitaires privés pour mots de passe, hash, QR codes, UUID, CSS, entités HTML, JWT et aides dans le navigateur.",
+    },
+    Calculators: {
+      h1: "Calculateurs",
+      intro: [
+        "Effectuez des calculs courants de pourcentages, IMC, âge, prêts et différences de dates avec des résultats instantanés.",
+        "Les entrées restent locales, et chaque calculateur explique la formule ou les hypothèses avant la copie du résultat.",
+      ],
+      seoTitle: "Calculateurs - outils mathématiques privés dans le navigateur",
+      seoDescription:
+        "Explorez des calculateurs privés pour pourcentages, IMC, âge, prêts et différences de dates avec résultats locaux instantanés.",
+    },
+  },
   landingCopy: {
     "fancy-text/cursive": { keyword: "générateur de texte cursif", h1: "Générateur de texte cursif", style: "cursif" },
     "fancy-text/bold-for-instagram": { keyword: "texte gras pour Instagram", h1: "Texte gras pour Instagram", style: "gras" },
@@ -1116,9 +1233,14 @@ const fr: LocalePack = {
     "Filter tools by category": "Filtrer les outils par catégorie",
     "Coming soon": "Bientôt disponible",
     "No tools match that search yet.": "Aucun outil ne correspond encore à cette recherche.",
+    "View all": "Tout voir",
+    "{count} tools": "{count} outils",
+    Breadcrumb: "Fil d'Ariane",
+    Home: "Accueil",
     All: "Tous",
     Image: "Image",
     Convert: "Conversion",
+    Calculators: "Calculateurs",
     Utilities: "Utilitaires",
     "Calculate percentages": "Calculer des pourcentages",
     "Calculation type": "Type de calcul",
@@ -1746,6 +1868,58 @@ const de: LocalePack = {
     "image-cropper": { name: "Bildzuschneider", shortName: "Zuschneiden", task: "Bilder mit einer interaktiven Auswahl zuzuschneiden", seo: "Bilder online zuschneiden" },
     slugify: { name: "Slug-Generator", shortName: "Slugs", task: "Titel und Phrasen in saubere URL-Slugs umzuwandeln", seo: "URL-Slugs generieren" },
   },
+  categoryHubCopy: {
+    Text: {
+      h1: "Textwerkzeuge",
+      intro: [
+        "Nutze private Textwerkzeuge zum Schreiben, Bereinigen, Formatieren, Zählen und Vorbereiten von Social-Media-Texten im Browser.",
+        "Jedes Textwerkzeug läuft lokal und führt zu einer fokussierten Seite mit klaren Anleitungen, Beispielen und kopierbaren Ergebnissen.",
+      ],
+      seoTitle: "Textwerkzeuge - private Browser-Texttools",
+      seoDescription:
+        "Entdecke private Textwerkzeuge zum Zählen, Formatieren, Bereinigen, Wiederholen, Suchen, Ersetzen und Erstellen kopierbarer Unicode-Texte.",
+    },
+    Image: {
+      h1: "Bildwerkzeuge",
+      intro: [
+        "Bearbeite Bilder im Browser mit Werkzeugen zum Konvertieren, Komprimieren, Skalieren und Zuschneiden, ohne die Quelldatei hochzuladen.",
+        "Diese Bildwerkzeuge nutzen lokale Browser-APIs, damit du schnelle Assets vorbereiten kannst, während die Datei auf deinem Gerät bleibt.",
+      ],
+      seoTitle: "Bildwerkzeuge - private Browser-Bildtools",
+      seoDescription:
+        "Entdecke browserbasierte Bildwerkzeuge zum lokalen Konvertieren, Komprimieren, Skalieren und Zuschneiden ohne Upload.",
+    },
+    Convert: {
+      h1: "Konvertierungswerkzeuge",
+      intro: [
+        "Konvertiere Text, Daten, Datumswerte, Zahlen, Farben, URLs und Einheiten mit fokussierten Werkzeugen, die lokal im Browser laufen.",
+        "Starte hier, wenn du ein Format ändern, einen Wert decodieren, Text vergleichen oder eine Maßeinheit umrechnen möchtest.",
+      ],
+      seoTitle: "Konvertierungswerkzeuge - private Online-Konverter",
+      seoDescription:
+        "Entdecke private Konverter für Base64, URLs, CSV, JSON, Zahlen, Zeitstempel, Farben, Einheiten, Regex und Unterschiede.",
+    },
+    Utilities: {
+      h1: "Nützliche Werkzeuge",
+      intro: [
+        "Finde Browser-Werkzeuge für Passwörter, Hashes, QR-Codes, UUIDs, CSS, HTML-Entities, JWTs und andere technische Alltagsthemen.",
+        "Jedes Werkzeug ist für schnelle lokale Arbeit gebaut, damit du Werte ohne Konto erzeugen, prüfen oder bereinigen kannst.",
+      ],
+      seoTitle: "Nützliche Werkzeuge - private Browser-Generatoren und Helfer",
+      seoDescription:
+        "Entdecke private Werkzeuge für Passwörter, Hashes, QR-Codes, UUIDs, CSS, HTML-Entities, JWTs und Browser-Helfer.",
+    },
+    Calculators: {
+      h1: "Rechner",
+      intro: [
+        "Führe alltägliche Berechnungen für Prozente, BMI, Alter, Kredite und Datumsdifferenzen mit sofortigen Ergebnissen durch.",
+        "Eingaben bleiben lokal, und jeder Rechner erklärt Formel oder Annahmen, bevor du das Ergebnis kopierst.",
+      ],
+      seoTitle: "Rechner - private Mathematikwerkzeuge im Browser",
+      seoDescription:
+        "Entdecke private Rechner für Prozente, BMI, Alter, Kredite und Datumsdifferenzen mit sofortigen lokalen Ergebnissen.",
+    },
+  },
   landingCopy: {
     "fancy-text/cursive": { keyword: "Generator für Schreibschrift-Text", h1: "Generator für Schreibschrift-Text", style: "Schreibschrift" },
     "fancy-text/bold-for-instagram": { keyword: "fetter Text für Instagram", h1: "Fetter Text für Instagram", style: "fetten" },
@@ -1834,9 +2008,14 @@ const de: LocalePack = {
     "Filter tools by category": "Werkzeuge nach Kategorie filtern",
     "Coming soon": "Demnächst",
     "No tools match that search yet.": "Noch keine Werkzeuge passen zu dieser Suche.",
+    "View all": "Alle ansehen",
+    "{count} tools": "{count} Werkzeuge",
+    Breadcrumb: "Breadcrumb",
+    Home: "Startseite",
     All: "Alle",
     Image: "Bild",
     Convert: "Konvertieren",
+    Calculators: "Rechner",
     Utilities: "Nützliches",
     "Calculate percentages": "Prozente berechnen",
     "Calculation type": "Berechnungsart",
@@ -2493,7 +2672,24 @@ function makeLandingContent(key: string, source: Record<string, unknown>, pack: 
   };
 }
 
-export function translateContent<T extends { tools: Record<string, unknown>; landings: Record<string, unknown> }>(
+function makeCategoryHubContent(category: string, source: Record<string, unknown>, pack: LocalePack) {
+  const copy = pack.categoryHubCopy[category];
+  if (!copy) throw new Error(`Missing localized category hub copy for ${category}`);
+
+  const introLength = Array.isArray(source.intro) ? source.intro.length : copy.intro.length;
+  return {
+    h1: copy.h1,
+    intro: copy.intro.slice(0, introLength),
+    seo: {
+      title: copy.seoTitle,
+      description: copy.seoDescription,
+    },
+  };
+}
+
+export function translateContent<
+  T extends { tools: Record<string, unknown>; landings: Record<string, unknown>; categoryHubs: Record<string, unknown> },
+>(
   source: T,
   locale: GeneratedLocale,
 ): T {
@@ -2504,6 +2700,12 @@ export function translateContent<T extends { tools: Record<string, unknown>; lan
     ),
     landings: Object.fromEntries(
       Object.entries(source.landings).map(([key, value]) => [key, makeLandingContent(key, value as Record<string, unknown>, pack)]),
+    ),
+    categoryHubs: Object.fromEntries(
+      Object.entries(source.categoryHubs).map(([key, value]) => [
+        key,
+        makeCategoryHubContent(key, value as Record<string, unknown>, pack),
+      ]),
     ),
   } as T;
 }

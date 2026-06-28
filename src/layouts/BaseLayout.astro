@@ -3,6 +3,10 @@ import "@/styles/global.css";
 import Header from "@/components/layout/Header.astro";
 import Footer from "@/components/layout/Footer.astro";
 import Analytics from "@/components/layout/Analytics.astro";
+import { getCategoryHubByCategory, getCategoryHubByRoute, tools } from "@/data/tools";
+import { getCategoryHubContent, getToolContent } from "@/i18n/content";
+import { t as getStrings } from "@/i18n/strings";
+import { createBreadcrumbSchema } from "@/utils/schema";
 import { siteName, toAbsoluteUrl } from "@/utils/site";
 import { defaultLocale, locales, localizePath, type Locale } from "@/i18n/config";
 
@@ -16,6 +20,7 @@ interface Props {
 }
 
 const { title, description, basePath = "/", locale = defaultLocale, ogImage = "/og-default.png", schema = [] } = Astro.props;
+const normalizedBasePath = basePath.replace(/\/$/, "") || "/";
 const localizedPath = localizePath(basePath, locale);
 const canonical = toAbsoluteUrl(localizedPath);
 const alternates = locales.map((item) => ({
@@ -23,6 +28,24 @@ const alternates = locales.map((item) => ({
   href: toAbsoluteUrl(localizePath(basePath, item)),
 }));
 const pageTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+const strings = getStrings(locale);
+const matchedTool = tools.find((tool) => tool.route === normalizedBasePath);
+const matchedHub = getCategoryHubByRoute(normalizedBasePath);
+const toolHub = matchedTool ? getCategoryHubByCategory(matchedTool.category) : undefined;
+const breadcrumbItems = matchedTool && toolHub
+  ? [
+      { name: strings.breadcrumbs.home, path: localizePath("/", locale) },
+      { name: getCategoryHubContent(toolHub.category, locale).h1, path: localizePath(toolHub.route, locale) },
+      { name: getToolContent(matchedTool.id, locale).name, path: localizePath(matchedTool.route, locale) },
+    ]
+  : matchedHub
+    ? [
+        { name: strings.breadcrumbs.home, path: localizePath("/", locale) },
+        { name: getCategoryHubContent(matchedHub.category, locale).h1, path: localizePath(matchedHub.route, locale) },
+      ]
+    : [];
+const lastBreadcrumbIndex = breadcrumbItems.length - 1;
+const pageSchema = breadcrumbItems.length > 0 ? [createBreadcrumbSchema(breadcrumbItems), ...schema] : schema;
 const themeScript = `
   const stored = localStorage.getItem("theme");
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -64,12 +87,52 @@ const localeDetectScript =
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#4f46e5" />
     {localeDetectScript && <script is:inline set:html={localeDetectScript}></script>}
-    {schema.map((entry) => <script is:inline type="application/ld+json" set:html={JSON.stringify(entry)} />)}
+    {pageSchema.map((entry) => <script is:inline type="application/ld+json" set:html={JSON.stringify(entry)} />)}
   </head>
   <body>
     <Header locale={locale} basePath={basePath} />
+    {breadcrumbItems.length > 0 && (
+      <nav class="breadcrumb page-shell" aria-label={strings.breadcrumbs.label}>
+        {breadcrumbItems.map((item, index) => (
+          <>
+            {index > 0 && <span aria-hidden="true">/</span>}
+            {index === lastBreadcrumbIndex ? (
+              <span aria-current="page">{item.name}</span>
+            ) : (
+              <a href={item.path}>{item.name}</a>
+            )}
+          </>
+        ))}
+      </nav>
+    )}
     <slot />
     <Footer locale={locale} />
     <Analytics />
   </body>
 </html>
+
+<style>
+  .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding-top: 18px;
+    color: var(--color-muted);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .breadcrumb a {
+    color: var(--color-muted);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-text);
+  }
+
+  .breadcrumb span[aria-current="page"] {
+    color: var(--color-text);
+  }
+</style>

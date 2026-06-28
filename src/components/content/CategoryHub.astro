@@ -1,0 +1,147 @@
+---
+import { availableTools, getCategoryHubByCategory, type LiveToolCategory } from "@/data/tools";
+import { localizePath, type Locale } from "@/i18n/config";
+import { getCategoryHubContent, getToolContent } from "@/i18n/content";
+import { t as getStrings } from "@/i18n/strings";
+
+interface Props {
+  category: LiveToolCategory;
+  locale: Locale;
+}
+
+const { category, locale } = Astro.props;
+const hub = getCategoryHubByCategory(category);
+if (!hub) {
+  throw new Error(`Missing category hub route for ${category}`);
+}
+
+const content = getCategoryHubContent(category, locale);
+const strings = getStrings(locale);
+const categoryTools = availableTools.filter((tool) => tool.category === category);
+const countLabel = strings.directory.toolCountLabel.replace("{count}", String(categoryTools.length));
+---
+
+<section class="category-hero">
+  <p class="eyebrow">{countLabel}</p>
+  <h1>{content.h1}</h1>
+  {content.intro.map((paragraph) => <p>{paragraph}</p>)}
+</section>
+
+<section class="category-list" aria-labelledby="category-tools-title">
+  <div class="section-head">
+    <h2 id="category-tools-title">{content.h1}</h2>
+    <span>{countLabel}</span>
+  </div>
+
+  <div class="tool-grid">
+    {categoryTools.map((tool) => {
+      const toolContent = getToolContent(tool.id, locale);
+      return (
+        <a class="tool-card" href={localizePath(tool.route, locale)}>
+          <span class="badge">{content.h1}</span>
+          <strong>{toolContent.shortName || toolContent.name}</strong>
+          <span>{toolContent.description}</span>
+        </a>
+      );
+    })}
+  </div>
+</section>
+
+<style>
+  .category-hero {
+    max-width: 840px;
+    margin-bottom: 34px;
+  }
+
+  .category-hero h1 {
+    margin: 18px 0 0;
+    color: var(--color-text);
+    font-size: clamp(40px, 7vw, 62px);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+
+  .category-hero p:not(.eyebrow) {
+    max-width: 720px;
+    color: var(--color-muted);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .category-list {
+    display: grid;
+    gap: 18px;
+  }
+
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .section-head h2 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: clamp(26px, 4vw, 34px);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .section-head span,
+  .badge {
+    border-radius: var(--radius-pill);
+    background: var(--color-accent-soft-bg);
+    color: var(--color-accent-soft-text);
+    font-size: 12px;
+    font-weight: 800;
+    padding: 6px 10px;
+  }
+
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+    gap: 16px;
+  }
+
+  .tool-card {
+    display: grid;
+    min-height: 156px;
+    align-content: start;
+    gap: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+    color: var(--color-text);
+    padding: 20px;
+    text-decoration: none;
+    transition:
+      border-color 0.18s,
+      box-shadow 0.18s,
+      transform 0.18s;
+  }
+
+  .tool-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-3px);
+  }
+
+  .tool-card strong {
+    font-size: 17px;
+    letter-spacing: -0.01em;
+  }
+
+  .tool-card span:last-child {
+    color: var(--color-muted);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .badge {
+    width: fit-content;
+  }
+</style>

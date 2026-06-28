@@ -1,5 +1,7 @@
 <script lang="ts">
   import type { Locale } from "@/i18n/config";
+  import { categoryHubs } from "@/data/tools";
+  import { localizePath } from "@/i18n/config";
   import { t as getStrings } from "@/i18n/strings";
 
   type DirectoryTool = {
@@ -23,6 +25,9 @@
   const t = $derived(getStrings(locale).directory);
   const categories = $derived(t.categories);
   const categoryLabels = $derived(Object.fromEntries(categories.map((category) => [category.value, category.label])));
+  const categoryHubRoutes = $derived(
+    Object.fromEntries(categoryHubs.map((hub) => [hub.category, localizePath(hub.route, locale)])),
+  );
 
   let combined = $derived([...tools, ...comingSoon]);
   let filtered = $derived(
@@ -39,6 +44,7 @@
         value: category.value,
         label: category.label,
         tools: filtered.filter((tool) => tool.category === category.value),
+        route: categoryHubRoutes[category.value],
       }))
       .filter((group) => group.tools.length > 0),
   );
@@ -84,7 +90,18 @@
     <div class="grouped-grid">
       {#each grouped as group}
         <section class="tool-group" aria-labelledby={`tool-group-${group.value}`}>
-          <h3 id={`tool-group-${group.value}`}>{group.label}</h3>
+          <div class="tool-group-head">
+            <h3 id={`tool-group-${group.value}`}>
+              {group.label}
+              <span>{t.toolCountLabel.replace("{count}", String(group.tools.length))}</span>
+            </h3>
+            {#if group.route}
+              <a class="view-all" href={group.route}>
+                {t.viewAll}
+                <span aria-hidden="true">→</span>
+              </a>
+            {/if}
+          </div>
           <div class="grid">
             {#each group.tools as tool}
               {#if tool.status === "available" && tool.route}
@@ -198,12 +215,51 @@
     gap: 22px;
   }
 
+  .tool-group-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
   .tool-group h3 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
     margin: 0;
     color: var(--color-text);
     font-size: 20px;
     line-height: 1.15;
     letter-spacing: -0.02em;
+  }
+
+  .tool-group h3 span {
+    border-radius: var(--radius-pill);
+    background: var(--color-accent-soft-bg);
+    color: var(--color-accent-soft-text);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0;
+    padding: 4px 9px;
+  }
+
+  .view-all {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    gap: 6px;
+    border-radius: var(--radius-pill);
+    color: var(--color-accent);
+    font-size: 13px;
+    font-weight: 800;
+    padding: 8px 10px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .view-all:hover {
+    background: var(--color-accent-soft-bg);
   }
 
   .grid {
@@ -288,6 +344,10 @@
   }
 
   @media (max-width: 560px) {
+    .tool-group-head {
+      align-items: flex-start;
+    }
+
     .chips {
       flex-wrap: nowrap;
       justify-content: flex-start;

@@ -49,11 +49,14 @@ const en = {
     filterLabel: "Filter tools by category",
     comingSoon: "Coming soon",
     empty: "No tools match that search yet.",
+    viewAll: "View all",
+    toolCountLabel: "{count} tools",
     categories: [
       { value: "All", label: "All" },
       { value: "Text", label: "Text" },
       { value: "Image", label: "Image" },
       { value: "Convert", label: "Convert" },
+      { value: "Calculators", label: "Calculators" },
       { value: "PDF", label: "PDF" },
       { value: "Utilities", label: "Utilities" },
     ],
@@ -67,6 +70,10 @@ const en = {
         description: "Convert PNG, JPEG, and WebP without uploads.",
       },
     },
+  },
+  breadcrumbs: {
+    label: "Breadcrumb",
+    home: "Home",
   },
   fancyText: {
     privacy: "Your text stays in your browser. Nothing is uploaded.",
@@ -1098,11 +1105,14 @@ export const ui = {
       filterLabel: "按分类筛选工具",
       comingSoon: "即将推出",
       empty: "暂时没有匹配的工具。",
+      viewAll: "查看全部",
+      toolCountLabel: "{count} 个工具",
       categories: [
         { value: "All", label: "全部" },
         { value: "Text", label: "文本" },
         { value: "Image", label: "图片" },
         { value: "Convert", label: "转换" },
+        { value: "Calculators", label: "计算器" },
         { value: "PDF", label: "PDF" },
         { value: "Utilities", label: "实用工具" },
       ],
@@ -1116,6 +1126,10 @@ export const ui = {
           description: "无需上传即可转换 PNG、JPEG 和 WebP。",
         },
       },
+    },
+    breadcrumbs: {
+      label: "面包屑导航",
+      home: "首页",
     },
     fancyText: {
       privacy: "你的文字只留在浏览器中，不会上传。",

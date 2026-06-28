@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import AdSlot from "@/components/ads/AdSlot.astro";
+import CategoryHub from "@/components/content/CategoryHub.astro";
 import HowToFAQ from "@/components/content/HowToFAQ.astro";
 import RelatedFancyPages from "@/components/content/RelatedFancyPages.astro";
 import ToolDirectory from "@/components/tools/ToolDirectory.svelte";
@@ -41,13 +42,13 @@ import ImageCompressor from "@/components/tools/ImageCompressor.svelte";
 import ImageResizer from "@/components/tools/ImageResizer.svelte";
 import ImageCropper from "@/components/tools/ImageCropper.svelte";
 import SlugifyTool from "@/components/tools/SlugifyTool.svelte";
-import { availableTools, comingSoonTools, getFancyTextTool, requireTool, tools } from "@/data/tools";
+import { availableTools, categoryHubs, comingSoonTools, getFancyTextTool, requireTool, tools, type LiveToolCategory } from "@/data/tools";
 import { defaultLocale, isLocale, locales, localizePath, type Locale } from "@/i18n/config";
-import { getLandingContent, getToolContent } from "@/i18n/content";
+import { getCategoryHubContent, getLandingContent, getToolContent } from "@/i18n/content";
 import { t as getStrings } from "@/i18n/strings";
 import { createFAQSchema, createHowToSchema } from "@/utils/schema";
 
-type PageKind = "all-tools" | "about" | "privacy" | "tool" | "fancy-landing";
+type PageKind = "all-tools" | "about" | "privacy" | "tool" | "fancy-landing" | "category-hub";
 
 interface PageEntry {
   basePath: string;
@@ -55,6 +56,7 @@ interface PageEntry {
   kind: PageKind;
   toolId?: string;
   slug?: string;
+  category?: LiveToolCategory;
 }
 
 export function getStaticPaths() {
@@ -62,6 +64,12 @@ export function getStaticPaths() {
     { basePath: "/all-tools", path: "all-tools", kind: "all-tools" },
     { basePath: "/about", path: "about", kind: "about" },
     { basePath: "/privacy", path: "privacy", kind: "privacy" },
+    ...categoryHubs.map((hub) => ({
+      basePath: hub.route,
+      path: hub.route.slice(1),
+      kind: "category-hub" as const,
+      category: hub.category,
+    })),
     ...tools.map((tool) => ({
       basePath: tool.route,
       path: tool.route.slice(1),
@@ -113,6 +121,8 @@ const tool = entry.toolId ? requireTool(entry.toolId) : undefined;
 const toolContent = tool ? getToolContent(tool.id, locale) : undefined;
 const landing = tool && entry.slug ? tool.landingPages.find((item) => item.slug === entry.slug) : undefined;
 const landingContent = tool && entry.slug ? getLandingContent(tool.id, entry.slug, locale) : undefined;
+const categoryHubContent =
+  entry.kind === "category-hub" && entry.category ? getCategoryHubContent(entry.category, locale) : undefined;
 const related = tool ? availableTools.filter((item) => item.id !== tool.id) : [];
 
 const seoTitle =
@@ -121,8 +131,10 @@ const seoTitle =
     : entry.kind === "about"
       ? t.pages.about.title
       : entry.kind === "privacy"
-        ? t.pages.privacy.title
-        : entry.kind === "fancy-landing" && landingContent
+      ? t.pages.privacy.title
+      : entry.kind === "category-hub" && categoryHubContent
+        ? categoryHubContent.seo.title
+      : entry.kind === "fancy-landing" && landingContent
           ? landingContent.seo.title
           : toolContent?.seo.title ?? t.pages.home.title;
 
@@ -133,6 +145,8 @@ const seoDescription =
       ? t.pages.about.description
       : entry.kind === "privacy"
         ? t.pages.privacy.description
+        : entry.kind === "category-hub" && categoryHubContent
+          ? categoryHubContent.seo.description
         : entry.kind === "fancy-landing" && landingContent
           ? landingContent.seo.description
           : toolContent?.seo.description ?? t.pages.home.description;
@@ -185,6 +199,12 @@ const schema =
       <p>{t.pages.privacy.adsBody}</p>
       <h2>{t.pages.privacy.contactTitle}</h2>
       <p>{t.pages.privacy.contactBody}</p>
+    </main>
+  )}
+
+  {entry.kind === "category-hub" && entry.category && (
+    <main class="page-shell section">
+      <CategoryHub category={entry.category} locale={locale} />
     </main>
   )}
 

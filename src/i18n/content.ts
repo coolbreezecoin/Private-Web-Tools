@@ -4,7 +4,7 @@ import { zh } from "./content/zh";
 import { es } from "./content/es";
 import { fr } from "./content/fr";
 import { de } from "./content/de";
-import type { FAQItem, HowToStep } from "@/data/tools";
+import type { FAQItem, HowToStep, ToolCategory } from "@/data/tools";
 
 const localizedContent = {
   en,
@@ -43,6 +43,15 @@ export interface LandingContent {
   faq: FAQItem[];
 }
 
+export interface CategoryHubContent {
+  h1: string;
+  intro: string[];
+  seo: {
+    title: string;
+    description: string;
+  };
+}
+
 function isPlainObject(value: unknown): value is Record<string, unknown> {
   return Boolean(value && typeof value === "object" && !Array.isArray(value));
 }
@@ -79,4 +88,14 @@ export function getLandingContent(toolId: string, slug: string, locale: Locale):
 
   const localeLandings = localizedContent[locale].landings as Record<string, unknown>;
   return deepMerge(fallback, localeLandings[key as string]) as unknown as LandingContent;
+}
+
+export function getCategoryHubContent(category: ToolCategory, locale: Locale): CategoryHubContent {
+  const fallback = en.categoryHubs[category as keyof typeof en.categoryHubs];
+  if (!fallback) {
+    throw new Error(`Missing English content for category hub: ${category}`);
+  }
+
+  const localeHubs = localizedContent[locale].categoryHubs as Record<string, unknown>;
+  return deepMerge(fallback, localeHubs[category]) as unknown as CategoryHubContent;
 }

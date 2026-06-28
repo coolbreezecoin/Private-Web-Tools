@@ -1,5 +1,6 @@
 export type ToolStatus = "available" | "comingSoon" | "hidden";
-export type ToolCategory = "Text" | "Image" | "Convert" | "PDF" | "Utilities";
+export type ToolCategory = "Text" | "Image" | "Convert" | "PDF" | "Utilities" | "Calculators";
+export type LiveToolCategory = Exclude<ToolCategory, "PDF">;
 
 export interface SeoConfig {
   title: string;
@@ -39,6 +40,19 @@ export interface ToolConfig {
   icon: string;
   landingPages: LandingPageConfig[];
 }
+
+export interface CategoryHubConfig {
+  category: LiveToolCategory;
+  route: string;
+}
+
+export const categoryHubs: CategoryHubConfig[] = [
+  { category: "Text", route: "/text-tools" },
+  { category: "Image", route: "/image-tools" },
+  { category: "Convert", route: "/converter-tools" },
+  { category: "Utilities", route: "/utility-tools" },
+  { category: "Calculators", route: "/calculators" },
+];
 
 export const tools: ToolConfig[] = [
   {
@@ -496,7 +510,7 @@ export const tools: ToolConfig[] = [
     id: "percentage-calculator",
     name: "Percentage Calculator",
     shortName: "Percentage",
-    category: "Utilities",
+    category: "Calculators",
     route: "/percentage-calculator",
     status: "available",
     visibility: {
@@ -511,7 +525,7 @@ export const tools: ToolConfig[] = [
     id: "bmi-calculator",
     name: "BMI Calculator",
     shortName: "BMI",
-    category: "Utilities",
+    category: "Calculators",
     route: "/bmi-calculator",
     status: "available",
     visibility: {
@@ -526,7 +540,7 @@ export const tools: ToolConfig[] = [
     id: "age-calculator",
     name: "Age Calculator",
     shortName: "Age",
-    category: "Utilities",
+    category: "Calculators",
     route: "/age-calculator",
     status: "available",
     visibility: {
@@ -541,7 +555,7 @@ export const tools: ToolConfig[] = [
     id: "loan-calculator",
     name: "Loan Calculator",
     shortName: "Loan",
-    category: "Utilities",
+    category: "Calculators",
     route: "/loan-calculator",
     status: "available",
     visibility: {
@@ -556,7 +570,7 @@ export const tools: ToolConfig[] = [
     id: "date-difference",
     name: "Date Difference Calculator",
     shortName: "Date Difference",
-    category: "Utilities",
+    category: "Calculators",
     route: "/date-difference",
     status: "available",
     visibility: {
@@ -647,6 +661,14 @@ export const tools: ToolConfig[] = [
 export const comingSoonTools: { id: string; name: string; category: ToolCategory; description: string }[] = [];
 
 export const availableTools = tools.filter((tool) => tool.status === "available");
+
+export function getCategoryHubByCategory(category: ToolCategory) {
+  return categoryHubs.find((hub) => hub.category === category);
+}
+
+export function getCategoryHubByRoute(route: string) {
+  return categoryHubs.find((hub) => hub.route === route);
+}
 
 export function getToolById(id: string) {
   return tools.find((tool) => tool.id === id);
